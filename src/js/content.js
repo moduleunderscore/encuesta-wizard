@@ -44,7 +44,7 @@ export const SCREENS = [
   },
   {
     eyebrow: "02 / TECNOLOGÍA",
-    title: "¿Ya son del mismo equipo?",
+    title: "¿Qué tan cómodo te sientes con tu tecnología?",
     image: "./assets/robot-future.jpg",
     imageAlt: "Robot marfil de Wizard sosteniendo una tableta con un orbe verde",
   },

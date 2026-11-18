@@ -60,7 +60,7 @@ function formatTitle(index, title) {
     "¿NO QUE NO<br>SE POD<span>IA</span>?",
     "CON <span class=\"title-logo\"><img src=\"./assets/logo-wizard.png\" alt=\"Wizard\" /></span><br><span>TODO SE PUEDE.</span>",
     "A VER,<br><span>SIN FILTRO.</span>",
-    "¿YA SON DEL<br><span>MISMO EQUIPO?</span>",
+    "¿QUÉ TAN CÓMODO<br>TE SIENTES CON TU TECNOLOG<span>ÍA</span>?",
     "HABLEMOS<br><span>DEL FUTURO.</span>",
     "¿QUÉ PROYECTO CREES<br><span>QUE DEBA ENTRAR TU EMPRESA?</span>",
     "Y A TODO ESTO,<br><span>¿NOS RECOMENDARÍAS?</span>",
