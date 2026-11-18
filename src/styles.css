@@ -295,6 +295,11 @@ a:focus-visible,
   text-shadow: 0 0 1.75rem rgba(57, 255, 20, 0.38);
 }
 
+.screen-heading .title-white {
+  color: var(--paper);
+  text-shadow: none;
+}
+
 .screen-heading span::after {
   content: none;
 }
