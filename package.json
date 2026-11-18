@@ -1,0 +1,11 @@
+{
+  "name": "encuesta-wizard",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "python3 scripts/build.py",
+    "dev": "npm run build && python3 -m http.server 4173 -d dist",
+    "test": "node --test"
+  }
+}

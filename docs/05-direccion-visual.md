@@ -1,0 +1,72 @@
+# 05 — Dirección visual
+
+## Qué debe comunicar
+
+- Producto: una conversación de marca, no un formulario administrativo.
+- Mecanismo: una escena por pregunta con progreso visible.
+- En cinco segundos: es Wizard, toma unos tres minutos y nada se envía en demo.
+- Acción dominante: responder una pregunta y decidir cuándo continuar.
+- Sensación: precisión editorial con humor en el personaje; confianza sin solemnidad.
+
+## Síntesis de referencias
+
+1. **Sitio “¿No que no se podIA?” proporcionado por el usuario:** escena a sangre, degradado oscuro, copy dentro de la imagen, encabezado editorial y progreso inferior. Se adopta como arquitectura visual principal.
+2. **Deck vigente de Wizard:** negro profundo, verde eléctrico, titulares contundentes y contraportada limpia.
+3. **Propuesta horizontal:** ritmo de una idea por pantalla y controles persistentes. Se descartan nombre, contenido y firma visual de Hangar.
+4. **Escenas adjuntas:** material textil marfil, ojos negros, gesto confiado y espacio negativo a la izquierda.
+
+No se copia código ni activos de terceros. Se reimplementan principios dentro de la estructura propia del proyecto.
+
+## Tres direcciones consideradas
+
+| Dirección | Idea espacial | Jerarquía | Material / color | Movimiento | Riesgo |
+|---|---|---|---|---|---|
+| Clara | Formulario vertical | Pregunta primero | Negro y verde | Fade corto | Genérico |
+| Wizard | Escenario editorial a sangre | Titular, pregunta, acción | Negro, gris estudio, marfil y `#39FF14` | Continuidad lateral y filamento de progreso | Controlado |
+| Experimental | Video/3D inmersivo | Personaje primero | Neón y profundidad | Scroll cinético | Peso y distracción |
+
+## Sistema elegido
+
+- Dirección: escenario editorial Wizard.
+- Navegación: barra superior con eje narrativo y contador; barra inferior con anterior, filamento, pasos visitados y continuar.
+- Tipografía: Barlow para lectura, Inter Tight para titulares/escala e IBM Plex Mono para controles y metadatos.
+- Paleta: `#050706`, blanco frío, gris de estudio y `#39FF14`.
+- Composición: escena completa de fondo, degradado izquierdo, copy a 60% en escritorio; personaje arriba y contenido sobre degradado en móvil.
+- Materialidad: robot textil contra estudio gris; paneles negros semitransparentes con bordes finos.
+- Estados: selección verde, foco de 2 px, error coral, bloqueo local, cierre oscuro y demo explícita.
+
+## Dirección de movimiento y storyboard
+
+### Transición de escena
+
+- Función: continuidad y orientación.
+- Trigger: Anterior, Continuar o paso visitado.
+- Sujeto: copy y escena del robot.
+- Estado: copy entra 16 px y la imagen se revela lateralmente.
+- Duración: 520–700 ms con `cubic-bezier(0.22, 1, 0.36, 1)`.
+- Móvil: misma lógica, sin pinning ni scroll intervenido.
+- Movimiento reducido: duración prácticamente instantánea; todo contenido visible.
+- Fallback: escena final visible sin animación ni JavaScript de movimiento.
+- Presupuesto: CSS únicamente; cero librerías, canvas, WebGL o listeners por frame.
+- QA: navegación por botones y teclado, sin reanimar la escena al seleccionar una respuesta.
+
+### Filamento de progreso
+
+- Función: progreso, causalidad y feedback.
+- Trigger: cambio de pantalla o respuesta seleccionada.
+- Sujeto: línea verde y paso actual.
+- Estado: ancho 10–100%; pulso breve al responder.
+- Duración: 600–650 ms.
+- Móvil: solo línea para reducir ruido; escritorio añade los diez pasos.
+- Movimiento reducido: actualización inmediata sin brillo animado.
+- Fallback: contador `01 / 10` siempre visible.
+- Presupuesto: una transición de ancho y una animación de sombra.
+- QA: no provoca overflow ni bloquea los controles.
+
+El momento distintivo es la transformación coordinada entre escena, titular verde y filamento inferior: la encuesta se siente como avanzar dentro de una historia, no como cambiar de página.
+
+## Preview
+
+- Local: `http://127.0.0.1:4173` durante QA.
+- Fecha: 2026-11-18.
+- Cambio solicitado e incorporado: adoptar como principal la arquitectura visual de `wizard-no-que-no-se-podia` conservando la estructura funcional propia.

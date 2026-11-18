@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="es-MX">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#050706" />
+    <meta
+      name="description"
+      content="Encuesta demo de satisfacción para clientes de Wizard, agencia de inteligencia artificial aplicada."
+    />
+    <title>Encuesta Wizard · Vista de prueba</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&family=Inter+Tight:wght@500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preload" href="./assets/robot-challenge.jpg" as="image" fetchpriority="high" />
+    <link rel="stylesheet" href="./styles.css" />
+    <script type="module" src="./js/app.js"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#stage">Saltar a la pregunta</a>
+    <div class="app-shell" id="app">
+      <header class="app-header" aria-label="Navegación de la encuesta">
+        <div class="brand-lockup" aria-label="Wizard">
+          <img src="./assets/logo-wizard.png" alt="Wizard, Agencia IA Aplicada" />
+        </div>
+        <div class="experience-axis" aria-hidden="true">
+          <span>TU EXPERIENCIA</span>
+          <i></i>
+          <span id="section-label">EL COMIENZO</span>
+        </div>
+        <button class="preview-pill" type="button" data-action="preview-info">Vista de prueba</button>
+        <div class="screen-count" aria-live="polite">
+          <span id="current-number">01</span><span>/</span><span>10</span>
+        </div>
+      </header>
+
+      <main id="stage" class="stage"></main>
+
+      <footer class="app-nav" id="app-nav">
+        <button class="button button--ghost" id="previous-button" type="button" data-action="previous">
+          Anterior
+        </button>
+        <div class="nav-progress" aria-label="Progreso del recorrido">
+          <span class="nav-progress__rail" aria-hidden="true"><span id="progress-fill"></span></span>
+          <div class="nav-progress__steps" id="progress-steps">
+            <button type="button" data-action="jump-screen" data-screen="0" aria-label="Pantalla 1: Portada"></button>
+            <button type="button" data-action="jump-screen" data-screen="1" aria-label="Pantalla 2: Bienvenida"></button>
+            <button type="button" data-action="jump-screen" data-screen="2" aria-label="Pantalla 3: Satisfacción"></button>
+            <button type="button" data-action="jump-screen" data-screen="3" aria-label="Pantalla 4: Tecnología"></button>
+            <button type="button" data-action="jump-screen" data-screen="4" aria-label="Pantalla 5: Futuro"></button>
+            <button type="button" data-action="jump-screen" data-screen="5" aria-label="Pantalla 6: Prioridades"></button>
+            <button type="button" data-action="jump-screen" data-screen="6" aria-label="Pantalla 7: Recomendación"></button>
+            <button type="button" data-action="jump-screen" data-screen="7" aria-label="Pantalla 8: Referidos"></button>
+            <button type="button" data-action="jump-screen" data-screen="8" aria-label="Pantalla 9: Comentario"></button>
+            <button type="button" data-action="jump-screen" data-screen="9" aria-label="Pantalla 10: Cierre"></button>
+          </div>
+          <span class="sr-only" id="nav-status">Tu borrador vive solo en esta pestaña.</span>
+        </div>
+        <button class="button button--primary" id="next-button" type="button" data-action="next">
+          Continuar
+        </button>
+      </footer>
+    </div>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <div class="modal-layer" id="modal-layer" hidden></div>
+
+    <noscript>
+      <div class="noscript-message">
+        Esta experiencia necesita JavaScript para conservar el recorrido y validar las respuestas en esta pestaña.
+      </div>
+    </noscript>
+  </body>
+</html>
