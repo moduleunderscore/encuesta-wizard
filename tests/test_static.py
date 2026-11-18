@@ -17,14 +17,14 @@ class StaticSiteTests(unittest.TestCase):
         assets = SRC / "assets"
         expected = {
             "logo-wizard.png",
-            "robot-challenge-wizard-embroidered.png",
-            "robot-welcome-wizard-embroidered.png",
-            "robot-listening-wizard-embroidered.png",
-            "robot-future-wizard-embroidered.png",
-            "robot-archive-wizard-embroidered.png",
-            "robot-referral-wizard-embroidered.png",
+            "robot-challenge-wizard-dark-embroidered.png",
+            "robot-welcome-wizard-dark-embroidered.png",
+            "robot-listening-wizard-dark-embroidered.png",
+            "robot-future-wizard-dark-embroidered.png",
+            "robot-archive-wizard-dark-embroidered.png",
+            "robot-referral-wizard-dark-embroidered.png",
             "robot-fortune-outro.mp4",
-            "social-preview-v1.jpg",
+            "social-preview-v2.jpg",
         }
         self.assertTrue(expected.issubset({path.name for path in assets.iterdir()}))
 
@@ -33,7 +33,7 @@ class StaticSiteTests(unittest.TestCase):
         scene_refs = re.findall(r'image: "\./assets/(robot-[^"]+)"', content)
         self.assertEqual(len(scene_refs), 9)
         self.assertTrue(
-            all(name.endswith("-wizard-embroidered.png") for name in scene_refs)
+            all(name.endswith("-wizard-dark-embroidered.png") for name in scene_refs)
         )
 
     def test_title_system_includes_solid_and_outline_treatments(self):
@@ -64,14 +64,14 @@ class StaticSiteTests(unittest.TestCase):
         index = (SRC / "index.html").read_text(encoding="utf-8")
         preview_url = (
             "https://encuesta-wizard-clientes.robust-hare-3246.chatgpt.site/"
-            "assets/social-preview-v1.jpg"
+            "assets/social-preview-v2.jpg"
         )
         self.assertIn(f'property="og:image"\n      content="{preview_url}"', index)
         self.assertIn('property="og:image:width" content="1200"', index)
         self.assertIn('property="og:image:height" content="630"', index)
         self.assertIn('name="twitter:card" content="summary_large_image"', index)
 
-        preview = SRC / "assets" / "social-preview-v1.jpg"
+        preview = SRC / "assets" / "social-preview-v2.jpg"
         data = preview.read_bytes()
         self.assertGreater(len(data), 50_000)
         self.assertEqual(data[:2], b"\xff\xd8")
