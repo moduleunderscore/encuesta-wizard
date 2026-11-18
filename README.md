@@ -7,9 +7,8 @@ Experiencia frontend de diez pantallas para conocer la satisfacción de clientes
 - Recorrido horizontal en escritorio y vertical cómodo en móvil.
 - Seis escenas consistentes del robot marfil y logo oficial de Wizard.
 - Preguntas obligatorias con validación junto al control.
-- Ruta prioritaria de mejora cuando satisfacción o recomendación es 6 o menor.
-- Hasta tres referidos, con canal adaptable y consentimiento explícito.
-- Alternativa para que el cliente haga la presentación por WhatsApp o correo.
+- Ruta prioritaria de mejora cuando satisfacción o recomendación es 3 o menor.
+- Entre tres y cinco referidos, con canal adaptable y una confirmación general explícita.
 - Borrador en `sessionStorage`, aislado a la pestaña actual.
 - Resumen editable, reinicio confirmado y contraportada Wizard.
 - Movimiento reducido, navegación con teclado y estados de foco visibles.
@@ -52,10 +51,10 @@ El objeto conservado en `sessionStorage` incluye:
 - `draftId`, `schemaVersion`, `startedAt`, `completedAt`, `mode` y `demo`.
 - `identity` con nombre y empresa opcionales.
 - `satisfaction`, `technology`, `aiImpact`, `priorities` y `recommendation`.
-- `referralMode`, `referrals` y `selfIntroMessage`.
+- `referralMode`, `referrals`, `referralsConsent` y `selfIntroMessage`.
 - `finalComment` y `followUpRequested`.
 
-Las calificaciones no contestadas son `null`. `prepareSubmissionPayload()` filtra los referidos para incluir únicamente fichas completas y autorizadas.
+Las calificaciones no contestadas son `null`. `prepareSubmissionPayload()` solo incluye fichas completas cuando existe autorización general.
 
 ## Alcance y pendiente
 

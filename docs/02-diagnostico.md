@@ -36,7 +36,7 @@ En etapa 1, la persona responde en una sola pestaña. El navegador valida y cons
 
 | Restricción o riesgo | Probabilidad | Impacto | Mitigación | Responsable |
 |---|---:|---:|---|---|
-| Referido compartido sin consentimiento | Media | Alto | Casilla desmarcada, validación y filtro del payload | Frontend / futuro workflow |
+| Referido compartido sin consentimiento | Media | Alto | Una sola casilla general desmarcada, validación y filtro del payload | Frontend / futuro workflow |
 | Confundir demo con envío real | Media | Alto | Avisos en portada, comentario y cierre; cero llamadas de red | Frontend |
 | Contenido largo en móvil | Alta | Medio | `100dvh`, scroll interno y navegación fija | Frontend |
 | Exceso de peso visual | Media | Medio | JPG optimizados y un solo video de cierre comprimido, sin audio y con movimiento reducido | Frontend |

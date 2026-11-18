@@ -302,11 +302,6 @@ function referralCard(referral, index) {
         <span>¿En qué crees que le podemos ayudar? <em>Opcional</em></span>
         <textarea data-ref-index="${index}" data-ref-field="note" rows="1">${escapeHtml(referral.note)}</textarea>
       </label>
-      <label class="consent-row${cardErrors.consent ? " has-error" : ""}">
-        <input data-ref-index="${index}" data-ref-field="consent" type="checkbox" ${referral.consent ? "checked" : ""} />
-        <span>Confirmo que esta persona está de acuerdo con que comparta sus datos para que Wizard la contacte.</span>
-      </label>
-      ${cardErrors.consent ? `<small class="inline-error">${escapeHtml(cardErrors.consent)}</small>` : ""}
     </article>`;
 }
 
@@ -330,7 +325,12 @@ function contactReferralBody() {
     </div>
     <div class="referral-list">
       ${activeReferral ? referralCard(activeReferral, activeReferralIndex) : ""}
-    </div>`;
+    </div>
+    <label class="consent-row referral-consent${errors.referralsConsent ? " has-error" : ""}">
+      <input data-bind="referralsConsent" type="checkbox" ${draft.referralsConsent ? "checked" : ""} />
+      <span>Confirmo que todas las personas están de acuerdo con que comparta sus datos para que Wizard las contacte.</span>
+    </label>
+    ${errors.referralsConsent ? `<small class="inline-error">${escapeHtml(errors.referralsConsent)}</small>` : ""}`;
 }
 
 function screenSeven() {
@@ -664,6 +664,10 @@ document.addEventListener("change", (event) => {
   if (input.dataset.bind && input.type === "checkbox") {
     setPath(draft, input.dataset.bind, input.checked);
     saveDraft(draft);
+    if (input.dataset.bind === "referralsConsent") {
+      errors = {};
+      render();
+    }
   }
   if (input.dataset.refField) {
     const referral = draft.referrals[Number(input.dataset.refIndex)];

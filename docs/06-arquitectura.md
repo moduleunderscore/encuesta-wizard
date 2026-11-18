@@ -22,7 +22,7 @@ Cliente → index/app → modelo y validación → sessionStorage
 
 ## Datos e integraciones
 
-- Modelo y fuente de verdad: objeto versionado `1.0.0` en sesión.
+- Modelo y fuente de verdad: objeto versionado `1.2.0` en sesión.
 - Integraciones: ninguna activa; frontera aislada en `integration.js`.
 - Permisos mínimos: ninguno en etapa 1.
 - Retención y borrado: vida de la pestaña; reinicio manual elimina el borrador.

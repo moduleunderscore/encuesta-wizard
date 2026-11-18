@@ -112,6 +112,16 @@ class StaticSiteTests(unittest.TestCase):
         self.assertIn(question.lower(), app)
         self.assertNotIn("las soluciones que implementamos", app)
 
+    def test_referrals_use_one_group_consent_control(self):
+        app = (SRC / "js" / "app.js").read_text(encoding="utf-8")
+        consent = (
+            "Confirmo que todas las personas están de acuerdo con que comparta "
+            "sus datos para que Wizard las contacte."
+        )
+        self.assertEqual(app.count(consent), 1)
+        self.assertEqual(app.count('data-bind="referralsConsent"'), 1)
+        self.assertNotIn('data-ref-field="consent"', app)
+
     def test_social_preview_metadata_is_complete(self):
         index = (SRC / "index.html").read_text(encoding="utf-8")
         preview_url = (

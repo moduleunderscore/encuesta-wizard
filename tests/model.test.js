@@ -20,6 +20,7 @@ test("a new demo draft uses null for unanswered ratings", () => {
   assert.equal(draft.satisfaction, null);
   assert.equal(draft.technology.rating, null);
   assert.equal(draft.recommendation, null);
+  assert.equal(draft.referralsConsent, false);
   assert.equal(draft.completedAt, null);
 });
 
@@ -43,23 +44,20 @@ test("optional empty referrals do not block but required or partial referrals do
   assert.deepEqual(validateReferral(referral, true), {
     name: "Agrega su nombre.",
     contact: "Agrega su número.",
-    consent: "Confirma que esta persona aceptó compartir sus datos.",
   });
 
   referral.name = "Ana";
   assert.deepEqual(validateReferral(referral), {
     contact: "Agrega su número.",
-    consent: "Confirma que esta persona aceptó compartir sus datos.",
   });
 });
 
-test("authorized and well-formed referrals are complete", () => {
+test("well-formed referrals are complete independently of group consent", () => {
   const referral = createReferral();
   Object.assign(referral, {
     name: "Ana",
     channel: "email",
     contact: "ana@empresa.mx",
-    consent: true,
   });
   assert.equal(isReferralComplete(referral), true);
 
@@ -87,9 +85,10 @@ test("screen eight requires three complete referrals and keeps five slots", () =
     Object.assign(referral, {
       name: `Contacto ${index + 1}`,
       contact: `+52 55 1234 567${index}`,
-      consent: true,
     });
   });
+  assert.equal(validateScreen(7, draft).referralsConsent.length > 0, true);
+  draft.referralsConsent = true;
   assert.deepEqual(validateScreen(7, draft), {});
 });
 
@@ -104,28 +103,28 @@ test("ratings of three or less activate improvement-first routing", () => {
   assert.equal(isLowExperience(draft), false);
 });
 
-test("future payload includes only complete and authorized referrals", () => {
+test("future payload includes complete referrals only after group consent", () => {
   const draft = createDraft();
   const valid = createReferral();
   Object.assign(valid, {
     name: "Ana",
     channel: "whatsapp",
     contact: "+52 55 1234 5678",
-    consent: true,
   });
   const incomplete = createReferral();
   incomplete.name = "Luis";
-  const unauthorized = createReferral();
-  Object.assign(unauthorized, {
+  const secondValid = createReferral();
+  Object.assign(secondValid, {
     name: "Mara",
     channel: "email",
     contact: "mara@empresa.mx",
-    consent: false,
   });
-  draft.referrals = [valid, incomplete, unauthorized];
+  draft.referrals = [valid, incomplete, secondValid];
 
+  assert.equal(prepareSubmissionPayload(draft).referrals.length, 0);
+  draft.referralsConsent = true;
   const payload = prepareSubmissionPayload(draft);
-  assert.equal(payload.referrals.length, 1);
+  assert.equal(payload.referrals.length, 2);
   assert.equal(payload.referrals[0].name, "Ana");
 });
 
@@ -142,6 +141,19 @@ test("normalization restores nested defaults and clamps the screen", () => {
   assert.equal(restored.referrals.length, 5);
 });
 
+test("legacy drafts require fresh group consent and drop per-contact consent", () => {
+  const legacy = {
+    ...createDraft(),
+    schemaVersion: "1.1.0",
+    referralsConsent: true,
+    referrals: [{ ...createReferral(), name: "Ana", consent: true }],
+  };
+  const restored = normalizeDraft(legacy);
+  assert.equal(restored.schemaVersion, "1.2.0");
+  assert.equal(restored.referralsConsent, false);
+  assert.equal("consent" in restored.referrals[0], false);
+});
+
 test("normalization migrates legacy ten-point ratings to five points", () => {
   const legacy = {
     ...createDraft(),
@@ -151,7 +163,7 @@ test("normalization migrates legacy ten-point ratings to five points", () => {
     recommendation: 6,
   };
   const restored = normalizeDraft(legacy);
-  assert.equal(restored.schemaVersion, "1.1.0");
+  assert.equal(restored.schemaVersion, "1.2.0");
   assert.equal(restored.satisfaction, 4);
   assert.equal(restored.technology.rating, 4);
   assert.equal(restored.recommendation, 3);

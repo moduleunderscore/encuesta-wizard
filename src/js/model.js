@@ -1,8 +1,9 @@
 import { DEFAULT_INTRO_MESSAGE } from "./content.js";
 
 export const STORAGE_KEY = "wizard-survey-demo-v1";
-export const SCHEMA_VERSION = "1.1.0";
-const PREVIOUS_SCHEMA_VERSION = "1.0.0";
+export const SCHEMA_VERSION = "1.2.0";
+const LEGACY_TEN_POINT_SCHEMA_VERSION = "1.0.0";
+const SUPPORTED_SCHEMA_VERSIONS = ["1.0.0", "1.1.0", SCHEMA_VERSION];
 export const REQUIRED_REFERRAL_COUNT = 3;
 export const REFERRAL_SLOT_COUNT = 5;
 
@@ -19,14 +20,16 @@ export function createReferral() {
     channel: "whatsapp",
     contact: "",
     note: "",
-    consent: false,
   };
 }
 
 function createReferralSlots(existing = []) {
   const referrals = (Array.isArray(existing) ? existing : [])
     .slice(0, REFERRAL_SLOT_COUNT)
-    .map((referral) => ({ ...createReferral(), ...referral }));
+    .map((referral) => {
+      const { consent: _legacyConsent, ...fields } = referral || {};
+      return { ...createReferral(), ...fields };
+    });
   while (referrals.length < REFERRAL_SLOT_COUNT) referrals.push(createReferral());
   return referrals;
 }
@@ -49,6 +52,7 @@ export function createDraft(now = new Date()) {
     recommendation: null,
     referralMode: "contact",
     referrals: createReferralSlots(),
+    referralsConsent: false,
     selfIntroMessage: DEFAULT_INTRO_MESSAGE,
     finalComment: "",
     followUpRequested: false,
@@ -57,7 +61,7 @@ export function createDraft(now = new Date()) {
 
 function normalizeRating(value, schemaVersion) {
   if (!Number.isInteger(value)) return null;
-  if (schemaVersion === PREVIOUS_SCHEMA_VERSION && value >= 1 && value <= 10) {
+  if (schemaVersion === LEGACY_TEN_POINT_SCHEMA_VERSION && value >= 1 && value <= 10) {
     return Math.ceil(value / 2);
   }
   return value >= 1 && value <= 5 ? value : null;
@@ -67,7 +71,7 @@ export function normalizeDraft(value) {
   const fresh = createDraft();
   if (
     !value ||
-    ![SCHEMA_VERSION, PREVIOUS_SCHEMA_VERSION].includes(value.schemaVersion)
+    !SUPPORTED_SCHEMA_VERSIONS.includes(value.schemaVersion)
   ) {
     return fresh;
   }
@@ -88,6 +92,8 @@ export function normalizeDraft(value) {
     recommendation: normalizeRating(value.recommendation, value.schemaVersion),
     referralMode: "contact",
     referrals: createReferralSlots(value.referrals),
+    referralsConsent:
+      value.schemaVersion === SCHEMA_VERSION ? Boolean(value.referralsConsent) : false,
     currentScreen: Number.isInteger(value.currentScreen)
       ? Math.min(9, Math.max(0, value.currentScreen))
       : 0,
@@ -128,8 +134,7 @@ export function isReferralEmpty(referral) {
     referral.name.trim() ||
     referral.company.trim() ||
     referral.contact.trim() ||
-    referral.note.trim() ||
-    referral.consent
+    referral.note.trim()
   );
 }
 
@@ -153,9 +158,6 @@ export function validateReferral(referral, required = false) {
       referral.channel === "email"
         ? "Escribe un correo válido."
         : "Escribe un número con 10 a 15 dígitos.";
-  }
-  if (!referral.consent) {
-    errors.consent = "Confirma que esta persona aceptó compartir sus datos.";
   }
   return errors;
 }
@@ -193,7 +195,6 @@ export function validateScreen(screenIndex, draft) {
           ? {
               name: "Agrega su nombre.",
               contact: "Agrega su número o correo.",
-              consent: "Confirma que esta persona aceptó compartir sus datos.",
             }
           : {};
       }
@@ -201,6 +202,10 @@ export function validateScreen(screenIndex, draft) {
     });
     if (referralErrors.some((item) => Object.keys(item).length > 0)) {
       errors.referrals = referralErrors;
+    }
+    if (!draft.referralsConsent) {
+      errors.referralsConsent =
+        "Confirma que todas las personas autorizaron compartir sus datos.";
     }
   }
   return errors;

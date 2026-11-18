@@ -934,6 +934,13 @@ textarea[aria-invalid="true"] {
   border-bottom: 1px solid var(--line);
 }
 
+.referral-consent {
+  margin-top: 0.65rem;
+  padding: 0.65rem 0.75rem;
+  border: 1px solid var(--line);
+  background: rgba(57, 255, 20, 0.04);
+}
+
 .final-feedback {
   display: grid;
   gap: 1rem;
@@ -1592,7 +1599,7 @@ textarea[aria-invalid="true"] {
     margin-top: 0.38rem;
   }
 
-  .screen--referrals .referral-card .consent-row {
+  .screen--referrals .referral-consent {
     margin-top: 0.5rem;
     font-size: 0.76rem;
     line-height: 1.25;
@@ -2017,7 +2024,7 @@ textarea[aria-invalid="true"] {
     margin-top: 0.3rem;
   }
 
-  .screen--referrals .referral-card .consent-row {
+  .screen--referrals .referral-consent {
     margin-top: 0.4rem;
     font-size: 0.73rem;
     line-height: 1.22;

@@ -7,9 +7,9 @@ import { isReferralComplete } from "./model.js";
 export function prepareSubmissionPayload(draft) {
   return {
     ...structuredClone(draft),
-    referrals: draft.referrals.filter(
-      (referral) => isReferralComplete(referral) && referral.consent === true,
-    ),
+    referrals: draft.referralsConsent
+      ? draft.referrals.filter((referral) => isReferralComplete(referral))
+      : [],
   };
 }
 
