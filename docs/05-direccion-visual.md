@@ -10,7 +10,7 @@
 
 ## Síntesis de referencias
 
-1. **Sitio “¿No que no se podIA?” proporcionado por el usuario:** escena a sangre, degradado oscuro, copy dentro de la imagen, encabezado editorial y progreso inferior. Se adopta como arquitectura visual principal.
+1. **Sitio “¿No que no se podía?” proporcionado por el usuario:** escena a sangre, degradado oscuro, copy dentro de la imagen, encabezado editorial y progreso inferior. Se adopta como arquitectura visual principal.
 2. **Deck vigente de Wizard:** negro profundo, verde eléctrico, titulares contundentes y contraportada limpia.
 3. **Propuesta horizontal:** ritmo de una idea por pantalla y controles persistentes. Se descartan nombre, contenido y firma visual de Hangar.
 4. **Escenas adjuntas:** material textil marfil, ojos negros, gesto confiado y espacio negativo a la izquierda.

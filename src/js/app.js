@@ -62,7 +62,7 @@ function errorText(key) {
 function formatTitle(index, title) {
   const titles = [
     `<span class="title-line title-solid-white">¿NO QUE NO</span>
-      <span class="title-line"><span class="title-outline-white">SE POD</span><span class="title-solid-green">IA</span><span class="title-outline-white">?</span></span>`,
+      <span class="title-line"><span class="title-outline-white">SE POD</span><span class="title-solid-green">ÍA</span><span class="title-outline-white">?</span></span>`,
     `<span class="title-line"><span class="title-solid-white">CON </span><span class="title-outline-white">WIZARD</span></span>
       <span class="title-line"><span class="title-solid-green">TODO</span><span class="title-solid-white"> SE PUEDE.</span></span>`,
     `<span class="title-line title-outline-white">A VER,</span>

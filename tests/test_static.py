@@ -47,6 +47,19 @@ class StaticSiteTests(unittest.TestCase):
         self.assertIn("-webkit-text-stroke", styles)
         self.assertIn('aria-label="${escapeHtml(screen.title)}"', app)
 
+    def test_cover_uses_the_correct_accent_in_podia(self):
+        app = (SRC / "js" / "app.js").read_text(encoding="utf-8")
+        content = (SRC / "js" / "content.js").read_text(encoding="utf-8")
+        index = (SRC / "index.html").read_text(encoding="utf-8")
+        preview = (SRC / "assets" / "social-preview-v1.svg").read_text(
+            encoding="utf-8"
+        )
+        self.assertIn("title-solid-green\">ÍA", app)
+        self.assertIn("¿No que no se podía?", content)
+        self.assertIn("¿No que no se podía? · Wizard", index)
+        self.assertIn(">ÍA</tspan>?", preview)
+        self.assertNotIn("podIA", app + content + index + preview)
+
     def test_social_preview_metadata_is_complete(self):
         index = (SRC / "index.html").read_text(encoding="utf-8")
         preview_url = (

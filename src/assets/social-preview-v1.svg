@@ -34,7 +34,7 @@
     <text x="66" y="197" fill="#39FF14" font-family="Helvetica Neue, Arial, sans-serif" font-size="20" font-weight="700" letter-spacing="4">WIZARD / TU EXPERIENCIA</text>
 
     <text x="62" y="305" fill="#F4F7F4" font-family="Helvetica Neue, Arial, sans-serif" font-size="92" font-weight="800" letter-spacing="-5">¿NO QUE NO</text>
-    <text x="62" y="398" fill="#F4F7F4" font-family="Helvetica Neue, Arial, sans-serif" font-size="92" font-weight="800" letter-spacing="-5">SE POD<tspan fill="#39FF14" filter="url(#greenGlow)">IA</tspan>?</text>
+    <text x="62" y="398" fill="#F4F7F4" font-family="Helvetica Neue, Arial, sans-serif" font-size="92" font-weight="800" letter-spacing="-5">SE POD<tspan fill="#39FF14" filter="url(#greenGlow)">ÍA</tspan>?</text>
 
     <line x1="66" y1="446" x2="454" y2="446" stroke="#39FF14" stroke-width="4" />
     <text x="66" y="493" fill="#F4F7F4" font-family="Helvetica Neue, Arial, sans-serif" font-size="25" font-weight="600">Una conversación de 3 minutos.</text>

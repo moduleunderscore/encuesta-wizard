@@ -26,7 +26,7 @@ export const DEFAULT_INTRO_MESSAGE =
 export const SCREENS = [
   {
     eyebrow: "WIZARD / EXPERIENCIA DE CLIENTE",
-    title: "¿No que no se podIA?",
+    title: "¿No que no se podía?",
     image: "./assets/robot-challenge-wizard-embroidered.png",
     imageAlt:
       "Robot marfil con una insignia pequeña de Wizard bordada en el pecho, los brazos cruzados y una sonrisa retadora",
