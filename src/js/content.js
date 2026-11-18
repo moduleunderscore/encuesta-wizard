@@ -27,65 +27,65 @@ export const SCREENS = [
   {
     eyebrow: "WIZARD / EXPERIENCIA DE CLIENTE",
     title: "¿No que no se podía?",
-    image: "./assets/robot-challenge-wizard-dark-embroidered.png",
+    image: "./assets/robot-challenge-wizard-dark-left-chest.png",
     imageAlt:
-      "Robot marfil con una insignia pequeña de Wizard bordada en azul oscuro en el pecho, los brazos cruzados y una sonrisa retadora",
+      "Robot marfil con una insignia pequeña de Wizard bordada en azul oscuro en el lado izquierdo del pecho, los brazos cruzados y una sonrisa retadora",
   },
   {
     eyebrow: "ANTES DE EMPEZAR",
     title: "Con Wizard todo se puede.",
-    image: "./assets/robot-welcome-wizard-dark-embroidered.png",
+    image: "./assets/robot-welcome-wizard-dark-left-chest.png",
     imageAlt:
-      "Robot marfil mostrando un cubo verde luminoso y una insignia pequeña de Wizard bordada en azul oscuro en el pecho",
+      "Robot marfil mostrando un cubo verde luminoso y una insignia pequeña de Wizard bordada en azul oscuro en el lado izquierdo del pecho",
   },
   {
     eyebrow: "01 / COLABORACIÓN",
     title: "A ver, sin filtro.",
-    image: "./assets/robot-listening-wizard-dark-embroidered.png",
+    image: "./assets/robot-listening-wizard-dark-left-chest.png",
     imageAlt:
-      "Robot marfil sentado, escuchando con atención y con una insignia pequeña de Wizard bordada en azul oscuro en el pecho",
+      "Robot marfil sentado, escuchando con atención y con una insignia pequeña de Wizard bordada en azul oscuro en el lado izquierdo del pecho",
   },
   {
     eyebrow: "02 / TECNOLOGÍA",
     title: "¿Qué tan cómodo te sientes con tu tecnología?",
-    image: "./assets/robot-future-wizard-dark-embroidered.png",
+    image: "./assets/robot-future-wizard-dark-left-chest.png",
     imageAlt:
-      "Robot marfil con una insignia pequeña de Wizard bordada en azul oscuro en el pecho, sosteniendo una tableta con un orbe verde",
+      "Robot marfil con una insignia pequeña de Wizard bordada en azul oscuro en el lado izquierdo del pecho, sosteniendo una tableta con un orbe verde",
   },
   {
     eyebrow: "03 / LOS PRÓXIMOS 12 MESES",
     title: "Hablemos del futuro.",
-    image: "./assets/robot-future-wizard-dark-embroidered.png",
+    image: "./assets/robot-future-wizard-dark-left-chest.png",
     imageAlt:
-      "Robot marfil con una insignia pequeña de Wizard bordada en azul oscuro en el pecho, explorando un orbe tecnológico verde",
+      "Robot marfil con una insignia pequeña de Wizard bordada en azul oscuro en el lado izquierdo del pecho, explorando un orbe tecnológico verde",
   },
   {
     eyebrow: "04 / PRIORIDADES",
     title: "¿Qué proyecto debería arrancar hoy tu empresa?",
-    image: "./assets/robot-archive-wizard-dark-embroidered.png",
+    image: "./assets/robot-archive-wizard-dark-left-chest.png",
     imageAlt:
-      "Robot marfil con una insignia pequeña de Wizard bordada en azul oscuro en el pecho, archivando pendientes en una caja verde",
+      "Robot marfil con una insignia pequeña de Wizard bordada en azul oscuro en el lado izquierdo del pecho, archivando pendientes en una caja verde",
   },
   {
     eyebrow: "05 / RECOMENDACIÓN",
     title: "Y a todo esto, ¿nos recomendarías?",
-    image: "./assets/robot-referral-wizard-dark-embroidered.png",
+    image: "./assets/robot-referral-wizard-dark-left-chest.png",
     imageAlt:
-      "Dos robots marfil presentándose con confianza, ambos con una insignia pequeña de Wizard bordada en azul oscuro en el pecho",
+      "Dos robots marfil presentándose con confianza, ambos con una insignia pequeña de Wizard bordada en azul oscuro en el lado izquierdo del pecho",
   },
   {
     eyebrow: "06 / PRESENTACIONES",
     title: "Te comparto unos contactos.",
-    image: "./assets/robot-referral-wizard-dark-embroidered.png",
+    image: "./assets/robot-referral-wizard-dark-left-chest.png",
     imageAlt:
-      "Dos robots marfil juntos, ambos con una insignia pequeña de Wizard bordada en azul oscuro en el pecho, uno presentando al otro",
+      "Dos robots marfil juntos, ambos con una insignia pequeña de Wizard bordada en azul oscuro en el lado izquierdo del pecho, uno presentando al otro",
   },
   {
     eyebrow: "07 / ÚLTIMA TOMA",
     title: "Ya terminamos. Ahora, te escuchamos sin filtro:",
-    image: "./assets/robot-listening-wizard-dark-embroidered.png",
+    image: "./assets/robot-listening-wizard-dark-left-chest.png",
     imageAlt:
-      "Robot marfil escuchando con atención y con una insignia pequeña de Wizard bordada en azul oscuro en el pecho",
+      "Robot marfil escuchando con atención y con una insignia pequeña de Wizard bordada en azul oscuro en el lado izquierdo del pecho",
   },
   {
     eyebrow: "RECORRIDO COMPLETADO",

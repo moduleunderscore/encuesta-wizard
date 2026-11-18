@@ -17,12 +17,12 @@ class StaticSiteTests(unittest.TestCase):
         assets = SRC / "assets"
         expected = {
             "logo-wizard.png",
-            "robot-challenge-wizard-dark-embroidered.png",
-            "robot-welcome-wizard-dark-embroidered.png",
-            "robot-listening-wizard-dark-embroidered.png",
-            "robot-future-wizard-dark-embroidered.png",
-            "robot-archive-wizard-dark-embroidered.png",
-            "robot-referral-wizard-dark-embroidered.png",
+            "robot-challenge-wizard-dark-left-chest.png",
+            "robot-welcome-wizard-dark-left-chest.png",
+            "robot-listening-wizard-dark-left-chest.png",
+            "robot-future-wizard-dark-left-chest.png",
+            "robot-archive-wizard-dark-left-chest.png",
+            "robot-referral-wizard-dark-left-chest.png",
             "robot-fortune-outro.mp4",
             "social-preview-v2.jpg",
         }
@@ -33,7 +33,7 @@ class StaticSiteTests(unittest.TestCase):
         scene_refs = re.findall(r'image: "\./assets/(robot-[^"]+)"', content)
         self.assertEqual(len(scene_refs), 9)
         self.assertTrue(
-            all(name.endswith("-wizard-dark-embroidered.png") for name in scene_refs)
+            all(name.endswith("-wizard-dark-left-chest.png") for name in scene_refs)
         )
 
     def test_title_system_includes_solid_and_outline_treatments(self):

@@ -23,7 +23,7 @@
   </defs>
 
   <g clip-path="url(#frame)">
-    <image href="robot-challenge-wizard-dark-embroidered.png" width="1200" height="675" y="-22" preserveAspectRatio="xMidYMid slice" />
+    <image href="robot-challenge-wizard-dark-left-chest.png" width="1200" height="675" y="-22" preserveAspectRatio="xMidYMid slice" />
     <rect width="1200" height="630" fill="url(#shade)" />
     <rect width="1200" height="630" fill="url(#floor)" />
 
