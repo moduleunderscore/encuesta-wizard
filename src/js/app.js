@@ -57,7 +57,7 @@ function errorText(key) {
 
 function formatTitle(index, title) {
   const titles = [
-    "¿NO QUE NO<br>SE <span>POD<span class=\"title-white\">IA</span></span>?",
+    "¿NO QUE NO<br>SE POD<span>IA</span>?",
     "CON WIZARD<br><span>TODO SE PUEDE.</span>",
     "A VER,<br><span>SIN FILTRO.</span>",
     "¿YA SON DEL<br><span>MISMO EQUIPO?</span>",
