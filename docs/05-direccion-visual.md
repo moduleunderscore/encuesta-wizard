@@ -30,7 +30,7 @@ No se copia código ni activos de terceros. Se reimplementan principios dentro d
 
 - Dirección: escenario editorial Wizard.
 - Navegación: barra superior con eje narrativo y contador; barra inferior con anterior, filamento, pasos visitados y continuar.
-- Tipografía: Barlow para lectura, Inter Tight para titulares/escala e IBM Plex Mono para controles y metadatos.
+- Tipografía: Barlow para lectura, Inter Tight para titulares/escala e IBM Plex Mono para controles y metadatos. Los titulares combinan relleno blanco, relleno verde y contorno blanco/verde como sistema editorial: el sólido fija la idea y el outline aporta ritmo sin competir con la pregunta.
 - Paleta: `#050706`, blanco frío, gris de estudio y `#39FF14`.
 - Composición: escena completa de fondo, degradado izquierdo, copy a 60% en escritorio; personaje arriba y contenido sobre degradado en móvil.
 - Contrato de encuadre: cada escena completa cabe en un viewport de 1280×720 sin scroll; en 390×844 se conserva el mismo comportamiento y en teléfonos menores queda scroll como respaldo de accesibilidad.

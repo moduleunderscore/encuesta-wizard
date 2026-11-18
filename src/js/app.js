@@ -61,15 +61,27 @@ function errorText(key) {
 
 function formatTitle(index, title) {
   const titles = [
-    "¿NO QUE NO<br>SE POD<span>IA</span>?",
-    "CON WIZARD<br><span>TODO SE PUEDE.</span>",
-    "A VER,<br><span>SIN FILTRO.</span>",
-    "¿QUÉ TAN CÓMODO<br>TE SIENTES CON TU TECNOLOG<span>ÍA</span>?",
-    "HABLEMOS<br><span>DEL FUTURO.</span>",
-    "¿QUÉ PROYECTO<br><span>DEBERÍA ARRANCAR HOY</span><br>TU EMPRESA?",
-    "Y A TODO ESTO,<br><span>¿NOS RECOMENDARÍAS?</span>",
-    "TE COMPARTO<br><span>UNOS CONTACTOS.</span>",
-    "YA TERMINAMOS.<br><span>AHORA, TE ESCUCHAMOS</span><br>SIN FILTRO:",
+    `<span class="title-line title-solid-white">¿NO QUE NO</span>
+      <span class="title-line"><span class="title-outline-white">SE POD</span><span class="title-solid-green">IA</span><span class="title-outline-white">?</span></span>`,
+    `<span class="title-line"><span class="title-solid-white">CON </span><span class="title-outline-white">WIZARD</span></span>
+      <span class="title-line"><span class="title-solid-green">TODO</span><span class="title-solid-white"> SE PUEDE.</span></span>`,
+    `<span class="title-line title-outline-white">A VER,</span>
+      <span class="title-line title-solid-green">SIN FILTRO.</span>`,
+    `<span class="title-line title-solid-white">¿QUÉ TAN CÓMODO</span>
+      <span class="title-line title-outline-green">TE SIENTES CON TU</span>
+      <span class="title-line"><span class="title-solid-white">TECNOLOG</span><span class="title-solid-green">ÍA</span><span class="title-solid-white">?</span></span>`,
+    `<span class="title-line title-outline-green">HABLEMOS</span>
+      <span class="title-line"><span class="title-solid-white">DEL </span><span class="title-solid-green">FUTURO.</span></span>`,
+    `<span class="title-line title-outline-white">¿QUÉ PROYECTO</span>
+      <span class="title-line title-solid-green">DEBERÍA ARRANCAR HOY</span>
+      <span class="title-line title-solid-white">TU EMPRESA?</span>`,
+    `<span class="title-line title-outline-white">Y A TODO ESTO,</span>
+      <span class="title-line"><span class="title-solid-green">¿NOS </span><span class="title-solid-white">RECOMENDARÍAS?</span></span>`,
+    `<span class="title-line title-outline-white">TE COMPARTO</span>
+      <span class="title-line"><span class="title-solid-white">UNOS </span><span class="title-solid-green">CONTACTOS.</span></span>`,
+    `<span class="title-line title-solid-white">YA TERMINAMOS.</span>
+      <span class="title-line title-outline-white">AHORA, TE ESCUCHAMOS</span>
+      <span class="title-line title-solid-green">SIN FILTRO:</span>`,
   ];
   return titles[index] || escapeHtml(title);
 }
@@ -368,7 +380,9 @@ function screenMarkup(index) {
       <div class="screen__copy">
         <div class="screen__copy-inner">
           <p class="eyebrow">${escapeHtml(screen.eyebrow)}</p>
-          <h1 class="screen-heading" id="screen-heading" tabindex="-1">${formatTitle(index, screen.title)}</h1>
+          <h1 class="screen-heading" id="screen-heading" tabindex="-1" aria-label="${escapeHtml(screen.title)}">
+            <span class="title-lockup" aria-hidden="true">${formatTitle(index, screen.title)}</span>
+          </h1>
           <div class="screen-body">${body}</div>
         </div>
       </div>

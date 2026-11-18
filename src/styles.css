@@ -293,14 +293,51 @@ a:focus-visible,
   text-wrap: balance;
 }
 
-.screen-heading span {
-  position: relative;
-  color: var(--green);
-  text-shadow: 0 0 1.75rem rgba(57, 255, 20, 0.38);
+.title-lockup,
+.title-line {
+  display: block;
 }
 
-.screen-heading span::after {
-  content: none;
+.screen-heading .title-solid-white,
+.screen-heading .title-solid-green,
+.screen-heading .title-outline-white,
+.screen-heading .title-outline-green {
+  position: relative;
+}
+
+.screen-heading .title-solid-white {
+  color: var(--paper);
+}
+
+.screen-heading .title-solid-green {
+  color: var(--green);
+  text-shadow: 0 0 1.75rem rgba(57, 255, 20, 0.3);
+}
+
+.screen-heading .title-outline-white {
+  color: var(--paper);
+  text-shadow: 0 0.12em 0.7em rgba(0, 0, 0, 0.34);
+}
+
+.screen-heading .title-outline-green {
+  color: var(--green);
+  text-shadow: 0 0 1.5rem rgba(57, 255, 20, 0.24);
+}
+
+@supports (-webkit-text-stroke: 1px currentColor) {
+  .screen-heading .title-outline-white,
+  .screen-heading .title-outline-green {
+    color: transparent;
+    paint-order: stroke fill;
+  }
+
+  .screen-heading .title-outline-white {
+    -webkit-text-stroke: 1.5px var(--paper);
+  }
+
+  .screen-heading .title-outline-green {
+    -webkit-text-stroke: 1.5px var(--green);
+  }
 }
 
 .screen--question .screen-heading {
@@ -1677,6 +1714,16 @@ textarea[aria-invalid="true"] {
     max-width: 10ch;
     font-size: clamp(2.15rem, 9.6vw, 2.9rem);
     line-height: 0.93;
+  }
+
+  @supports (-webkit-text-stroke: 1px currentColor) {
+    .screen-heading .title-outline-white {
+      -webkit-text-stroke-width: 1.15px;
+    }
+
+    .screen-heading .title-outline-green {
+      -webkit-text-stroke-width: 1.15px;
+    }
   }
 
   .screen-body {

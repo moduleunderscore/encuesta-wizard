@@ -36,6 +36,17 @@ class StaticSiteTests(unittest.TestCase):
             all(name.endswith("-wizard-embroidered.png") for name in scene_refs)
         )
 
+    def test_title_system_includes_solid_and_outline_treatments(self):
+        app = (SRC / "js" / "app.js").read_text(encoding="utf-8")
+        styles = (SRC / "styles.css").read_text(encoding="utf-8")
+        self.assertIn('class="title-lockup" aria-hidden="true"', app)
+        self.assertIn("title-solid-white", app)
+        self.assertIn("title-solid-green", app)
+        self.assertIn("title-outline-white", app)
+        self.assertIn("title-outline-green", app)
+        self.assertIn("-webkit-text-stroke", styles)
+        self.assertIn('aria-label="${escapeHtml(screen.title)}"', app)
+
     def test_social_preview_metadata_is_complete(self):
         index = (SRC / "index.html").read_text(encoding="utf-8")
         preview_url = (
