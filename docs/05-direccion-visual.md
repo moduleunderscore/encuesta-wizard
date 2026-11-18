@@ -37,7 +37,7 @@ No se copia código ni activos de terceros. Se reimplementan principios dentro d
 - Densidad de formularios: los referidos se editan uno a la vez mediante pestañas y la última toma usa una retícula de dos columnas en escritorio para mantener el ritmo de una idea por pantalla.
 - Materialidad: robot textil contra estudio gris; paneles negros semitransparentes con bordes finos.
 - Aplicación de marca en la colección: todos los robots llevan una insignia Wizard a color, pequeña y bordada (aprox. 18–22% del ancho visible del torso), con hilo en relieve que sigue el volumen, la luz y la trama de la tela. En escenas de dos personajes, ambos quedan uniformados. En el titular de 02, `WIZARD` permanece como texto tipográfico para evitar duplicar el imagotipo.
-- Estados: selección verde, foco de 2 px, error coral, bloqueo local, cierre oscuro y demo explícita.
+- Estados: selección verde, foco de 2 px, error coral, bloqueo local y cierre oscuro.
 - Vista al compartir: miniatura 1200×630 derivada de la portada, con robot a la derecha, degradado oscuro, logo Wizard y el titular completo con `IA` en verde.
 
 ## Dirección de movimiento y storyboard

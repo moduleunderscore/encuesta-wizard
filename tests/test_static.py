@@ -77,6 +77,23 @@ class StaticSiteTests(unittest.TestCase):
         self.assertEqual(data[:2], b"\xff\xd8")
         self.assertEqual(data[-2:], b"\xff\xd9")
 
+    def test_public_interface_has_no_trial_or_preview_legends(self):
+        interface = "\n".join(
+            (SRC / path).read_text(encoding="utf-8")
+            for path in ("index.html", "js/app.js")
+        ).lower()
+        for phrase in (
+            "vista de prueba",
+            "versión de prueba",
+            "modo demo",
+            "nada se ha enviado",
+            "todavía no se envían",
+            "todavía no se enviaron",
+        ):
+            self.assertNotIn(phrase, interface)
+
+        self.assertNotIn("preview-info", interface)
+
     def test_stage_two_services_are_not_exposed_in_public_source(self):
         public_text = "\n".join(
             path.read_text(encoding="utf-8", errors="ignore")

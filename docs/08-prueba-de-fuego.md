@@ -15,7 +15,7 @@
 | Calificación baja | Prioriza mejora | Pass | Satisfacción 4 / recomendación 5 mostró mensaje adaptado | Codex |
 | Recarga | Restaura pantalla y respuestas | Pass | Comentario, nombre y seguimiento persistieron | Codex |
 | Copiar mensaje | Copia sin enviar | Pass | Toast confirmado | Codex |
-| Cierre demo | No afirma recepción | Pass | Contraportada verificada | Codex |
+| Cierre | Agradece sin afirmar recepción | Pass | Contraportada verificada | Codex |
 | Móvil | Sin overflow y navegación fija | Pass | 319×671 y 390×844; overflow X 0; botones 51 px | Codex |
 | Escritorio | Escena panorámica legible | Pass | 1280×720; overflow X 0 | Codex |
 | Una escena por viewport | Las 10 pantallas caben sin scroll | Pass | 1280×720; `stageScroll === stageClient` en 01–10 | Codex |
@@ -25,6 +25,7 @@
 | Thumbnail social | Portada y copy legibles al compartir | Pass | JPEG 1200×630 + Open Graph/Twitter con URL absoluta | Codex |
 | Marca en escenas 01–09 | Todos los robots llevan insignia Wizard pequeña y bordada; ambos personajes en escenas grupales | Pass | Inspección visual de escala, trama, volumen, conteo y contraste en desktop/móvil | Codex |
 | Sistema de titulares | Juegos de sólido/outline en blanco y verde conservan jerarquía, contraste y nombre accesible | Pass | Inspección en 01–09 a 1280×720 y 390×844; fallback sólido sin `text-stroke` | Codex |
+| Header limpio | Logo Wizard más visible y sin leyendas de staging en la interfaz | Pass | Prueba estática + inspección desktop/móvil | Codex |
 | Movimiento reducido | Contenido visible y animación mínima | Pass por inspección | Media query global y fallback estático | Codex |
 | Integración remota | No existe en demo | Pass | Código público sin OneDrive/n8n; `submitSurvey` falla explícito | Codex |
 
@@ -39,6 +40,7 @@
 | 2026-11-18 | 1.0-demo | Navegador local | Rediseño visual compartido | Pass | capturas desktop/móvil | Codex |
 | 2026-11-18 | 1.0-demo | Navegador local | Encuadre completo 01–10 | Pass | 1280×720 sin scroll; 390×844 sin scroll; consola limpia | Codex |
 | 2026-11-18 | 1.0-demo | Build estático | Vista previa al compartir | Pass | activo 1200×630 y metadatos OG/Twitter verificados | Codex |
+| 2026-11-18 | 1.0-demo | Navegador local | Header más visible y superficie sin leyendas de staging | Pass | 1280×720, 390×844 y 319×671; overflow X 0; consola limpia | Codex |
 
 ## Criterio de salida
 

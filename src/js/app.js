@@ -33,7 +33,6 @@ const currentNumber = document.querySelector("#current-number");
 const progressFill = document.querySelector("#progress-fill");
 const progressSteps = [...document.querySelectorAll("#progress-steps button")];
 const sectionLabel = document.querySelector("#section-label");
-const navStatus = document.querySelector("#nav-status");
 const toast = document.querySelector("#toast");
 const modalLayer = document.querySelector("#modal-layer");
 
@@ -125,8 +124,7 @@ function screenZero() {
     <div class="cover-meta">
       <span>≈ 3 minutos</span>
       <span>Tu opinión, sin filtro</span>
-    </div>
-    <div class="demo-note"><span class="demo-note__dot"></span><strong>Vista de prueba.</strong> Tus respuestas todavía no se envían.</div>`;
+    </div>`;
 }
 
 function screenOne() {
@@ -328,7 +326,6 @@ function screenEight() {
           <input data-bind="followUpRequested" type="checkbox" ${draft.followUpRequested ? "checked" : ""} />
           <span>Me gustaría conversar con Wizard sobre mis respuestas.</span>
         </label>
-        <div class="demo-note"><span class="demo-note__dot"></span>Vista de prueba: todavía no se enviarán respuestas ni solicitudes de contacto.</div>
       </div>
     </div>
   `;
@@ -347,8 +344,7 @@ function closingScreen() {
           <span class="closing-title__outline">CONJURE<br />THE FUTURE</span>
         </h1>
         <img class="closing-logo" src="./assets/logo-wizard.png" alt="Wizard, Agencia IA Aplicada" />
-        <p class="closing-copy"><strong>Recorrido completado.</strong> Gracias por probar la experiencia.</p>
-        <p class="closing-disclaimer">Tus respuestas quedaron únicamente en esta pestaña. Todavía no se enviaron a Wizard.</p>
+        <p class="closing-copy"><strong>Recorrido completado.</strong> Gracias por compartir tu experiencia.</p>
         <div class="closing-actions">
           <button class="button button--primary" type="button" data-action="review">Revisar mis respuestas</button>
           <button class="button button--ghost" type="button" data-action="reset">Borrar y empezar de nuevo</button>
@@ -426,9 +422,6 @@ function updateNavigation() {
   else if (index === 8) nextButton.textContent = "Terminar recorrido";
   else nextButton.textContent = "Continuar";
 
-  navStatus.textContent = index === 8
-    ? "Nada saldrá de esta pestaña en modo demo."
-    : "Tu borrador vive solo en esta pestaña.";
 }
 
 function render({ focus = false } = {}) {
@@ -521,7 +514,7 @@ function openReview() {
   modalLayer.innerHTML = `
     <div class="modal-backdrop" data-action="close-modal"></div>
     <section class="modal" role="dialog" aria-modal="true" aria-labelledby="review-title">
-      <div class="modal__head"><div><p class="eyebrow">BORRADOR LOCAL</p><h2 id="review-title">Tus respuestas</h2></div><button class="modal__close" type="button" data-action="close-modal" aria-label="Cerrar">×</button></div>
+      <div class="modal__head"><div><p class="eyebrow">RESUMEN</p><h2 id="review-title">Tus respuestas</h2></div><button class="modal__close" type="button" data-action="close-modal" aria-label="Cerrar">×</button></div>
       <ul class="review-list">
         ${summaryRow("Satisfacción", draft.satisfaction ? `${draft.satisfaction}/10` : "", 2)}
         ${summaryRow("Comodidad con la tecnología", technology, 3)}
@@ -531,7 +524,6 @@ function openReview() {
         ${summaryRow("Contactos recomendados", `${completeReferrals} de ${REFERRAL_SLOT_COUNT}`, 7)}
         ${summaryRow("Comentario final", draft.finalComment, 8)}
       </ul>
-      <p class="modal__note">Este resumen también vive solo en tu sesión. Nada se ha enviado.</p>
     </section>`;
   requestAnimationFrame(() => modalLayer.querySelector(".modal__close")?.focus());
 }
@@ -541,7 +533,7 @@ function openResetConfirmation() {
   modalLayer.innerHTML = `
     <div class="modal-backdrop" data-action="close-modal"></div>
     <section class="modal modal--small" role="dialog" aria-modal="true" aria-labelledby="reset-title">
-      <p class="eyebrow">BORRAR BORRADOR</p>
+      <p class="eyebrow">BORRAR RESPUESTAS</p>
       <h2 id="reset-title">¿Empezamos desde cero?</h2>
       <p>Se eliminarán las respuestas guardadas en esta pestaña. Esta acción no se puede deshacer.</p>
       <div class="modal__actions">
@@ -550,20 +542,6 @@ function openResetConfirmation() {
       </div>
     </section>`;
   requestAnimationFrame(() => modalLayer.querySelector('[data-action="close-modal"]')?.focus());
-}
-
-function openPreviewInfo() {
-  modalLayer.hidden = false;
-  modalLayer.innerHTML = `
-    <div class="modal-backdrop" data-action="close-modal"></div>
-    <section class="modal modal--small" role="dialog" aria-modal="true" aria-labelledby="preview-title">
-      <div class="modal__head">
-        <div><p class="eyebrow">MODO DEMO</p><h2 id="preview-title">Nada sale de esta pestaña.</h2></div>
-        <button class="modal__close" type="button" data-action="close-modal" aria-label="Cerrar">×</button>
-      </div>
-      <p>Las respuestas se conservan temporalmente para que pruebes el recorrido. Todavía no se envían a Wizard, n8n, Excel ni ningún otro servicio.</p>
-    </section>`;
-  requestAnimationFrame(() => modalLayer.querySelector(".modal__close")?.focus());
 }
 
 function closeModal() {
@@ -581,7 +559,6 @@ document.addEventListener("click", (event) => {
   if (action === "jump-screen" && Number(screen) <= draft.maxVisitedScreen) {
     goTo(Number(screen), Number(screen) < draft.currentScreen ? "backward" : "forward");
   }
-  if (action === "preview-info") openPreviewInfo();
   if (action === "set-rating") updateRating(field, value);
   if (action === "technology-insufficient") {
     draft.technology.insufficientExperience = !draft.technology.insufficientExperience;
