@@ -20,6 +20,7 @@ let errors = {};
 let lastScreen = draft.currentScreen;
 let transitionDirection = "forward";
 let toastTimer = null;
+let activeReferralIndex = 0;
 
 const stage = document.querySelector("#stage");
 const nav = document.querySelector("#app-nav");
@@ -247,7 +248,7 @@ function referralCard(referral, index) {
       </div>
       <label class="field-label">
         <span>¿En qué crees que le podemos ayudar? <em>Opcional</em></span>
-        <textarea data-ref-index="${index}" data-ref-field="note" rows="2">${escapeHtml(referral.note)}</textarea>
+        <textarea data-ref-index="${index}" data-ref-field="note" rows="1">${escapeHtml(referral.note)}</textarea>
       </label>
       <label class="consent-row${cardErrors.consent ? " has-error" : ""}">
         <input data-ref-index="${index}" data-ref-field="consent" type="checkbox" ${referral.consent ? "checked" : ""} />
@@ -268,50 +269,67 @@ function referralChoices() {
 }
 
 function contactReferralBody() {
+  const finalIndex = Math.max(0, draft.referrals.length - 1);
+  activeReferralIndex = Math.min(activeReferralIndex, finalIndex);
+  const activeReferral = draft.referrals[activeReferralIndex];
+
   return `
+    <div class="referral-tabs" role="group" aria-label="Contactos compartidos">
+      ${draft.referrals.map((referral, index) => `
+        <button
+          class="referral-tab${index === activeReferralIndex ? " is-selected" : ""}"
+          type="button"
+          data-action="referral-tab"
+          data-index="${index}"
+          aria-pressed="${index === activeReferralIndex}"
+        >Contacto ${index + 1}</button>`).join("")}
+    </div>
     <div class="referral-list">
-      ${draft.referrals.map(referralCard).join("")}
+      ${activeReferral ? referralCard(activeReferral, activeReferralIndex) : ""}
     </div>
     ${
       draft.referrals.length < 3
         ? '<button class="button button--outline button--small" type="button" data-action="add-referral">Agregar otra persona</button>'
-        : '<p class="support-copy">Llegaste al máximo de tres personas.</p>'
+        : ""
     }`;
 }
 
 function screenSeven() {
-  return `
-    ${referralChoices()}
-    ${draft.referralMode === "contact" ? contactReferralBody() : ""}`;
+  return draft.referralMode === "contact" ? contactReferralBody() : referralChoices();
 }
 
 function screenEight() {
   const low = isLowExperience(draft);
   return `
-    <label class="field-label field-label--large" for="final-comment">
-      <span>${
-        low
-          ? "¿Qué necesitamos mejorar para que tu experiencia sea mejor?"
-          : "¿Qué deberíamos mejorar, mantener o empezar a hacer?"
-      } <em>Opcional</em></span>
-      <textarea id="final-comment" data-bind="finalComment" rows="7" maxlength="1000" placeholder="Escribe con total libertad…">${escapeHtml(draft.finalComment)}</textarea>
-      <small class="character-count"><span id="comment-count">${draft.finalComment.length}</span>/1,000</small>
-    </label>
-    <div class="field-grid">
-      <label class="field-label">
-        <span>Tu nombre <em>Opcional</em></span>
-        <input data-bind="identity.name" type="text" value="${escapeHtml(draft.identity.name)}" autocomplete="name" />
+    <div class="final-feedback">
+      <label class="field-label field-label--large" for="final-comment">
+        <span>${
+          low
+            ? "¿Qué necesitamos mejorar para que tu experiencia sea mejor?"
+            : "¿Qué deberíamos mejorar, mantener o empezar a hacer?"
+        } <em>Opcional</em></span>
+        <textarea id="final-comment" data-bind="finalComment" rows="6" maxlength="1000" placeholder="Escribe con total libertad…">${escapeHtml(draft.finalComment)}</textarea>
+        <small class="character-count"><span id="comment-count">${draft.finalComment.length}</span>/1,000</small>
       </label>
-      <label class="field-label">
-        <span>Empresa <em>Opcional</em></span>
-        <input data-bind="identity.company" type="text" value="${escapeHtml(draft.identity.company)}" autocomplete="organization" />
-      </label>
+      <div class="final-feedback__aside">
+        <div class="field-grid final-feedback__identity">
+          <label class="field-label">
+            <span>Tu nombre <em>Opcional</em></span>
+            <input data-bind="identity.name" type="text" value="${escapeHtml(draft.identity.name)}" autocomplete="name" />
+          </label>
+          <label class="field-label">
+            <span>Empresa <em>Opcional</em></span>
+            <input data-bind="identity.company" type="text" value="${escapeHtml(draft.identity.company)}" autocomplete="organization" />
+          </label>
+        </div>
+        <label class="consent-row consent-row--followup">
+          <input data-bind="followUpRequested" type="checkbox" ${draft.followUpRequested ? "checked" : ""} />
+          <span>Me gustaría conversar con Wizard sobre mis respuestas.</span>
+        </label>
+        <div class="demo-note"><span class="demo-note__dot"></span>Vista de prueba: todavía no se enviarán respuestas ni solicitudes de contacto.</div>
+      </div>
     </div>
-    <label class="consent-row consent-row--followup">
-      <input data-bind="followUpRequested" type="checkbox" ${draft.followUpRequested ? "checked" : ""} />
-      <span>Me gustaría conversar con Wizard sobre mis respuestas.</span>
-    </label>
-    <div class="demo-note"><span class="demo-note__dot"></span>Vista de prueba: todavía no se enviarán respuestas ni solicitudes de contacto.</div>`;
+  `;
 }
 
 function closingScreen() {
@@ -354,8 +372,9 @@ function screenMarkup(index) {
   const screen = SCREENS[index];
   const body = bodyRenderers[index]();
   const isNewScreen = index !== lastScreen;
+  const variantClass = index === 7 ? " screen--referrals" : index === 8 ? " screen--comment" : "";
   return `
-    <section class="screen${index >= 2 ? " screen--question" : ""}${isNewScreen ? ` screen--enter-${transitionDirection}` : ""}" aria-labelledby="screen-heading">
+    <section class="screen${index >= 2 ? " screen--question" : ""}${variantClass}${isNewScreen ? ` screen--enter-${transitionDirection}` : ""}" aria-labelledby="screen-heading">
       <div class="screen__copy">
         <div class="screen__copy-inner">
           <p class="eyebrow">${escapeHtml(screen.eyebrow)}</p>
@@ -454,6 +473,12 @@ function goTo(index, direction = "forward") {
 function goNext() {
   const screenErrors = validateScreen(draft.currentScreen, draft);
   if (Object.keys(screenErrors).length > 0) {
+    if (screenErrors.referrals) {
+      const firstInvalidReferral = screenErrors.referrals.findIndex((referralErrors) =>
+        referralErrors && Object.keys(referralErrors).length > 0,
+      );
+      if (firstInvalidReferral >= 0) activeReferralIndex = firstInvalidReferral;
+    }
     errors = screenErrors;
     render();
     requestAnimationFrame(() => stage.querySelector(".field-error, .inline-error")?.scrollIntoView({ block: "center", behavior: "smooth" }));
@@ -576,15 +601,23 @@ document.addEventListener("click", (event) => {
   if (action === "referral-mode") {
     draft.referralMode = value;
     if (value === "contact" && draft.referrals.length === 0) draft.referrals.push(createReferral());
+    activeReferralIndex = 0;
     errors = {};
+    render();
+  }
+  if (action === "referral-tab") {
+    activeReferralIndex = Number(index);
     render();
   }
   if (action === "add-referral" && draft.referrals.length < 3) {
     draft.referrals.push(createReferral());
+    activeReferralIndex = draft.referrals.length - 1;
     render();
   }
   if (action === "remove-referral") {
     draft.referrals.splice(Number(index), 1);
+    if (draft.referrals.length === 0) draft.referrals.push(createReferral());
+    activeReferralIndex = Math.min(activeReferralIndex, draft.referrals.length - 1);
     render();
   }
   if (action === "review") openReview();

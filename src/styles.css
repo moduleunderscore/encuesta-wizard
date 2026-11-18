@@ -100,6 +100,10 @@ a:focus-visible,
   isolation: isolate;
 }
 
+.app-shell:has(.app-nav[hidden]) {
+  grid-template-rows: var(--header-h) minmax(0, 1fr);
+}
+
 .app-header {
   z-index: 20;
   display: grid;
@@ -764,6 +768,31 @@ textarea[aria-invalid="true"] {
   margin-top: 1.2rem;
 }
 
+.referral-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.referral-tab {
+  min-height: 2.3rem;
+  padding: 0.45rem 0.7rem;
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.025);
+  color: var(--muted);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.referral-tab:hover,
+.referral-tab.is-selected {
+  border-color: var(--green);
+  background: rgba(57, 255, 20, 0.08);
+  color: var(--green);
+}
+
 .referral-card {
   padding: 1rem;
   border: 1px solid var(--line);
@@ -806,6 +835,16 @@ textarea[aria-invalid="true"] {
   padding: 0.8rem 0;
   border-top: 1px solid var(--line);
   border-bottom: 1px solid var(--line);
+}
+
+.final-feedback {
+  display: grid;
+  gap: 1rem;
+}
+
+.final-feedback__aside {
+  display: grid;
+  gap: 0.75rem;
 }
 
 .inline-error {
@@ -1313,6 +1352,187 @@ textarea[aria-invalid="true"] {
   100% { box-shadow: 0 0 0 rgba(57, 255, 20, 0); }
 }
 
+@media (min-width: 721px) {
+  .screen__copy {
+    overflow: hidden;
+  }
+
+  .screen--question .screen__copy-inner {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+  }
+
+  .screen--question .eyebrow {
+    margin-bottom: 0.45rem;
+  }
+
+  .screen--question .screen-heading {
+    max-width: 16ch;
+    font-size: clamp(2.5rem, 3.5vw, 3.45rem);
+    line-height: 0.9;
+  }
+
+  .screen--question .screen-body {
+    margin-top: clamp(0.65rem, 1.4vh, 0.9rem);
+  }
+
+  .screen--question .question-block {
+    padding: 0.75rem 1rem;
+  }
+
+  .screen--question .question-block legend,
+  .screen--question .field-label--large > span {
+    margin-bottom: 0.55rem;
+    font-size: clamp(1rem, 1.2vw, 1.16rem);
+    line-height: 1.22;
+  }
+
+  .screen--question .scale-button {
+    min-height: 2.65rem;
+    padding: 0.35rem 0.2rem;
+    font-size: 1.05rem;
+  }
+
+  .screen--question .scale__labels {
+    margin-top: 0.4rem;
+  }
+
+  .screen--question .option-list {
+    gap: 0.32rem;
+  }
+
+  .screen--question .option-button {
+    min-height: 2.6rem;
+    padding: 0.48rem 0.7rem;
+  }
+
+  .screen--question .option-button--wide {
+    margin-top: 0.55rem;
+  }
+
+  .screen--question .selection-meta {
+    margin: -0.15rem 0 0.45rem;
+  }
+
+  .screen--question .support-copy {
+    margin-top: 0.55rem;
+  }
+
+  .screen--question .field-label {
+    gap: 0.25rem;
+    margin-top: 0.55rem;
+  }
+
+  .screen--question input,
+  .screen--question select,
+  .screen--question textarea {
+    min-height: 2.55rem;
+    padding: 0.48rem 0.65rem;
+  }
+
+  .screen--question textarea {
+    min-height: 0;
+  }
+
+  .screen--question .demo-note,
+  .screen--question .listening-note {
+    margin-top: 0.55rem;
+    padding: 0.55rem 0.7rem;
+  }
+
+  .screen--referrals .screen-heading,
+  .screen--comment .screen-heading {
+    max-width: 18ch;
+    font-size: clamp(2.35rem, 3vw, 3.1rem);
+  }
+
+  .screen--referrals .lead {
+    font-size: 1rem;
+  }
+
+  .screen--referrals .path-choices {
+    margin-top: 0.75rem;
+  }
+
+  .screen--referrals .path-choice {
+    padding: 0.75rem;
+  }
+
+  .screen--referrals .screen-body,
+  .screen--comment .screen-body {
+    width: 100%;
+  }
+
+  .screen--referrals .referral-list {
+    margin-top: 0.4rem;
+  }
+
+  .screen--referrals .referral-card {
+    padding: 0.65rem 0.8rem;
+  }
+
+  .screen--referrals .referral-card__head {
+    margin-bottom: 0;
+  }
+
+  .screen--referrals .referral-card .field-grid {
+    gap: 0.55rem;
+  }
+
+  .screen--referrals .referral-card .field-label {
+    margin-top: 0.38rem;
+  }
+
+  .screen--referrals .referral-card .consent-row {
+    margin-top: 0.5rem;
+    font-size: 0.76rem;
+    line-height: 1.25;
+  }
+
+  .screen--referrals .button--small {
+    margin-top: 0.45rem;
+  }
+
+  .screen--comment .screen__copy-inner {
+    width: min(68%, 62rem);
+  }
+
+  .final-feedback {
+    grid-template-columns: minmax(0, 1.15fr) minmax(15rem, 0.85fr);
+    gap: 1rem;
+    align-items: start;
+  }
+
+  .final-feedback .field-label--large {
+    margin-top: 0;
+  }
+
+  .final-feedback__aside {
+    gap: 0.55rem;
+    padding-top: 0.05rem;
+  }
+
+  .final-feedback__identity {
+    grid-template-columns: 1fr;
+    gap: 0.55rem;
+  }
+
+  .final-feedback__aside .field-label,
+  .final-feedback__aside .consent-row,
+  .final-feedback__aside .demo-note {
+    margin-top: 0;
+  }
+
+  .final-feedback__aside .consent-row--followup {
+    padding: 0.55rem 0;
+  }
+
+  .final-feedback__aside .demo-note {
+    font-size: 0.76rem;
+    line-height: 1.3;
+  }
+}
+
 @media (max-width: 960px) {
   :root {
     --header-h: 4rem;
@@ -1341,17 +1561,7 @@ textarea[aria-invalid="true"] {
   }
 
   .screen--question .screen-heading {
-    max-width: 12ch;
-    font-size: clamp(2.35rem, 10.2vw, 3rem);
-  }
-
-  .screen--question .screen__copy-inner {
-    padding-top: clamp(15rem, 38vh, 20rem);
-    padding-bottom: 2rem;
-  }
-
-  .scale__buttons {
-    grid-template-columns: repeat(5, minmax(2.6rem, 1fr));
+    font-size: clamp(2.35rem, 4.7vw, 3rem);
   }
 }
 
@@ -1413,7 +1623,7 @@ textarea[aria-invalid="true"] {
     position: absolute;
     inset: 0 0 auto;
     width: 100%;
-    height: clamp(17rem, 47vh, 25rem);
+    height: clamp(12rem, 34vh, 17rem);
     border: 0;
   }
 
@@ -1446,17 +1656,17 @@ textarea[aria-invalid="true"] {
     display: block;
     width: 100%;
     min-height: 100%;
-    padding: clamp(15rem, 38vh, 20rem) 1.25rem 2rem;
+    padding: clamp(11rem, 32vh, 15rem) 1.25rem 1.5rem;
   }
 
   .screen-heading {
     max-width: 10ch;
-    font-size: clamp(2.4rem, 10.6vw, 3.15rem);
+    font-size: clamp(2.15rem, 9.6vw, 2.9rem);
     line-height: 0.93;
   }
 
   .screen-body {
-    margin-top: 1.5rem;
+    margin-top: 1rem;
   }
 
   .lead {
@@ -1480,11 +1690,37 @@ textarea[aria-invalid="true"] {
   }
 
   .scale__buttons {
+    grid-template-columns: repeat(5, minmax(2.6rem, 1fr));
     gap: 0.42rem;
   }
 
   .scale-button {
-    min-height: 3.1rem;
+    min-height: 2.85rem;
+  }
+
+  .question-block {
+    padding: 0.85rem;
+  }
+
+  .option-button {
+    min-height: 2.85rem;
+    padding: 0.62rem 0.72rem;
+  }
+
+  .field-label {
+    margin-top: 0.75rem;
+  }
+
+  .referral-list {
+    margin-top: 0.55rem;
+  }
+
+  .referral-card {
+    padding: 0.75rem;
+  }
+
+  .final-feedback {
+    grid-template-columns: 1fr;
   }
 
   .scale__labels {
@@ -1572,6 +1808,140 @@ textarea[aria-invalid="true"] {
 
   .modal__actions .button {
     width: 100%;
+  }
+}
+
+@media (min-width: 361px) and (max-width: 720px) and (min-height: 760px) {
+  .screen--question .screen__copy-inner {
+    padding-top: 1.1rem;
+    padding-bottom: 1rem;
+  }
+
+  .screen--question .eyebrow {
+    margin-bottom: 0.45rem;
+  }
+
+  .screen--question .screen-heading {
+    max-width: 16ch;
+    font-size: clamp(1.85rem, 8.2vw, 2.2rem);
+    line-height: 0.9;
+  }
+
+  .screen--question .screen-body {
+    margin-top: 0.65rem;
+  }
+
+  .screen--question .question-block {
+    padding: 0.65rem;
+  }
+
+  .screen--question .question-block legend,
+  .screen--question .field-label--large > span {
+    margin-bottom: 0.55rem;
+    font-size: 0.94rem;
+    line-height: 1.2;
+  }
+
+  .screen--question .option-list {
+    gap: 0.3rem;
+  }
+
+  .screen--question .option-list--two-columns,
+  .screen--question .field-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.45rem;
+  }
+
+  .screen--question .field-grid--channel {
+    grid-template-columns: minmax(6.5rem, 0.42fr) minmax(0, 1fr);
+  }
+
+  .screen--question .option-button {
+    min-height: 2.45rem;
+    padding: 0.42rem 0.55rem;
+    font-size: 0.88rem;
+  }
+
+  .screen--question .option-button--wide {
+    margin-top: 0.45rem;
+  }
+
+  .screen--question .scale-button {
+    min-height: 2.45rem;
+  }
+
+  .screen--question .field-label {
+    gap: 0.22rem;
+    margin-top: 0.45rem;
+  }
+
+  .screen--question input,
+  .screen--question select,
+  .screen--question textarea {
+    min-height: 2.45rem;
+    padding: 0.42rem 0.55rem;
+  }
+
+  .screen--question .support-copy,
+  .screen--question .demo-note,
+  .screen--question .listening-note {
+    margin-top: 0.45rem;
+  }
+
+  .screen--referrals .referral-tabs {
+    gap: 0.3rem;
+  }
+
+  .screen--referrals .referral-list {
+    margin-top: 0.35rem;
+  }
+
+  .screen--referrals .referral-card {
+    padding: 0.55rem 0.65rem;
+  }
+
+  .screen--referrals .referral-card .field-label {
+    margin-top: 0.3rem;
+  }
+
+  .screen--referrals .referral-card .consent-row {
+    margin-top: 0.4rem;
+    font-size: 0.73rem;
+    line-height: 1.22;
+  }
+
+  .screen--referrals .button--small {
+    margin-top: 0.4rem;
+  }
+
+  .screen--comment .final-feedback {
+    gap: 0.55rem;
+  }
+
+  .screen--comment #final-comment {
+    height: 5.75rem;
+    resize: none;
+  }
+
+  .screen--comment .final-feedback__aside {
+    gap: 0.35rem;
+  }
+
+  .screen--comment .final-feedback__identity {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .screen--comment .consent-row--followup {
+    margin-top: 0;
+    padding: 0.45rem 0;
+    font-size: 0.78rem;
+    line-height: 1.25;
+  }
+
+  .screen--comment .demo-note {
+    padding: 0.45rem 0.55rem;
+    font-size: 0.72rem;
+    line-height: 1.25;
   }
 }
 

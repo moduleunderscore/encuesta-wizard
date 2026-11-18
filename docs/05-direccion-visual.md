@@ -33,6 +33,8 @@ No se copia código ni activos de terceros. Se reimplementan principios dentro d
 - Tipografía: Barlow para lectura, Inter Tight para titulares/escala e IBM Plex Mono para controles y metadatos.
 - Paleta: `#050706`, blanco frío, gris de estudio y `#39FF14`.
 - Composición: escena completa de fondo, degradado izquierdo, copy a 60% en escritorio; personaje arriba y contenido sobre degradado en móvil.
+- Contrato de encuadre: cada escena completa cabe en un viewport de 1280×720 sin scroll; en 390×844 se conserva el mismo comportamiento y en teléfonos menores queda scroll como respaldo de accesibilidad.
+- Densidad de formularios: los referidos se editan uno a la vez mediante pestañas y la última toma usa una retícula de dos columnas en escritorio para mantener el ritmo de una idea por pantalla.
 - Materialidad: robot textil contra estudio gris; paneles negros semitransparentes con bordes finos.
 - Estados: selección verde, foco de 2 px, error coral, bloqueo local, cierre oscuro y demo explícita.
 
@@ -83,3 +85,4 @@ El momento distintivo es la transformación coordinada entre escena, titular ver
 - Local: `http://127.0.0.1:4173` durante QA.
 - Fecha: 2026-11-18.
 - Cambio solicitado e incorporado: adoptar como principal la arquitectura visual de `wizard-no-que-no-se-podia` conservando la estructura funcional propia.
+- Ajuste de densidad: las diez escenas, incluido el estado de error de referidos y el outro, fueron compactadas y verificadas sin scroll en 1280×720; la ruta completa también cabe en 390×844.
