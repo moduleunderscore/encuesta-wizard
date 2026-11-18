@@ -9,7 +9,10 @@ import {
   createDraft,
   createReferral,
   isLowExperience,
+  isReferralComplete,
   loadDraft,
+  REQUIRED_REFERRAL_COUNT,
+  REFERRAL_SLOT_COUNT,
   saveDraft,
   togglePriority,
   validateScreen,
@@ -210,8 +213,8 @@ function referralCard(referral, index) {
   return `
     <article class="referral-card" data-referral-id="${referral.id}">
       <div class="referral-card__head">
-        <span>CONTACTO / ${String(index + 1).padStart(2, "0")}</span>
-        <button class="text-button" type="button" data-action="remove-referral" data-index="${index}">Quitar</button>
+        <span>CONTACTO / ${String(index + 1).padStart(2, "0")} <small>${index < REQUIRED_REFERRAL_COUNT ? "OBLIGATORIO" : "OPCIONAL"}</small></span>
+        <button class="text-button" type="button" data-action="clear-referral" data-index="${index}">Limpiar</button>
       </div>
       <div class="field-grid">
         <label class="field-label">
@@ -258,22 +261,13 @@ function referralCard(referral, index) {
     </article>`;
 }
 
-function referralChoices() {
-  return `
-    <p class="lead lead--small">Piensa en esas personas a las que una conversación con Wizard les podría abrir una posibilidad.</p>
-    <div class="path-choices path-choices--single">
-      <button class="path-choice${draft.referralMode === "contact" ? " is-selected" : ""}" type="button" data-action="referral-mode" data-value="contact">
-        <span><strong>Te comparto unos contactos</strong><small>Hasta tres personas, siempre con su permiso.</small></span>
-      </button>
-    </div>`;
-}
-
 function contactReferralBody() {
   const finalIndex = Math.max(0, draft.referrals.length - 1);
   activeReferralIndex = Math.min(activeReferralIndex, finalIndex);
   const activeReferral = draft.referrals[activeReferralIndex];
 
   return `
+    <p class="referral-instruction"><strong>Tres contactos son obligatorios; tienes espacio para cinco.</strong> Por favor, si te gustó Wizard, recomiéndanos cinco contactos a quienes pueda interesarles nuestra tecnología.</p>
     <div class="referral-tabs" role="group" aria-label="Contactos compartidos">
       ${draft.referrals.map((referral, index) => `
         <button
@@ -282,20 +276,16 @@ function contactReferralBody() {
           data-action="referral-tab"
           data-index="${index}"
           aria-pressed="${index === activeReferralIndex}"
-        >Contacto ${index + 1}</button>`).join("")}
+          aria-label="Contacto ${index + 1}, ${index < REQUIRED_REFERRAL_COUNT ? "obligatorio" : "opcional"}"
+        >Contacto ${index + 1}${index < REQUIRED_REFERRAL_COUNT ? '<span class="required-marker" aria-hidden="true">*</span>' : ""}</button>`).join("")}
     </div>
     <div class="referral-list">
       ${activeReferral ? referralCard(activeReferral, activeReferralIndex) : ""}
-    </div>
-    ${
-      draft.referrals.length < 3
-        ? '<button class="button button--outline button--small" type="button" data-action="add-referral">Agregar otra persona</button>'
-        : ""
-    }`;
+    </div>`;
 }
 
 function screenSeven() {
-  return draft.referralMode === "contact" ? contactReferralBody() : referralChoices();
+  return contactReferralBody();
 }
 
 function screenEight() {
@@ -511,6 +501,7 @@ function openReview() {
   const technology = draft.technology.insufficientExperience
     ? "Aún no las ha usado suficiente"
     : draft.technology.rating ? `${draft.technology.rating}/10` : "";
+  const completeReferrals = draft.referrals.filter(isReferralComplete).length;
 
   modalLayer.hidden = false;
   modalLayer.innerHTML = `
@@ -523,7 +514,7 @@ function openReview() {
         ${summaryRow("Impacto esperado de la IA", impact, 4)}
         ${summaryRow("Prioridades", priorities, 5)}
         ${summaryRow("Probabilidad de recomendar", draft.recommendation ? `${draft.recommendation}/10` : "", 6)}
-        ${summaryRow("Modalidad de recomendación", draft.referralMode || "Sin referidos", 7)}
+        ${summaryRow("Contactos recomendados", `${completeReferrals} de ${REFERRAL_SLOT_COUNT}`, 7)}
         ${summaryRow("Comentario final", draft.finalComment, 8)}
       </ul>
       <p class="modal__note">Este resumen también vive solo en tu sesión. Nada se ha enviado.</p>
@@ -598,26 +589,13 @@ document.addEventListener("click", (event) => {
     errors = {};
     render();
   }
-  if (action === "referral-mode") {
-    draft.referralMode = value;
-    if (value === "contact" && draft.referrals.length === 0) draft.referrals.push(createReferral());
-    activeReferralIndex = 0;
-    errors = {};
-    render();
-  }
   if (action === "referral-tab") {
     activeReferralIndex = Number(index);
     render();
   }
-  if (action === "add-referral" && draft.referrals.length < 3) {
-    draft.referrals.push(createReferral());
-    activeReferralIndex = draft.referrals.length - 1;
-    render();
-  }
-  if (action === "remove-referral") {
-    draft.referrals.splice(Number(index), 1);
-    if (draft.referrals.length === 0) draft.referrals.push(createReferral());
-    activeReferralIndex = Math.min(activeReferralIndex, draft.referrals.length - 1);
+  if (action === "clear-referral") {
+    draft.referrals[Number(index)] = createReferral();
+    errors = {};
     render();
   }
   if (action === "review") openReview();

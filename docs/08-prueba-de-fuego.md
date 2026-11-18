@@ -8,6 +8,7 @@
 | Datos obligatorios vacíos | Bloquea y muestra error | Pass | Pantalla 03 permaneció en 03 con 1 error | Codex |
 | Sin referidos | Permite finalizar | Pass | Ficha vacía avanzó a 09 | Codex |
 | Referido parcial | Bloquea y señala pendientes | Pass | 2 errores; permaneció en 08 | Codex |
+| Mínimo de referidos | Impide avanzar con menos de tres contactos completos y autorizados | Pass | Prueba Node del modelo + recorrido de pantalla 08 | Codex |
 | Consentimiento | Desmarcado por defecto | Pass | `checked=null` en navegador | Codex |
 | Canal del referido | Cambia teléfono/correo | Pass | Input cambió a `type=email` | Codex |
 | Prioridades | Máximo dos; incertidumbre excluyente | Pass | Prueba Node + navegador | Codex |
@@ -18,7 +19,7 @@
 | Móvil | Sin overflow y navegación fija | Pass | 319×671 y 390×844; overflow X 0; botones 51 px | Codex |
 | Escritorio | Escena panorámica legible | Pass | 1280×720; overflow X 0 | Codex |
 | Una escena por viewport | Las 10 pantallas caben sin scroll | Pass | 1280×720; `stageScroll === stageClient` en 01–10 | Codex |
-| Referidos densos | Tres contactos y errores caben sin apilar fichas | Pass | Navegación por pestañas; peor caso de 3 errores sin overflow | Codex |
+| Referidos densos | Cinco espacios caben sin apilar fichas; tres son obligatorios | Pass | Navegación por pestañas; una ficha activa y cinco accesos visibles | Codex |
 | Última toma compacta | Comentario, identidad y seguimiento visibles juntos | Pass | Pantalla 09 a dos columnas; 1280×720 y 390×844 | Codex |
 | Consola | Sin errores o warnings | Pass | Logs de navegador vacíos | Codex |
 | Thumbnail social | Portada y copy legibles al compartir | Pass | JPEG 1200×630 + Open Graph/Twitter con URL absoluta | Codex |

@@ -2,7 +2,7 @@
 
 ## Flujo principal
 
-`Abrir → entender modo demo → responder → adaptar ruta → recomendar o saltar → comentar → revisar borrador`
+`Abrir → entender modo demo → responder → adaptar ruta → recomendar al menos tres contactos → comentar → revisar borrador`
 
 | Etapa | Qué ocurre | Sistema o responsable | Datos | Evidencia / salida |
 |---|---|---|---|---|
@@ -16,7 +16,7 @@
 ## Decisiones y control
 
 - Fuente de verdad: borrador normalizado en `sessionStorage`.
-- Reglas críticas: calificaciones obligatorias; máximo dos prioridades; “no lo tengo claro” excluyente; contacto parcial validado; consentimiento obligatorio para enviar un referido futuro.
+- Reglas críticas: calificaciones obligatorias; máximo dos prioridades; “no lo tengo claro” excluyente; tres contactos completos obligatorios, dos espacios opcionales adicionales y consentimiento individual para cada referido futuro.
 - Decisiones asistidas por IA: ninguna.
 - Handoff humano: solicitud de conversación registrada como preferencia local; operación pendiente.
 - Estado persistente: aislado por pestaña y versión de esquema.
@@ -24,7 +24,7 @@
 
 ## Excepciones y recuperación
 
-- Datos incompletos: error junto al campo; una ficha totalmente vacía se ignora.
+- Datos incompletos: error junto al campo; las primeras tres fichas no pueden quedar vacías y las fichas cuatro y cinco se ignoran si permanecen vacías.
 - Integración no disponible: no existe integración en demo y se comunica explícitamente.
 - Acción repetida: cambios reemplazan el estado del mismo borrador.
 - Experiencia insatisfactoria: prioriza comentario y mantiene referido como alternativa secundaria.

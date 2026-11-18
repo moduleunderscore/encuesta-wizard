@@ -36,10 +36,15 @@ test("priority selection enforces two choices and exclusive uncertainty", () => 
   assert.deepEqual(draft.priorities.selected, ["decisions"]);
 });
 
-test("empty referrals do not block but partial referrals show missing data", () => {
+test("optional empty referrals do not block but required or partial referrals do", () => {
   const referral = createReferral();
   assert.deepEqual(validateReferral(referral), {});
   assert.equal(isReferralComplete(referral), false);
+  assert.deepEqual(validateReferral(referral, true), {
+    name: "Agrega su nombre.",
+    contact: "Agrega su número.",
+    consent: "Confirma que esta persona aceptó compartir sus datos.",
+  });
 
   referral.name = "Ana";
   assert.deepEqual(validateReferral(referral), {
@@ -71,6 +76,21 @@ test("required question validation is screen-specific", () => {
   assert.ok(validateScreen(3, draft).technology);
   draft.technology.insufficientExperience = true;
   assert.deepEqual(validateScreen(3, draft), {});
+});
+
+test("screen eight requires three complete referrals and keeps five slots", () => {
+  const draft = createDraft();
+  assert.equal(draft.referrals.length, 5);
+  assert.equal(validateScreen(7, draft).referrals.length, 5);
+
+  draft.referrals.slice(0, 3).forEach((referral, index) => {
+    Object.assign(referral, {
+      name: `Contacto ${index + 1}`,
+      contact: `+52 55 1234 567${index}`,
+      consent: true,
+    });
+  });
+  assert.deepEqual(validateScreen(7, draft), {});
 });
 
 test("low satisfaction or recommendation activates improvement-first routing", () => {
@@ -119,4 +139,5 @@ test("normalization restores nested defaults and clamps the screen", () => {
   assert.equal(restored.currentScreen, 9);
   assert.equal(restored.technology.rating, 7);
   assert.equal(restored.technology.insufficientExperience, false);
+  assert.equal(restored.referrals.length, 5);
 });

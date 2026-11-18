@@ -750,6 +750,20 @@ textarea[aria-invalid="true"] {
   margin-top: 1.2rem;
 }
 
+.referral-instruction {
+  max-width: 56rem;
+  margin: 0 0 0.65rem;
+  padding-left: 0.75rem;
+  border-left: 2px solid var(--green);
+  color: var(--muted);
+  font-size: 0.78rem;
+  line-height: 1.35;
+}
+
+.referral-instruction strong {
+  color: var(--paper);
+}
+
 .referral-tabs {
   display: flex;
   flex-wrap: wrap;
@@ -775,6 +789,11 @@ textarea[aria-invalid="true"] {
   color: var(--green);
 }
 
+.required-marker {
+  margin-left: 0.18rem;
+  color: var(--green);
+}
+
 .referral-card {
   padding: 1rem;
   border: 1px solid var(--line);
@@ -787,6 +806,13 @@ textarea[aria-invalid="true"] {
   justify-content: space-between;
   margin-bottom: 0.25rem;
   color: var(--green);
+}
+
+.referral-card__head small {
+  margin-left: 0.35rem;
+  color: var(--muted);
+  font-size: 0.62rem;
+  letter-spacing: 0.08em;
 }
 
 .consent-row {
@@ -1449,6 +1475,12 @@ textarea[aria-invalid="true"] {
     margin-top: 0.4rem;
   }
 
+  .screen--referrals .referral-instruction {
+    margin-bottom: 0.45rem;
+    font-size: 0.72rem;
+    line-height: 1.28;
+  }
+
   .screen--referrals .referral-card {
     padding: 0.65rem 0.8rem;
   }
@@ -1872,6 +1904,12 @@ textarea[aria-invalid="true"] {
 
   .screen--referrals .referral-tabs {
     gap: 0.3rem;
+  }
+
+  .screen--referrals .referral-instruction {
+    margin-bottom: 0.35rem;
+    font-size: 0.68rem;
+    line-height: 1.22;
   }
 
   .screen--referrals .referral-list {

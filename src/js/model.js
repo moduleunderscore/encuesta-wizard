@@ -2,6 +2,8 @@ import { DEFAULT_INTRO_MESSAGE } from "./content.js";
 
 export const STORAGE_KEY = "wizard-survey-demo-v1";
 export const SCHEMA_VERSION = "1.0.0";
+export const REQUIRED_REFERRAL_COUNT = 3;
+export const REFERRAL_SLOT_COUNT = 5;
 
 function createId(prefix = "draft") {
   const uuid = globalThis.crypto?.randomUUID?.();
@@ -20,6 +22,14 @@ export function createReferral() {
   };
 }
 
+function createReferralSlots(existing = []) {
+  const referrals = (Array.isArray(existing) ? existing : [])
+    .slice(0, REFERRAL_SLOT_COUNT)
+    .map((referral) => ({ ...createReferral(), ...referral }));
+  while (referrals.length < REFERRAL_SLOT_COUNT) referrals.push(createReferral());
+  return referrals;
+}
+
 export function createDraft(now = new Date()) {
   return {
     draftId: createId(),
@@ -36,8 +46,8 @@ export function createDraft(now = new Date()) {
     aiImpact: { expectation: null, note: "" },
     priorities: { selected: [], other: "" },
     recommendation: null,
-    referralMode: null,
-    referrals: [],
+    referralMode: "contact",
+    referrals: createReferralSlots(),
     selfIntroMessage: DEFAULT_INTRO_MESSAGE,
     finalComment: "",
     followUpRequested: false,
@@ -55,8 +65,8 @@ export function normalizeDraft(value) {
     technology: { ...fresh.technology, ...value.technology },
     aiImpact: { ...fresh.aiImpact, ...value.aiImpact },
     priorities: { ...fresh.priorities, ...value.priorities },
-    referralMode: value.referralMode === "self_intro" ? null : value.referralMode,
-    referrals: Array.isArray(value.referrals) ? value.referrals.slice(0, 3) : [],
+    referralMode: "contact",
+    referrals: createReferralSlots(value.referrals),
     currentScreen: Number.isInteger(value.currentScreen)
       ? Math.min(9, Math.max(0, value.currentScreen))
       : 0,
@@ -111,8 +121,8 @@ export function isValidContact(referral) {
   return digits.length >= 10 && digits.length <= 15;
 }
 
-export function validateReferral(referral) {
-  if (isReferralEmpty(referral)) return {};
+export function validateReferral(referral, required = false) {
+  if (isReferralEmpty(referral) && !required) return {};
   const errors = {};
   if (!referral.name.trim()) errors.name = "Agrega su nombre.";
   if (!referral.contact.trim()) {
@@ -154,8 +164,20 @@ export function validateScreen(screenIndex, draft) {
   if (screenIndex === 6 && draft.recommendation === null) {
     errors.recommendation = "Elige una calificación para continuar.";
   }
-  if (screenIndex === 7 && draft.referralMode === "contact") {
-    const referralErrors = draft.referrals.map(validateReferral);
+  if (screenIndex === 7) {
+    const referralErrors = Array.from({ length: REFERRAL_SLOT_COUNT }, (_, index) => {
+      const referral = draft.referrals[index];
+      if (!referral) {
+        return index < REQUIRED_REFERRAL_COUNT
+          ? {
+              name: "Agrega su nombre.",
+              contact: "Agrega su número o correo.",
+              consent: "Confirma que esta persona aceptó compartir sus datos.",
+            }
+          : {};
+      }
+      return validateReferral(referral, index < REQUIRED_REFERRAL_COUNT);
+    });
     if (referralErrors.some((item) => Object.keys(item).length > 0)) {
       errors.referrals = referralErrors;
     }

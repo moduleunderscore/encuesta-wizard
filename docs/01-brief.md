@@ -11,11 +11,11 @@
 
 ## Resultado buscado
 
-- Cambio de negocio u operación: instalar una experiencia breve y memorable para escuchar a clientes, detectar prioridades futuras y facilitar recomendaciones consentidas.
+- Cambio de negocio u operación: instalar una experiencia breve y memorable para escuchar a clientes, detectar prioridades futuras y capturar entre tres y cinco recomendaciones consentidas.
 - Métrica principal: [OBJETIVO] tasa de recorrido completado cuando exista captura real.
 - Línea base y fuente: [PENDIENTE]; esta etapa no recibe datos.
 - Meta y fecha: [OBJETIVO] duración cercana a tres minutos; meta de conversión pendiente para etapa 2.
-- Qué demostraría que esto funcionó: recorrido completo sin fricción en escritorio y móvil, respuestas honestas, comentarios accionables y referidos autorizados sin presionar al cliente.
+- Qué demostraría que esto funcionó: recorrido completo sin fricción en escritorio y móvil, respuestas honestas, comentarios accionables y al menos tres referidos autorizados.
 
 ## Usuario y situación real
 
@@ -27,7 +27,7 @@
 
 ## Alcance
 
-- Dentro: diez pantallas, copy, diseño, escenas, navegación, validación, accesibilidad base, borrador local, referidos opcionales y preparación del esquema.
+- Dentro: diez pantallas, copy, diseño, escenas, navegación, validación, accesibilidad base, borrador local, tres referidos obligatorios con espacio para cinco y preparación del esquema.
 - Fuera: recepción remota, Excel/OneDrive, n8n, correos enviados, WhatsApp enviado, analítica, CRM y agente de IA.
 - Entregables: sitio estático funcional, recursos optimizados, código modular, README, esquema y documentación de etapa 2.
 - Dependencias: navegador moderno con JavaScript y `sessionStorage`; imágenes y logo proporcionados por el usuario.
