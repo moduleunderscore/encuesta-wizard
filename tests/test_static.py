@@ -79,6 +79,21 @@ class StaticSiteTests(unittest.TestCase):
         self.assertIn('class="cover-reel"', app)
         self.assertIn(".cover-reel", styles)
 
+    def test_slide_two_explains_what_wizard_makes_possible(self):
+        app = (SRC / "js" / "app.js").read_text(encoding="utf-8")
+        self.assertIn("Lo que tu negocio necesita.", app)
+        self.assertIn("Lo que tus clientes esperan.", app)
+        self.assertIn("Lo que ya funciona.", app)
+        self.assertIn("Y todo lo que todavía imaginas.", app)
+        self.assertIn(
+            "Con Wizard, esas ideas se convierten en soluciones que sí se pueden construir.",
+            app,
+        )
+        self.assertNotIn("Y lo que sigue empieza escuchándote.", app)
+        self.assertNotIn(
+            "Diez escenas. Preguntas directas. Sin respuestas para quedar bien.", app
+        )
+
     def test_social_preview_metadata_is_complete(self):
         index = (SRC / "index.html").read_text(encoding="utf-8")
         preview_url = (

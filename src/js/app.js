@@ -167,12 +167,13 @@ function screenZero() {
 
 function screenOne() {
   return `
-    <div class="statement-lines" aria-label="Lo que queremos escuchar">
-      <p>Y lo que sigue empieza escuchándote.</p>
-      <p>Lo que funciona. Lo que te falta.</p>
-      <p>Lo que imaginas para tu negocio.</p>
+    <div class="statement-lines" aria-label="Con Wizard, lo que imaginas se puede construir">
+      <p>Lo que tu negocio necesita.</p>
+      <p>Lo que tus clientes esperan.</p>
+      <p>Lo que ya funciona.</p>
+      <p>Y todo lo que todavía imaginas.</p>
     </div>
-    <p class="support-copy">Diez escenas. Preguntas directas. Sin respuestas para quedar bien.</p>`;
+    <p class="support-copy">Con Wizard, esas ideas se convierten en soluciones que sí se pueden construir.</p>`;
 }
 
 function screenTwo() {

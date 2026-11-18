@@ -24,6 +24,7 @@
 | Consola | Sin errores o warnings | Pass | Logs de navegador vacíos | Codex |
 | Thumbnail social | Portada y copy legibles al compartir | Pass | JPEG 1200×630 + Open Graph/Twitter con URL absoluta | Codex |
 | Reel desde portada | CTA verde visible, accesible y separado del avance de la encuesta | Pass | Enlace HTTPS abre YouTube en pestaña nueva con `noopener noreferrer`; inspección desktop/móvil | Codex |
+| Promesa del slide 02 | Explica con claridad que Wizard convierte necesidades e ideas en soluciones construibles | Pass | Copy anterior eliminado; cuatro ideas breves y cierre de posibilidad verificados en desktop/móvil | Codex |
 | Marca en escenas 01–09 | Todos los robots llevan la insignia Wizard oscura, pequeña y bordada en el lado anatómico izquierdo del pecho; ambos personajes en escenas grupales | Pass | Inspección visual de posición, escala, trama, volumen, conteo y contraste en desktop/móvil | Codex |
 | Sistema de titulares | Juegos de sólido/outline en blanco y verde conservan jerarquía, contraste y nombre accesible | Pass | Inspección en 01–09 a 1280×720 y 390×844; fallback sólido sin `text-stroke` | Codex |
 | Destellos de marca en 02 | Solo `WIZARD` activa estrellas blancas/verdes sin alterar lectura, layout ni accesibilidad | Pass | SVG inline + CSS; `aria-label` intacto; oculto con movimiento reducido | Codex |
