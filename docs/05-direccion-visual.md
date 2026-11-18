@@ -37,6 +37,7 @@ No se copia código ni activos de terceros. Se reimplementan principios dentro d
 - Densidad de formularios: los referidos se editan uno a la vez mediante pestañas y la última toma usa una retícula de dos columnas en escritorio para mantener el ritmo de una idea por pantalla.
 - Materialidad: robot textil contra estudio gris; paneles negros semitransparentes con bordes finos.
 - Estados: selección verde, foco de 2 px, error coral, bloqueo local, cierre oscuro y demo explícita.
+- Vista al compartir: miniatura 1200×630 derivada de la portada, con robot a la derecha, degradado oscuro, logo Wizard y el titular completo con `IA` en verde.
 
 ## Dirección de movimiento y storyboard
 
@@ -86,3 +87,4 @@ El momento distintivo es la transformación coordinada entre escena, titular ver
 - Fecha: 2026-11-18.
 - Cambio solicitado e incorporado: adoptar como principal la arquitectura visual de `wizard-no-que-no-se-podia` conservando la estructura funcional propia.
 - Ajuste de densidad: las diez escenas, incluido el estado de error de referidos y el outro, fueron compactadas y verificadas sin scroll en 1280×720; la ruta completa también cabe en 390×844.
+- Vista social: metadatos Open Graph y Twitter apuntan a `social-preview-v1.jpg`; el nombre versionado permite renovar la caché de los mensajeros.

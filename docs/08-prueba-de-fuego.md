@@ -21,6 +21,7 @@
 | Referidos densos | Tres contactos y errores caben sin apilar fichas | Pass | Navegación por pestañas; peor caso de 3 errores sin overflow | Codex |
 | Última toma compacta | Comentario, identidad y seguimiento visibles juntos | Pass | Pantalla 09 a dos columnas; 1280×720 y 390×844 | Codex |
 | Consola | Sin errores o warnings | Pass | Logs de navegador vacíos | Codex |
+| Thumbnail social | Portada y copy legibles al compartir | Pass | JPEG 1200×630 + Open Graph/Twitter con URL absoluta | Codex |
 | Movimiento reducido | Contenido visible y animación mínima | Pass por inspección | Media query global y fallback estático | Codex |
 | Integración remota | No existe en demo | Pass | Código público sin OneDrive/n8n; `submitSurvey` falla explícito | Codex |
 
@@ -34,6 +35,7 @@
 | 2026-11-18 | 1.0-demo | Navegador local | Flujo bajo + referidos | Pass | ruta adaptada | Codex |
 | 2026-11-18 | 1.0-demo | Navegador local | Rediseño visual compartido | Pass | capturas desktop/móvil | Codex |
 | 2026-11-18 | 1.0-demo | Navegador local | Encuadre completo 01–10 | Pass | 1280×720 sin scroll; 390×844 sin scroll; consola limpia | Codex |
+| 2026-11-18 | 1.0-demo | Build estático | Vista previa al compartir | Pass | activo 1200×630 y metadatos OG/Twitter verificados | Codex |
 
 ## Criterio de salida
 
