@@ -56,7 +56,7 @@ export const SCREENS = [
   },
   {
     eyebrow: "04 / PRIORIDADES",
-    title: "¿Qué proyecto crees que deba entrar tu empresa?",
+    title: "¿Qué proyecto debería arrancar hoy tu empresa?",
     image: "./assets/robot-archive.jpg",
     imageAlt: "Robot marfil de Wizard archivando pendientes en una caja verde",
   },

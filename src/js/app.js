@@ -62,7 +62,7 @@ function formatTitle(index, title) {
     "A VER,<br><span>SIN FILTRO.</span>",
     "¿QUÉ TAN CÓMODO<br>TE SIENTES CON TU TECNOLOG<span>ÍA</span>?",
     "HABLEMOS<br><span>DEL FUTURO.</span>",
-    "¿QUÉ PROYECTO CREES<br><span>QUE DEBA ENTRAR TU EMPRESA?</span>",
+    "¿QUÉ PROYECTO<br><span>DEBERÍA ARRANCAR HOY</span><br>TU EMPRESA?",
     "Y A TODO ESTO,<br><span>¿NOS RECOMENDARÍAS?</span>",
     "TE COMPARTO<br><span>UNOS CONTACTOS.</span>",
     "YA TERMINAMOS.<br><span>AHORA, TE ESCUCHAMOS</span><br>SIN FILTRO:",
