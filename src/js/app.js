@@ -58,7 +58,7 @@ function errorText(key) {
 function formatTitle(index, title) {
   const titles = [
     "¿NO QUE NO<br>SE POD<span>IA</span>?",
-    "CON WIZARD<br><span>TODO SE PUEDE.</span>",
+    "CON <span class=\"title-logo\"><img src=\"./assets/logo-wizard.png\" alt=\"Wizard\" /></span><br><span>TODO SE PUEDE.</span>",
     "A VER,<br><span>SIN FILTRO.</span>",
     "¿YA SON DEL<br><span>MISMO EQUIPO?</span>",
     "HABLEMOS<br><span>DEL FUTURO.</span>",
