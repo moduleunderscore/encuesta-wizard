@@ -18,7 +18,7 @@ class StaticSiteTests(unittest.TestCase):
         expected = {
             "logo-wizard.png",
             "robot-challenge.jpg",
-            "robot-welcome.jpg",
+            "robot-welcome-wizard.png",
             "robot-listening.jpg",
             "robot-future.jpg",
             "robot-archive.jpg",

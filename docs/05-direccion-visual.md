@@ -36,6 +36,7 @@ No se copia código ni activos de terceros. Se reimplementan principios dentro d
 - Contrato de encuadre: cada escena completa cabe en un viewport de 1280×720 sin scroll; en 390×844 se conserva el mismo comportamiento y en teléfonos menores queda scroll como respaldo de accesibilidad.
 - Densidad de formularios: los referidos se editan uno a la vez mediante pestañas y la última toma usa una retícula de dos columnas en escritorio para mantener el ritmo de una idea por pantalla.
 - Materialidad: robot textil contra estudio gris; paneles negros semitransparentes con bordes finos.
+- Aplicación de marca en 02: el logotipo Wizard a color se integra como impresión sobre la playera textil del robot, siguiendo volumen, luz y trama; en el titular, `WIZARD` permanece como texto tipográfico para evitar duplicar el imagotipo.
 - Estados: selección verde, foco de 2 px, error coral, bloqueo local, cierre oscuro y demo explícita.
 - Vista al compartir: miniatura 1200×630 derivada de la portada, con robot a la derecha, degradado oscuro, logo Wizard y el titular completo con `IA` en verde.
 

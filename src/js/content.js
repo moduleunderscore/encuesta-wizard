@@ -33,8 +33,9 @@ export const SCREENS = [
   {
     eyebrow: "ANTES DE EMPEZAR",
     title: "Con Wizard todo se puede.",
-    image: "./assets/robot-welcome.jpg",
-    imageAlt: "Robot marfil de Wizard mostrando un cubo verde luminoso",
+    image: "./assets/robot-welcome-wizard.png",
+    imageAlt:
+      "Robot marfil mostrando un cubo verde luminoso y el logo a color de Wizard impreso en el pecho",
   },
   {
     eyebrow: "01 / COLABORACIÓN",

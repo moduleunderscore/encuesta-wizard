@@ -22,6 +22,7 @@
 | Última toma compacta | Comentario, identidad y seguimiento visibles juntos | Pass | Pantalla 09 a dos columnas; 1280×720 y 390×844 | Codex |
 | Consola | Sin errores o warnings | Pass | Logs de navegador vacíos | Codex |
 | Thumbnail social | Portada y copy legibles al compartir | Pass | JPEG 1200×630 + Open Graph/Twitter con URL absoluta | Codex |
+| Marca en pantalla 02 | Logo a color integrado en la tela y `WIZARD` como texto | Pass | Inspección visual del pecho, titular y contraste | Codex |
 | Movimiento reducido | Contenido visible y animación mínima | Pass por inspección | Media query global y fallback estático | Codex |
 | Integración remota | No existe en demo | Pass | Código público sin OneDrive/n8n; `submitSurvey` falla explícito | Codex |
 
