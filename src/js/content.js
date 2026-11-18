@@ -47,7 +47,7 @@ export const SCREENS = [
   },
   {
     eyebrow: "02 / TECNOLOGÍA",
-    title: "¿Qué tan cómodo te sientes con tu tecnología?",
+    title: "¿Qué tan cómodo te sientes usando tu nueva tecnología?",
     image: "./assets/robot-future-wizard-dark-left-chest.png",
     imageAlt:
       "Robot marfil con una insignia pequeña de Wizard bordada en azul oscuro en el lado izquierdo del pecho, sosteniendo una tableta con un orbe verde",

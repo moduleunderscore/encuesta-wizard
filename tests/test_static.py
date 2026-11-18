@@ -104,6 +104,14 @@ class StaticSiteTests(unittest.TestCase):
         self.assertNotIn("/10", app)
         self.assertIn("grid-template-columns: repeat(5", styles)
 
+    def test_slide_four_uses_the_direct_new_technology_question(self):
+        app = (SRC / "js" / "app.js").read_text(encoding="utf-8")
+        content = (SRC / "js" / "content.js").read_text(encoding="utf-8")
+        question = "¿Qué tan cómodo te sientes usando tu nueva tecnología?"
+        self.assertIn(question, content)
+        self.assertIn(question.lower(), app)
+        self.assertNotIn("las soluciones que implementamos", app)
+
     def test_social_preview_metadata_is_complete(self):
         index = (SRC / "index.html").read_text(encoding="utf-8")
         preview_url = (

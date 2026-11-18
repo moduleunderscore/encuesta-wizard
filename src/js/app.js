@@ -96,8 +96,8 @@ function formatTitle(index, title) {
     `<span class="title-line title-outline-white">A VER,</span>
       <span class="title-line title-solid-green">SIN FILTRO:</span>`,
     `<span class="title-line title-solid-white">¿QUÉ TAN CÓMODO</span>
-      <span class="title-line title-outline-green">TE SIENTES CON TU</span>
-      <span class="title-line"><span class="title-solid-white">TECNOLOG</span><span class="title-solid-green">ÍA</span><span class="title-solid-white">?</span></span>`,
+      <span class="title-line title-outline-green">TE SIENTES USANDO TU</span>
+      <span class="title-line"><span class="title-solid-white">NUEVA TECNOLOG</span><span class="title-solid-green">ÍA</span><span class="title-solid-white">?</span></span>`,
     `<span class="title-line title-outline-green">HABLEMOS</span>
       <span class="title-line"><span class="title-solid-white">DEL </span><span class="title-solid-green">FUTURO.</span></span>`,
     `<span class="title-line title-outline-white">¿QUÉ PROYECTO</span>
@@ -194,7 +194,7 @@ function screenTwo() {
 function screenThree() {
   return `
     <fieldset class="question-block">
-      <legend>Del 1 al 5, ¿qué tan cómodo te sientes usando las soluciones que implementamos para tu negocio?</legend>
+      <legend>Del 1 al 5, ¿qué tan cómodo te sientes usando tu nueva tecnología?</legend>
       ${scaleMarkup("technology.rating", draft.technology.rating, "Nada cómodo", "Muy cómodo")}
       <button
         class="option-button option-button--wide${draft.technology.insufficientExperience ? " is-selected" : ""}"
