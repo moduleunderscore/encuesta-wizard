@@ -39,7 +39,7 @@ En etapa 1, la persona responde en una sola pestaña. El navegador valida y cons
 | Referido compartido sin consentimiento | Media | Alto | Casilla desmarcada, validación y filtro del payload | Frontend / futuro workflow |
 | Confundir demo con envío real | Media | Alto | Avisos en portada, comentario y cierre; cero llamadas de red | Frontend |
 | Contenido largo en móvil | Alta | Medio | `100dvh`, scroll interno y navegación fija | Frontend |
-| Exceso de peso visual | Media | Medio | JPG optimizados; videos descartados en esta fase | Frontend |
+| Exceso de peso visual | Media | Medio | JPG optimizados y un solo video de cierre comprimido, sin audio y con movimiento reducido | Frontend |
 | Pérdida al recargar | Media | Medio | Persistencia de sesión y normalización de esquema | Frontend |
 | Datos privados en URL o archivos públicos | Baja | Alto | Sin query strings; enlaces de etapa 2 solo en documentación privada | Wizard |
 

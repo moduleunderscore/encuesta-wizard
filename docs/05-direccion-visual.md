@@ -14,6 +14,7 @@
 2. **Deck vigente de Wizard:** negro profundo, verde eléctrico, titulares contundentes y contraportada limpia.
 3. **Propuesta horizontal:** ritmo de una idea por pantalla y controles persistentes. Se descartan nombre, contenido y firma visual de Hangar.
 4. **Escenas adjuntas:** material textil marfil, ojos negros, gesto confiado y espacio negativo a la izquierda.
+5. **Outro de la propuesta Digital Stories:** video a sangre, titular central sólido/delineado y firma Wizard. Se adapta como cierre de la encuesta con acciones de revisión propias.
 
 No se copia código ni activos de terceros. Se reimplementan principios dentro de la estructura propia del proyecto.
 
@@ -64,6 +65,18 @@ No se copia código ni activos de terceros. Se reimplementan principios dentro d
 - QA: no provoca overflow ni bloquea los controles.
 
 El momento distintivo es la transformación coordinada entre escena, titular verde y filamento inferior: la encuesta se siente como avanzar dentro de una historia, no como cambiar de página.
+
+### Outro en video
+
+- Función: cerrar el recorrido con una firma de marca reconocible.
+- Trigger: completar la pantalla 09.
+- Sujeto: video del robot frente a la máquina de la fortuna, titular central y logo.
+- Estado: video a sangre en loop silencioso; `LET’S` sólido y `CONJURE THE FUTURE` delineado en verde.
+- Móvil: encuadre central con título reducido; las acciones permanecen visibles.
+- Movimiento reducido: el video se oculta y permanece un fondo oscuro legible.
+- Fallback: fondo negro, título, logo y acciones conservan el cierre completo.
+- Presupuesto: un MP4 de aproximadamente 5.8 MB; sin audio, librerías ni listeners por frame.
+- QA: autoplay silencioso, legibilidad del titular, revisión y reinicio en escritorio y móvil.
 
 ## Preview
 

@@ -55,6 +55,7 @@ export function normalizeDraft(value) {
     technology: { ...fresh.technology, ...value.technology },
     aiImpact: { ...fresh.aiImpact, ...value.aiImpact },
     priorities: { ...fresh.priorities, ...value.priorities },
+    referralMode: value.referralMode === "self_intro" ? null : value.referralMode,
     referrals: Array.isArray(value.referrals) ? value.referrals.slice(0, 3) : [],
     currentScreen: Number.isInteger(value.currentScreen)
       ? Math.min(9, Math.max(0, value.currentScreen))

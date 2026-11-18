@@ -62,10 +62,10 @@ function formatTitle(index, title) {
     "A VER,<br><span>SIN FILTRO.</span>",
     "¿YA SON DEL<br><span>MISMO EQUIPO?</span>",
     "HABLEMOS<br><span>DEL FUTURO.</span>",
-    "¿QUÉ PENDIENTE<br><span>MANDAS AL RETIRO?</span>",
-    "¿NOS SENTARÍAS<br><span>EN TU MESA?</span>",
-    "SEGURO CONOCES<br><span>A ALGUIEN.</span>",
-    "ÚLTIMA TOMA.<br><span>TE ESCUCHAMOS.</span>",
+    "¿QUÉ PROYECTO CREES<br><span>QUE DEBA ENTRAR TU EMPRESA?</span>",
+    "Y A TODO ESTO,<br><span>¿NOS RECOMENDARÍAS?</span>",
+    "TE COMPARTO<br><span>UNOS CONTACTOS.</span>",
+    "YA TERMINAMOS.<br><span>AHORA, TE ESCUCHAMOS</span><br>SIN FILTRO:",
   ];
   return titles[index] || escapeHtml(title);
 }
@@ -259,13 +259,10 @@ function referralCard(referral, index) {
 
 function referralChoices() {
   return `
-    <p class="lead lead--small">Un amigo. Tu prima. Ese colega que sigue haciendo todo a mano.</p>
-    <div class="path-choices">
+    <p class="lead lead--small">Piensa en esas personas a las que una conversación con Wizard les podría abrir una posibilidad.</p>
+    <div class="path-choices path-choices--single">
       <button class="path-choice${draft.referralMode === "contact" ? " is-selected" : ""}" type="button" data-action="referral-mode" data-value="contact">
-        <span class="path-choice__letter">A</span><span><strong>Te comparto un contacto</strong><small>Hasta tres personas, siempre con su permiso.</small></span>
-      </button>
-      <button class="path-choice${draft.referralMode === "self_intro" ? " is-selected" : ""}" type="button" data-action="referral-mode" data-value="self_intro">
-        <span class="path-choice__letter">B</span><span><strong>Prefiero presentarlos yo</strong><small>Te dejamos un mensaje listo para editar.</small></span>
+        <span><strong>Te comparto unos contactos</strong><small>Hasta tres personas, siempre con su permiso.</small></span>
       </button>
     </div>`;
 }
@@ -279,46 +276,13 @@ function contactReferralBody() {
       draft.referrals.length < 3
         ? '<button class="button button--outline button--small" type="button" data-action="add-referral">Agregar otra persona</button>'
         : '<p class="support-copy">Llegaste al máximo de tres personas.</p>'
-    }
-    <button class="text-button text-button--escape" type="button" data-action="skip-referrals">Ahora no se me ocurre alguien.</button>`;
-}
-
-function selfIntroBody() {
-  return `
-    <label class="field-label message-editor" for="intro-message">
-      <span>Mensaje editable</span>
-      <textarea id="intro-message" data-bind="selfIntroMessage" rows="5">${escapeHtml(draft.selfIntroMessage)}</textarea>
-    </label>
-    <div class="share-actions">
-      <button class="button button--outline" type="button" data-action="open-whatsapp">Abrir WhatsApp</button>
-      <button class="button button--outline" type="button" data-action="open-email">Abrir correo</button>
-      <button class="button button--outline" type="button" data-action="copy-message">Copiar mensaje</button>
-    </div>
-    <p class="support-copy">Solo abrimos el borrador cuando tú pulsas. Tú eliges destinatario y decides si lo envías.</p>
-    <button class="text-button text-button--escape" type="button" data-action="skip-referrals">Ahora no se me ocurre alguien.</button>`;
+    }`;
 }
 
 function screenSeven() {
-  const low = isLowExperience(draft);
-  const choosingReferral = draft.referralMode === "contact" || draft.referralMode === "self_intro";
-  if (low && !choosingReferral) {
-    return `
-      <div class="feedback-first">
-        <p class="lead lead--small">Antes, cuéntanos qué mejorar.</p>
-        <p>Tu experiencia importa más que una recomendación. Vamos directo al comentario final.</p>
-        <div class="feedback-first__actions">
-          <button class="button button--primary" type="button" data-action="low-to-comment">Quiero contarles</button>
-          <button class="button button--ghost" type="button" data-action="low-show-referrals">También quiero recomendar a alguien</button>
-        </div>
-      </div>`;
-  }
-
   return `
     ${referralChoices()}
-    ${draft.referralMode === "contact" ? contactReferralBody() : ""}
-    ${draft.referralMode === "self_intro" ? selfIntroBody() : ""}
-    ${draft.referralMode === null ? '<button class="text-button text-button--escape" type="button" data-action="skip-referrals">Ahora no se me ocurre alguien.</button>' : ""}
-  `;
+    ${draft.referralMode === "contact" ? contactReferralBody() : ""}`;
 }
 
 function screenEight() {
@@ -353,15 +317,22 @@ function screenEight() {
 function closingScreen() {
   return `
     <section class="closing-screen" aria-labelledby="screen-heading">
-      <div class="closing-screen__glow" aria-hidden="true"></div>
-      <img class="closing-logo" src="./assets/logo-wizard.png" alt="Wizard, Agencia IA Aplicada" />
-      <p class="eyebrow">RECORRIDO / COMPLETADO</p>
-      <h1 class="closing-title" id="screen-heading" tabindex="-1">LET’S CONJURE<br />THE FUTURE.</h1>
-      <p class="closing-copy"><strong>Recorrido completado.</strong> Gracias por probar la experiencia.</p>
-      <p class="closing-disclaimer">Tus respuestas quedaron únicamente en esta pestaña. Todavía no se enviaron a Wizard.</p>
-      <div class="closing-actions">
-        <button class="button button--primary" type="button" data-action="review">Revisar mis respuestas</button>
-        <button class="button button--ghost" type="button" data-action="reset">Borrar y empezar de nuevo</button>
+      <video class="closing-video" muted loop playsinline preload="auto" aria-hidden="true">
+        <source src="./assets/robot-fortune-outro.mp4" type="video/mp4" />
+      </video>
+      <div class="closing-screen__content">
+        <p class="eyebrow">RECORRIDO / COMPLETADO</p>
+        <h1 class="closing-title" id="screen-heading" tabindex="-1">
+          <span class="closing-title__solid">LET’S</span>
+          <span class="closing-title__outline">CONJURE<br />THE FUTURE</span>
+        </h1>
+        <img class="closing-logo" src="./assets/logo-wizard.png" alt="Wizard, Agencia IA Aplicada" />
+        <p class="closing-copy"><strong>Recorrido completado.</strong> Gracias por probar la experiencia.</p>
+        <p class="closing-disclaimer">Tus respuestas quedaron únicamente en esta pestaña. Todavía no se enviaron a Wizard.</p>
+        <div class="closing-actions">
+          <button class="button button--primary" type="button" data-action="review">Revisar mis respuestas</button>
+          <button class="button button--ghost" type="button" data-action="reset">Borrar y empezar de nuevo</button>
+        </div>
       </div>
     </section>`;
 }
@@ -425,8 +396,7 @@ function updateNavigation() {
   });
   previousButton.hidden = index === 0 || index === 9;
   nav.hidden = index === 9;
-  const referralChoiceOpen = draft.referralMode === "contact" || draft.referralMode === "self_intro";
-  nextButton.hidden = index === 9 || (index === 7 && isLowExperience(draft) && !referralChoiceOpen);
+  nextButton.hidden = index === 9;
 
   if (index === 0) nextButton.textContent = "A ver, dispara";
   else if (index === 1) nextButton.textContent = "Vamos al futuro";
@@ -441,6 +411,10 @@ function updateNavigation() {
 function render({ focus = false } = {}) {
   const current = draft.currentScreen;
   stage.innerHTML = screenMarkup(current);
+  const closingVideo = stage.querySelector(".closing-video");
+  if (closingVideo && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    closingVideo.play().catch(() => {});
+  }
   updateNavigation();
   saveDraft(draft);
 
@@ -498,30 +472,6 @@ function updateRating(field, value) {
   errors = {};
   pulseProgress();
   render();
-}
-
-async function copyMessage() {
-  const text = draft.selfIntroMessage.trim();
-  try {
-    await navigator.clipboard.writeText(text);
-    showToast("Mensaje copiado. Tú decides dónde compartirlo.");
-  } catch {
-    const field = document.createElement("textarea");
-    field.value = text;
-    document.body.append(field);
-    field.select();
-    document.execCommand("copy");
-    field.remove();
-    showToast("Mensaje copiado.");
-  }
-}
-
-function openDraft(kind) {
-  const message = encodeURIComponent(draft.selfIntroMessage.trim());
-  const url = kind === "whatsapp"
-    ? `https://wa.me/?text=${message}`
-    : `mailto:?subject=${encodeURIComponent("Te presento a Wizard")}&body=${message}`;
-  window.open(url, "_blank", "noopener,noreferrer");
 }
 
 function summaryRow(label, value, editScreen) {
@@ -637,22 +587,6 @@ document.addEventListener("click", (event) => {
     draft.referrals.splice(Number(index), 1);
     render();
   }
-  if (action === "skip-referrals") {
-    draft.referralMode = "none";
-    goTo(8, "forward");
-  }
-  if (action === "low-to-comment") {
-    draft.referralMode = "feedback_first";
-    goTo(8, "forward");
-  }
-  if (action === "low-show-referrals") {
-    draft.referralMode = "contact";
-    if (draft.referrals.length === 0) draft.referrals.push(createReferral());
-    render();
-  }
-  if (action === "copy-message") copyMessage();
-  if (action === "open-whatsapp") openDraft("whatsapp");
-  if (action === "open-email") openDraft("email");
   if (action === "review") openReview();
   if (action === "reset") openResetConfirmation();
   if (action === "close-modal") closeModal();

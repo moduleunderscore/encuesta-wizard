@@ -23,6 +23,7 @@ class StaticSiteTests(unittest.TestCase):
             "robot-future.jpg",
             "robot-archive.jpg",
             "robot-referral.jpg",
+            "robot-fortune-outro.mp4",
         }
         self.assertTrue(expected.issubset({path.name for path in assets.iterdir()}))
 
