@@ -17,16 +17,24 @@ class StaticSiteTests(unittest.TestCase):
         assets = SRC / "assets"
         expected = {
             "logo-wizard.png",
-            "robot-challenge.jpg",
-            "robot-welcome-wizard.png",
-            "robot-listening.jpg",
-            "robot-future.jpg",
-            "robot-archive.jpg",
-            "robot-referral.jpg",
+            "robot-challenge-wizard-embroidered.png",
+            "robot-welcome-wizard-embroidered.png",
+            "robot-listening-wizard-embroidered.png",
+            "robot-future-wizard-embroidered.png",
+            "robot-archive-wizard-embroidered.png",
+            "robot-referral-wizard-embroidered.png",
             "robot-fortune-outro.mp4",
             "social-preview-v1.jpg",
         }
         self.assertTrue(expected.issubset({path.name for path in assets.iterdir()}))
+
+    def test_every_static_robot_scene_uses_an_embroidered_wizard_asset(self):
+        content = (SRC / "js" / "content.js").read_text(encoding="utf-8")
+        scene_refs = re.findall(r'image: "\./assets/(robot-[^"]+)"', content)
+        self.assertEqual(len(scene_refs), 9)
+        self.assertTrue(
+            all(name.endswith("-wizard-embroidered.png") for name in scene_refs)
+        )
 
     def test_social_preview_metadata_is_complete(self):
         index = (SRC / "index.html").read_text(encoding="utf-8")

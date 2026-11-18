@@ -27,57 +27,65 @@ export const SCREENS = [
   {
     eyebrow: "WIZARD / EXPERIENCIA DE CLIENTE",
     title: "¿No que no se podIA?",
-    image: "./assets/robot-challenge.jpg",
-    imageAlt: "Robot marfil de Wizard con los brazos cruzados y una sonrisa retadora",
+    image: "./assets/robot-challenge-wizard-embroidered.png",
+    imageAlt:
+      "Robot marfil con una insignia pequeña de Wizard bordada en el pecho, los brazos cruzados y una sonrisa retadora",
   },
   {
     eyebrow: "ANTES DE EMPEZAR",
     title: "Con Wizard todo se puede.",
-    image: "./assets/robot-welcome-wizard.png",
+    image: "./assets/robot-welcome-wizard-embroidered.png",
     imageAlt:
-      "Robot marfil mostrando un cubo verde luminoso y el logo a color de Wizard impreso en el pecho",
+      "Robot marfil mostrando un cubo verde luminoso y una insignia pequeña de Wizard bordada en el pecho",
   },
   {
     eyebrow: "01 / COLABORACIÓN",
     title: "A ver, sin filtro.",
-    image: "./assets/robot-listening.jpg",
-    imageAlt: "Robot marfil de Wizard sentado y escuchando con atención",
+    image: "./assets/robot-listening-wizard-embroidered.png",
+    imageAlt:
+      "Robot marfil sentado, escuchando con atención y con una insignia pequeña de Wizard bordada en el pecho",
   },
   {
     eyebrow: "02 / TECNOLOGÍA",
     title: "¿Qué tan cómodo te sientes con tu tecnología?",
-    image: "./assets/robot-future.jpg",
-    imageAlt: "Robot marfil de Wizard sosteniendo una tableta con un orbe verde",
+    image: "./assets/robot-future-wizard-embroidered.png",
+    imageAlt:
+      "Robot marfil con una insignia pequeña de Wizard bordada en el pecho, sosteniendo una tableta con un orbe verde",
   },
   {
     eyebrow: "03 / LOS PRÓXIMOS 12 MESES",
     title: "Hablemos del futuro.",
-    image: "./assets/robot-future.jpg",
-    imageAlt: "Robot marfil de Wizard explorando un orbe tecnológico verde",
+    image: "./assets/robot-future-wizard-embroidered.png",
+    imageAlt:
+      "Robot marfil con una insignia pequeña de Wizard bordada en el pecho, explorando un orbe tecnológico verde",
   },
   {
     eyebrow: "04 / PRIORIDADES",
     title: "¿Qué proyecto debería arrancar hoy tu empresa?",
-    image: "./assets/robot-archive.jpg",
-    imageAlt: "Robot marfil de Wizard archivando pendientes en una caja verde",
+    image: "./assets/robot-archive-wizard-embroidered.png",
+    imageAlt:
+      "Robot marfil con una insignia pequeña de Wizard bordada en el pecho, archivando pendientes en una caja verde",
   },
   {
     eyebrow: "05 / RECOMENDACIÓN",
     title: "Y a todo esto, ¿nos recomendarías?",
-    image: "./assets/robot-referral.jpg",
-    imageAlt: "Dos robots marfil de Wizard presentándose con confianza",
+    image: "./assets/robot-referral-wizard-embroidered.png",
+    imageAlt:
+      "Dos robots marfil presentándose con confianza, ambos con una insignia pequeña de Wizard bordada en el pecho",
   },
   {
     eyebrow: "06 / PRESENTACIONES",
     title: "Te comparto unos contactos.",
-    image: "./assets/robot-referral.jpg",
-    imageAlt: "Dos robots marfil de Wizard juntos, uno presentando al otro",
+    image: "./assets/robot-referral-wizard-embroidered.png",
+    imageAlt:
+      "Dos robots marfil juntos, ambos con una insignia pequeña de Wizard bordada en el pecho, uno presentando al otro",
   },
   {
     eyebrow: "07 / ÚLTIMA TOMA",
     title: "Ya terminamos. Ahora, te escuchamos sin filtro:",
-    image: "./assets/robot-listening.jpg",
-    imageAlt: "Robot marfil de Wizard escuchando con atención",
+    image: "./assets/robot-listening-wizard-embroidered.png",
+    imageAlt:
+      "Robot marfil escuchando con atención y con una insignia pequeña de Wizard bordada en el pecho",
   },
   {
     eyebrow: "RECORRIDO COMPLETADO",
