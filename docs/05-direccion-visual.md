@@ -37,6 +37,7 @@ No se copia código ni activos de terceros. Se reimplementan principios dentro d
 - Densidad de formularios: los referidos se editan uno a la vez mediante pestañas y la última toma usa una retícula de dos columnas en escritorio para mantener el ritmo de una idea por pantalla.
 - Materialidad: robot textil contra estudio gris; paneles negros semitransparentes con bordes finos.
 - Aplicación de marca en la colección: todos los robots llevan la versión oscura de la insignia Wizard, pequeña y bordada (aprox. 9–14% del ancho visible del torso), con hilo azul marino en relieve que sigue el volumen, la luz y la trama de la tela. En escenas de dos personajes, ambos quedan uniformados. En el titular de 02, `WIZARD` permanece como texto tipográfico para evitar duplicar el imagotipo.
+- Acento de marca en 02: la palabra tipográfica `WIZARD` conserva el contorno blanco y activa diez destellos blancos/verdes de escala y rotación breve. El campo se mantiene contenido alrededor de la palabra, no altera la lectura ni añade dependencias; en movimiento reducido se oculta por completo.
 - Estados: selección verde, foco de 2 px, error coral, bloqueo local y cierre oscuro.
 - Vista al compartir: miniatura 1200×630 derivada de la portada, con robot a la derecha, degradado oscuro, logo Wizard y el titular completo con `IA` en verde.
 
@@ -69,6 +70,18 @@ No se copia código ni activos de terceros. Se reimplementan principios dentro d
 - QA: no provoca overflow ni bloquea los controles.
 
 El momento distintivo es la transformación coordinada entre escena, titular verde y filamento inferior: la encuesta se siente como avanzar dentro de una historia, no como cambiar de página.
+
+### Destellos en `WIZARD`
+
+- Función: convertir el nombre de marca en un pequeño gesto de magia aplicada, sin competir con el robot ni con la instrucción.
+- Trigger: presencia del slide 02; ciclo ambiental mientras la escena está visible.
+- Sujeto: diez estrellas blancas y verdes alrededor de la palabra `WIZARD`.
+- Estado: aparecen, rotan de 75° a 150° y vuelven a escala cero con ritmos escalonados de 1.35–1.72 s.
+- Móvil: conserva la misma lógica y tamaño relativo tipográfico.
+- Movimiento reducido: destellos ocultos; el título delineado permanece íntegro.
+- Fallback: `WIZARD` continúa legible como texto aunque no haya animación.
+- Presupuesto: SVG inline y CSS; cero librerías, timers o listeners por frame.
+- QA: solo aparece en 02, no crea overflow y la etiqueta accesible del título no cambia.
 
 ### Outro en video
 

@@ -47,6 +47,16 @@ class StaticSiteTests(unittest.TestCase):
         self.assertIn("-webkit-text-stroke", styles)
         self.assertIn('aria-label="${escapeHtml(screen.title)}"', app)
 
+    def test_slide_two_wizard_word_has_accessible_sparkles(self):
+        app = (SRC / "js" / "app.js").read_text(encoding="utf-8")
+        styles = (SRC / "styles.css").read_text(encoding="utf-8")
+        self.assertIn("wizardSparklesMarkup", app)
+        self.assertIn("title-outline-white title-sparkles", app)
+        self.assertIn('class="title-sparkle"', app)
+        self.assertIn("@keyframes wizardSparkle", styles)
+        self.assertIn("prefers-reduced-motion: reduce", styles)
+        self.assertIn(".title-sparkle {\n    display: none;", styles)
+
     def test_cover_uses_the_correct_accent_in_podia(self):
         app = (SRC / "js" / "app.js").read_text(encoding="utf-8")
         content = (SRC / "js" / "content.js").read_text(encoding="utf-8")

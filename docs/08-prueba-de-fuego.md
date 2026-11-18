@@ -25,6 +25,7 @@
 | Thumbnail social | Portada y copy legibles al compartir | Pass | JPEG 1200×630 + Open Graph/Twitter con URL absoluta | Codex |
 | Marca en escenas 01–09 | Todos los robots llevan la insignia Wizard oscura, pequeña y bordada; ambos personajes en escenas grupales | Pass | Inspección visual de escala, trama, volumen, conteo y contraste en desktop/móvil | Codex |
 | Sistema de titulares | Juegos de sólido/outline en blanco y verde conservan jerarquía, contraste y nombre accesible | Pass | Inspección en 01–09 a 1280×720 y 390×844; fallback sólido sin `text-stroke` | Codex |
+| Destellos de marca en 02 | Solo `WIZARD` activa estrellas blancas/verdes sin alterar lectura, layout ni accesibilidad | Pass | SVG inline + CSS; `aria-label` intacto; oculto con movimiento reducido | Codex |
 | Header limpio | Logo Wizard más visible y sin leyendas de staging en la interfaz | Pass | Prueba estática + inspección desktop/móvil | Codex |
 | Movimiento reducido | Contenido visible y animación mínima | Pass por inspección | Media query global y fallback estático | Codex |
 | Integración remota | No existe en demo | Pass | Código público sin OneDrive/n8n; `submitSurvey` falla explícito | Codex |

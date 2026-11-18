@@ -58,11 +58,40 @@ function errorText(key) {
     : "";
 }
 
+function wizardSparklesMarkup() {
+  const sparkles = [
+    [3, 12, "var(--green)", "0ms", 0.72, "1350ms"],
+    [17, -7, "var(--paper)", "420ms", 0.48, "1580ms"],
+    [29, 76, "var(--green)", "860ms", 0.58, "1420ms"],
+    [43, 9, "var(--paper)", "1180ms", 0.42, "1660ms"],
+    [57, 88, "var(--green)", "260ms", 0.68, "1520ms"],
+    [69, -10, "var(--green)", "740ms", 0.52, "1390ms"],
+    [80, 63, "var(--paper)", "1320ms", 0.44, "1720ms"],
+    [92, 6, "var(--green)", "520ms", 0.76, "1480ms"],
+    [101, 45, "var(--paper)", "980ms", 0.5, "1610ms"],
+    [51, 47, "var(--green)", "1540ms", 0.38, "1450ms"],
+  ];
+
+  return sparkles
+    .map(
+      ([x, y, color, delay, scale, duration]) => `
+        <svg
+          class="title-sparkle"
+          viewBox="0 0 21 21"
+          aria-hidden="true"
+          style="--sparkle-x:${x}%;--sparkle-y:${y}%;--sparkle-color:${color};--sparkle-delay:${delay};--sparkle-scale:${scale};--sparkle-duration:${duration}"
+        >
+          <path d="M9.82531 0.843845C10.0553 0.215178 10.9446 0.215178 11.1746 0.843845L11.8618 2.72026C12.4006 4.19229 12.3916 6.39157 13.5 7.5C14.6084 8.60843 16.8077 8.59935 18.2797 9.13822L20.1561 9.82534C20.7858 10.0553 20.7858 10.9447 20.1561 11.1747L18.2797 11.8618C16.8077 12.4007 14.6084 12.3916 13.5 13.5C12.3916 14.6084 12.4006 16.8077 11.8618 18.2798L11.1746 20.1562C10.9446 20.7858 10.0553 20.7858 9.82531 20.1562L9.13819 18.2798C8.59932 16.8077 8.60843 14.6084 7.5 13.5C6.39157 12.3916 4.19225 12.4007 2.72023 11.8618L0.843814 11.1747C0.215148 10.9447 0.215148 10.0553 0.843814 9.82534L2.72023 9.13822C4.19225 8.59935 6.39157 8.60843 7.5 7.5C8.60843 6.39157 8.59932 4.19229 9.13819 2.72026L9.82531 0.843845Z" />
+        </svg>`,
+    )
+    .join("");
+}
+
 function formatTitle(index, title) {
   const titles = [
     `<span class="title-line title-solid-white">¿NO QUE NO</span>
       <span class="title-line"><span class="title-outline-white">SE POD</span><span class="title-solid-green">ÍA</span><span class="title-outline-white">?</span></span>`,
-    `<span class="title-line"><span class="title-solid-white">CON </span><span class="title-outline-white">WIZARD</span></span>
+    `<span class="title-line"><span class="title-solid-white">CON </span><span class="title-outline-white title-sparkles"><span class="title-sparkles__word">WIZARD</span>${wizardSparklesMarkup()}</span></span>
       <span class="title-line"><span class="title-solid-green">TODO</span><span class="title-solid-white"> SE PUEDE.</span></span>`,
     `<span class="title-line title-outline-white">A VER,</span>
       <span class="title-line title-solid-green">SIN FILTRO.</span>`,
