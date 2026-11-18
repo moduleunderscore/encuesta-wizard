@@ -94,6 +94,16 @@ class StaticSiteTests(unittest.TestCase):
             "Diez escenas. Preguntas directas. Sin respuestas para quedar bien.", app
         )
 
+    def test_all_numeric_ratings_use_a_five_point_scale(self):
+        app = (SRC / "js" / "app.js").read_text(encoding="utf-8")
+        styles = (SRC / "styles.css").read_text(encoding="utf-8")
+        self.assertIn('aria-label="Escala del 1 al 5"', app)
+        self.assertIn("Array.from({ length: 5 }", app)
+        self.assertEqual(app.count("Del 1 al 5"), 3)
+        self.assertNotIn("Del 1 al 10", app)
+        self.assertNotIn("/10", app)
+        self.assertIn("grid-template-columns: repeat(5", styles)
+
     def test_social_preview_metadata_is_complete(self):
         index = (SRC / "index.html").read_text(encoding="utf-8")
         preview_url = (

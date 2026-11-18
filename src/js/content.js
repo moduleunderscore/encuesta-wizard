@@ -40,7 +40,7 @@ export const SCREENS = [
   },
   {
     eyebrow: "01 / COLABORACIÓN",
-    title: "A ver, sin filtro.",
+    title: "A ver, sin filtro:",
     image: "./assets/robot-listening-wizard-dark-left-chest.png",
     imageAlt:
       "Robot marfil sentado, escuchando con atención y con una insignia pequeña de Wizard bordada en azul oscuro en el lado izquierdo del pecho",

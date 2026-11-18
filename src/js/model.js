@@ -1,7 +1,8 @@
 import { DEFAULT_INTRO_MESSAGE } from "./content.js";
 
 export const STORAGE_KEY = "wizard-survey-demo-v1";
-export const SCHEMA_VERSION = "1.0.0";
+export const SCHEMA_VERSION = "1.1.0";
+const PREVIOUS_SCHEMA_VERSION = "1.0.0";
 export const REQUIRED_REFERRAL_COUNT = 3;
 export const REFERRAL_SLOT_COUNT = 5;
 
@@ -54,17 +55,37 @@ export function createDraft(now = new Date()) {
   };
 }
 
+function normalizeRating(value, schemaVersion) {
+  if (!Number.isInteger(value)) return null;
+  if (schemaVersion === PREVIOUS_SCHEMA_VERSION && value >= 1 && value <= 10) {
+    return Math.ceil(value / 2);
+  }
+  return value >= 1 && value <= 5 ? value : null;
+}
+
 export function normalizeDraft(value) {
   const fresh = createDraft();
-  if (!value || value.schemaVersion !== SCHEMA_VERSION) return fresh;
+  if (
+    !value ||
+    ![SCHEMA_VERSION, PREVIOUS_SCHEMA_VERSION].includes(value.schemaVersion)
+  ) {
+    return fresh;
+  }
 
   return {
     ...fresh,
     ...value,
+    schemaVersion: SCHEMA_VERSION,
     identity: { ...fresh.identity, ...value.identity },
-    technology: { ...fresh.technology, ...value.technology },
+    satisfaction: normalizeRating(value.satisfaction, value.schemaVersion),
+    technology: {
+      ...fresh.technology,
+      ...value.technology,
+      rating: normalizeRating(value.technology?.rating, value.schemaVersion),
+    },
     aiImpact: { ...fresh.aiImpact, ...value.aiImpact },
     priorities: { ...fresh.priorities, ...value.priorities },
+    recommendation: normalizeRating(value.recommendation, value.schemaVersion),
     referralMode: "contact",
     referrals: createReferralSlots(value.referrals),
     currentScreen: Number.isInteger(value.currentScreen)
@@ -97,8 +118,8 @@ export function clearDraft(storage = globalThis.sessionStorage) {
 
 export function isLowExperience(draft) {
   return (
-    (typeof draft.satisfaction === "number" && draft.satisfaction <= 6) ||
-    (typeof draft.recommendation === "number" && draft.recommendation <= 6)
+    (typeof draft.satisfaction === "number" && draft.satisfaction <= 3) ||
+    (typeof draft.recommendation === "number" && draft.recommendation <= 3)
   );
 }
 

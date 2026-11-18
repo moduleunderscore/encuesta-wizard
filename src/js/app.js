@@ -94,7 +94,7 @@ function formatTitle(index, title) {
     `<span class="title-line"><span class="title-solid-white">CON </span><span class="title-outline-white title-sparkles"><span class="title-sparkles__word">WIZARD</span>${wizardSparklesMarkup()}</span></span>
       <span class="title-line"><span class="title-solid-green">TODO</span><span class="title-solid-white"> SE PUEDE.</span></span>`,
     `<span class="title-line title-outline-white">A VER,</span>
-      <span class="title-line title-solid-green">SIN FILTRO.</span>`,
+      <span class="title-line title-solid-green">SIN FILTRO:</span>`,
     `<span class="title-line title-solid-white">¿QUÉ TAN CÓMODO</span>
       <span class="title-line title-outline-green">TE SIENTES CON TU</span>
       <span class="title-line"><span class="title-solid-white">TECNOLOG</span><span class="title-solid-green">ÍA</span><span class="title-solid-white">?</span></span>`,
@@ -116,9 +116,9 @@ function formatTitle(index, title) {
 
 function scaleMarkup(field, selected, lowLabel, highLabel) {
   return `
-    <div class="scale" role="group" aria-label="Escala del 1 al 10">
+    <div class="scale" role="group" aria-label="Escala del 1 al 5">
       <div class="scale__buttons">
-        ${Array.from({ length: 10 }, (_, index) => {
+        ${Array.from({ length: 5 }, (_, index) => {
           const value = index + 1;
           const pressed = selected === value;
           return `<button
@@ -128,11 +128,11 @@ function scaleMarkup(field, selected, lowLabel, highLabel) {
             data-field="${field}"
             data-value="${value}"
             aria-pressed="${pressed}"
-            aria-label="${value} de 10"
+            aria-label="${value} de 5"
           >${value}</button>`;
         }).join("")}
       </div>
-      <div class="scale__labels"><span>1 · ${lowLabel}</span><span>10 · ${highLabel}</span></div>
+      <div class="scale__labels"><span>1 · ${lowLabel}</span><span>5 · ${highLabel}</span></div>
     </div>`;
 }
 
@@ -179,13 +179,13 @@ function screenOne() {
 function screenTwo() {
   return `
     <fieldset class="question-block">
-      <legend>Del 1 al 10, ¿qué tan satisfecho estás con nuestra colaboración?</legend>
-      ${scaleMarkup("satisfaction", draft.satisfaction, "Nada satisfecho", "Muy satisfecho")}
+      <legend>Del 1 al 5, ¿qué tanto te gustó implementar nuevas tecnologías en tu empresa?</legend>
+      ${scaleMarkup("satisfaction", draft.satisfaction, "Nada", "Muchísimo")}
       ${errorText("satisfaction")}
     </fieldset>
     <p class="support-copy">La respuesta correcta es la que tú piensas.</p>
     ${
-      draft.satisfaction !== null && draft.satisfaction <= 6
+      draft.satisfaction !== null && draft.satisfaction <= 3
         ? '<div class="listening-note">Gracias por decirlo como es. Al final queremos entender qué podemos mejorar.</div>'
         : ""
     }`;
@@ -194,7 +194,7 @@ function screenTwo() {
 function screenThree() {
   return `
     <fieldset class="question-block">
-      <legend>Del 1 al 10, ¿qué tan cómodo te sientes usando las soluciones que implementamos para tu negocio?</legend>
+      <legend>Del 1 al 5, ¿qué tan cómodo te sientes usando las soluciones que implementamos para tu negocio?</legend>
       ${scaleMarkup("technology.rating", draft.technology.rating, "Nada cómodo", "Muy cómodo")}
       <button
         class="option-button option-button--wide${draft.technology.insufficientExperience ? " is-selected" : ""}"
@@ -249,7 +249,7 @@ function screenFive() {
 function screenSix() {
   return `
     <fieldset class="question-block">
-      <legend>Del 1 al 10, ¿qué tan probable es que recomiendes Wizard a un amigo, familiar o colega con negocio?</legend>
+      <legend>Del 1 al 5, ¿qué tan probable es que recomiendes Wizard a un amigo, familiar o colega con negocio?</legend>
       ${scaleMarkup("recommendation", draft.recommendation, "Nada probable", "Muy probable")}
       ${errorText("recommendation")}
     </fieldset>
@@ -546,7 +546,7 @@ function openReview() {
     .join(" · ");
   const technology = draft.technology.insufficientExperience
     ? "Aún no las ha usado suficiente"
-    : draft.technology.rating ? `${draft.technology.rating}/10` : "";
+    : draft.technology.rating ? `${draft.technology.rating}/5` : "";
   const completeReferrals = draft.referrals.filter(isReferralComplete).length;
 
   modalLayer.hidden = false;
@@ -555,11 +555,11 @@ function openReview() {
     <section class="modal" role="dialog" aria-modal="true" aria-labelledby="review-title">
       <div class="modal__head"><div><p class="eyebrow">RESUMEN</p><h2 id="review-title">Tus respuestas</h2></div><button class="modal__close" type="button" data-action="close-modal" aria-label="Cerrar">×</button></div>
       <ul class="review-list">
-        ${summaryRow("Satisfacción", draft.satisfaction ? `${draft.satisfaction}/10` : "", 2)}
+        ${summaryRow("Gusto por implementar tecnología", draft.satisfaction ? `${draft.satisfaction}/5` : "", 2)}
         ${summaryRow("Comodidad con la tecnología", technology, 3)}
         ${summaryRow("Impacto esperado de la IA", impact, 4)}
         ${summaryRow("Prioridades", priorities, 5)}
-        ${summaryRow("Probabilidad de recomendar", draft.recommendation ? `${draft.recommendation}/10` : "", 6)}
+        ${summaryRow("Probabilidad de recomendar", draft.recommendation ? `${draft.recommendation}/5` : "", 6)}
         ${summaryRow("Contactos recomendados", `${completeReferrals} de ${REFERRAL_SLOT_COUNT}`, 7)}
         ${summaryRow("Comentario final", draft.finalComment, 8)}
       </ul>

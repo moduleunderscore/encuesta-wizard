@@ -70,7 +70,7 @@ test("authorized and well-formed referrals are complete", () => {
 test("required question validation is screen-specific", () => {
   const draft = createDraft();
   assert.ok(validateScreen(2, draft).satisfaction);
-  draft.satisfaction = 8;
+  draft.satisfaction = 4;
   assert.deepEqual(validateScreen(2, draft), {});
 
   assert.ok(validateScreen(3, draft).technology);
@@ -93,14 +93,14 @@ test("screen eight requires three complete referrals and keeps five slots", () =
   assert.deepEqual(validateScreen(7, draft), {});
 });
 
-test("low satisfaction or recommendation activates improvement-first routing", () => {
+test("ratings of three or less activate improvement-first routing", () => {
   const draft = createDraft();
-  draft.satisfaction = 6;
+  draft.satisfaction = 3;
   assert.equal(isLowExperience(draft), true);
-  draft.satisfaction = 9;
-  draft.recommendation = 6;
+  draft.satisfaction = 4;
+  draft.recommendation = 3;
   assert.equal(isLowExperience(draft), true);
-  draft.recommendation = 8;
+  draft.recommendation = 4;
   assert.equal(isLowExperience(draft), false);
 });
 
@@ -134,10 +134,25 @@ test("normalization restores nested defaults and clamps the screen", () => {
   const restored = normalizeDraft({
     ...base,
     currentScreen: 42,
-    technology: { rating: 7 },
+    technology: { rating: 5 },
   });
   assert.equal(restored.currentScreen, 9);
-  assert.equal(restored.technology.rating, 7);
+  assert.equal(restored.technology.rating, 5);
   assert.equal(restored.technology.insufficientExperience, false);
   assert.equal(restored.referrals.length, 5);
+});
+
+test("normalization migrates legacy ten-point ratings to five points", () => {
+  const legacy = {
+    ...createDraft(),
+    schemaVersion: "1.0.0",
+    satisfaction: 8,
+    technology: { rating: 7, insufficientExperience: false },
+    recommendation: 6,
+  };
+  const restored = normalizeDraft(legacy);
+  assert.equal(restored.schemaVersion, "1.1.0");
+  assert.equal(restored.satisfaction, 4);
+  assert.equal(restored.technology.rating, 4);
+  assert.equal(restored.recommendation, 3);
 });
