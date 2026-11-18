@@ -40,6 +40,7 @@ No se copia código ni activos de terceros. Se reimplementan principios dentro d
 - Acento de marca en 02: la palabra tipográfica `WIZARD` conserva el contorno blanco y activa diez destellos blancos/verdes de escala y rotación breve. El campo se mantiene contenido alrededor de la palabra, no altera la lectura ni añade dependencias; en movimiento reducido se oculta por completo.
 - Estados: selección verde, foco de 2 px, error coral, bloqueo local y cierre oscuro.
 - Vista al compartir: miniatura 1200×630 derivada de la portada, con robot a la derecha, degradado oscuro, logo Wizard y el titular completo con `IA` en verde.
+- CTA editorial en portada: `Ver reel` aparece como botón secundario compacto en verde, junto a los metadatos del recorrido; abre el reel oficial en una pestaña nueva sin competir con el avance principal de la encuesta.
 
 ## Dirección de movimiento y storyboard
 

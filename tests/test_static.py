@@ -70,6 +70,15 @@ class StaticSiteTests(unittest.TestCase):
         self.assertIn(">ÍA</tspan>?", preview)
         self.assertNotIn("podIA", app + content + index + preview)
 
+    def test_cover_links_to_the_wizard_reel_safely(self):
+        app = (SRC / "js" / "app.js").read_text(encoding="utf-8")
+        styles = (SRC / "styles.css").read_text(encoding="utf-8")
+        self.assertIn('href="https://www.youtube.com/watch?v=U8x98Sk45DI"', app)
+        self.assertIn('target="_blank"', app)
+        self.assertIn('rel="noopener noreferrer"', app)
+        self.assertIn('class="cover-reel"', app)
+        self.assertIn(".cover-reel", styles)
+
     def test_social_preview_metadata_is_complete(self):
         index = (SRC / "index.html").read_text(encoding="utf-8")
         preview_url = (

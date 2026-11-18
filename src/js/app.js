@@ -150,9 +150,18 @@ function optionButton(action, value, label, selected, extra = "") {
 function screenZero() {
   return `
     <p class="lead">Tu negocio ya empezó otra historia. Cuéntanos cómo va.</p>
-    <div class="cover-meta">
-      <span>≈ 3 minutos</span>
-      <span>Tu opinión, sin filtro</span>
+    <div class="cover-actions">
+      <div class="cover-meta">
+        <span>≈ 3 minutos</span>
+        <span>Tu opinión, sin filtro</span>
+      </div>
+      <a
+        class="cover-reel"
+        href="https://www.youtube.com/watch?v=U8x98Sk45DI"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Ver reel de Wizard en YouTube; se abre en una pestaña nueva"
+      >Ver reel</a>
     </div>`;
 }
 
