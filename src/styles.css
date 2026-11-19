@@ -107,7 +107,7 @@ a:focus-visible,
 .app-header {
   z-index: 20;
   display: grid;
-  grid-template-columns: minmax(12rem, 1fr) auto auto;
+  grid-template-columns: minmax(15rem, 1fr) auto auto;
   align-items: center;
   gap: clamp(1rem, 3vw, 3rem);
   padding: 0 clamp(1.25rem, 3.5vw, 4rem);
@@ -116,8 +116,8 @@ a:focus-visible,
 }
 
 .brand-lockup {
-  width: clamp(11rem, 15vw, 14.5rem);
-  height: 3.45rem;
+  width: clamp(13.5rem, 18vw, 17.5rem);
+  height: 4rem;
   overflow: hidden;
 }
 
@@ -765,6 +765,26 @@ textarea[aria-invalid="true"] {
   grid-template-columns: minmax(8rem, 0.42fr) minmax(12rem, 1fr);
 }
 
+.identity-capture {
+  margin-top: 0.7rem;
+  padding-top: 0.65rem;
+  border-top: 1px solid var(--line);
+}
+
+.identity-capture__label {
+  margin: 0 0 0.1rem;
+  color: var(--green);
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.7rem;
+  font-weight: 650;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.identity-capture .field-label {
+  margin-top: 0.4rem;
+}
+
 .character-count {
   justify-self: end;
   color: var(--muted);
@@ -1032,6 +1052,14 @@ textarea[aria-invalid="true"] {
 
 .button--primary:hover {
   background: var(--green-soft);
+}
+
+.button--primary:disabled {
+  border-color: rgba(57, 255, 20, 0.45);
+  background: rgba(57, 255, 20, 0.16);
+  color: var(--green-soft);
+  cursor: default;
+  transform: none;
 }
 
 .button--ghost,
@@ -1650,8 +1678,13 @@ textarea[aria-invalid="true"] {
   }
 
   .app-header {
-    grid-template-columns: minmax(10rem, 1fr) auto auto;
+    grid-template-columns: minmax(12.5rem, 1fr) auto auto;
     gap: 1rem;
+  }
+
+  .brand-lockup {
+    width: 12.5rem;
+    height: 3.25rem;
   }
 
   .route-progress__label {
@@ -1698,8 +1731,8 @@ textarea[aria-invalid="true"] {
   }
 
   .brand-lockup {
-    width: 9.5rem;
-    height: 2.7rem;
+    width: 11.5rem;
+    height: 3.15rem;
   }
 
   .experience-axis {
@@ -1836,6 +1869,21 @@ textarea[aria-invalid="true"] {
 
   .final-feedback {
     grid-template-columns: 1fr;
+  }
+
+  .identity-capture .field-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.5rem;
+  }
+
+  .identity-capture .field-label {
+    margin-top: 0.35rem;
+    font-size: 0.78rem;
+  }
+
+  .identity-capture input {
+    min-height: 2.6rem;
+    padding: 0.5rem 0.6rem;
   }
 
   .scale__labels {
@@ -2068,8 +2116,41 @@ textarea[aria-invalid="true"] {
   }
 
   .brand-lockup {
-    width: 8.6rem;
-    height: 2.55rem;
+    width: 10.5rem;
+    height: 3rem;
+  }
+
+  .screen--comment .screen-heading {
+    max-width: 16ch;
+    font-size: 1.82rem;
+    line-height: 0.9;
+  }
+
+  .screen--comment .screen-body {
+    margin-top: 0.55rem;
+  }
+
+  .screen--comment .field-label--large > span {
+    margin-bottom: 0.45rem;
+    font-size: 0.92rem;
+    line-height: 1.2;
+  }
+
+  .screen--comment #final-comment {
+    height: 4.75rem;
+    min-height: 4.75rem;
+    resize: none;
+  }
+
+  .screen--comment .final-feedback {
+    gap: 0.4rem;
+  }
+
+  .screen--comment .consent-row--followup {
+    margin-top: 0;
+    padding: 0.4rem 0;
+    font-size: 0.74rem;
+    line-height: 1.2;
   }
 
   .app-nav {

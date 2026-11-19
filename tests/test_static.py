@@ -83,8 +83,8 @@ class StaticSiteTests(unittest.TestCase):
         app = (SRC / "js" / "app.js").read_text(encoding="utf-8")
         self.assertIn("Lo que tu negocio necesita.", app)
         self.assertIn("Lo que tus clientes esperan.", app)
-        self.assertIn("Lo que ya funciona.", app)
         self.assertIn("Y todo lo que todavía imaginas.", app)
+        self.assertNotIn("Lo que ya funciona.", app)
         self.assertIn(
             "Con Wizard, esas ideas se convierten en soluciones que sí se pueden construir.",
             app,
@@ -93,6 +93,31 @@ class StaticSiteTests(unittest.TestCase):
         self.assertNotIn(
             "Diez escenas. Preguntas directas. Sin respuestas para quedar bien.", app
         )
+
+    def test_identity_capture_lives_on_slide_three_only(self):
+        app = (SRC / "js" / "app.js").read_text(encoding="utf-8")
+        slide_three = app[
+            app.index("function screenTwo()") : app.index("function screenThree()")
+        ]
+        slide_nine = app[
+            app.index("function screenEight()") : app.index("function closingScreen()")
+        ]
+        self.assertIn('data-bind="identity.name"', slide_three)
+        self.assertIn('data-bind="identity.company"', slide_three)
+        self.assertNotIn('data-bind="identity.name"', slide_nine)
+        self.assertNotIn('data-bind="identity.company"', slide_nine)
+
+    def test_closing_has_explicit_finish_action_and_heart_copy(self):
+        app = (SRC / "js" / "app.js").read_text(encoding="utf-8")
+        self.assertIn("Gracias por compartir tu experiencia &lt;3.", app)
+        self.assertIn('data-action="finish"', app)
+        self.assertIn('nextButton.textContent = "Ver cierre"', app)
+        self.assertIn('showToast("Recorrido terminado.")', app)
+
+    def test_header_logo_is_prominent_on_desktop_and_mobile(self):
+        styles = (SRC / "styles.css").read_text(encoding="utf-8")
+        self.assertIn("width: clamp(13.5rem, 18vw, 17.5rem);", styles)
+        self.assertIn("width: 11.5rem;", styles)
 
     def test_all_numeric_ratings_use_a_five_point_scale(self):
         app = (SRC / "js" / "app.js").read_text(encoding="utf-8")

@@ -170,7 +170,6 @@ function screenOne() {
     <div class="statement-lines" aria-label="Con Wizard, lo que imaginas se puede construir">
       <p>Lo que tu negocio necesita.</p>
       <p>Lo que tus clientes esperan.</p>
-      <p>Lo que ya funciona.</p>
       <p>Y todo lo que todavía imaginas.</p>
     </div>
     <p class="support-copy">Con Wizard, esas ideas se convierten en soluciones que sí se pueden construir.</p>`;
@@ -183,7 +182,19 @@ function screenTwo() {
       ${scaleMarkup("satisfaction", draft.satisfaction, "Nada", "Muchísimo")}
       ${errorText("satisfaction")}
     </fieldset>
-    <p class="support-copy">La respuesta correcta es la que tú piensas.</p>
+    <div class="identity-capture" aria-labelledby="identity-capture-label">
+      <p class="identity-capture__label" id="identity-capture-label">Para ubicar tu experiencia</p>
+      <div class="field-grid">
+        <label class="field-label">
+          <span>Tu nombre <em>Opcional</em></span>
+          <input data-bind="identity.name" type="text" value="${escapeHtml(draft.identity.name)}" autocomplete="name" />
+        </label>
+        <label class="field-label">
+          <span>Empresa <em>Opcional</em></span>
+          <input data-bind="identity.company" type="text" value="${escapeHtml(draft.identity.company)}" autocomplete="organization" />
+        </label>
+      </div>
+    </div>
     ${
       draft.satisfaction !== null && draft.satisfaction <= 3
         ? '<div class="listening-note">Gracias por decirlo como es. Al final queremos entender qué podemos mejorar.</div>'
@@ -351,16 +362,6 @@ function screenEight() {
         <small class="character-count"><span id="comment-count">${draft.finalComment.length}</span>/1,000</small>
       </label>
       <div class="final-feedback__aside">
-        <div class="field-grid final-feedback__identity">
-          <label class="field-label">
-            <span>Tu nombre <em>Opcional</em></span>
-            <input data-bind="identity.name" type="text" value="${escapeHtml(draft.identity.name)}" autocomplete="name" />
-          </label>
-          <label class="field-label">
-            <span>Empresa <em>Opcional</em></span>
-            <input data-bind="identity.company" type="text" value="${escapeHtml(draft.identity.company)}" autocomplete="organization" />
-          </label>
-        </div>
         <label class="consent-row consent-row--followup">
           <input data-bind="followUpRequested" type="checkbox" ${draft.followUpRequested ? "checked" : ""} />
           <span>Me gustaría conversar con Wizard sobre mis respuestas.</span>
@@ -383,8 +384,9 @@ function closingScreen() {
           <span class="closing-title__outline">CONJURE<br />THE FUTURE</span>
         </h1>
         <img class="closing-logo" src="./assets/logo-wizard.png" alt="Wizard, Agencia IA Aplicada" />
-        <p class="closing-copy"><strong>Recorrido completado.</strong> Gracias por compartir tu experiencia.</p>
+        <p class="closing-copy"><strong>Recorrido completado.</strong> Gracias por compartir tu experiencia &lt;3.</p>
         <div class="closing-actions">
+          <button class="button button--primary" type="button" data-action="finish" ${draft.completedAt ? "disabled" : ""}>${draft.completedAt ? "Recorrido terminado" : "Terminar"}</button>
           <button class="button button--primary" type="button" data-action="review">Revisar mis respuestas</button>
           <button class="button button--ghost" type="button" data-action="reset">Borrar y empezar de nuevo</button>
         </div>
@@ -458,7 +460,7 @@ function updateNavigation() {
 
   if (index === 0) nextButton.textContent = "A ver, dispara";
   else if (index === 1) nextButton.textContent = "Vamos al futuro";
-  else if (index === 8) nextButton.textContent = "Terminar recorrido";
+  else if (index === 8) nextButton.textContent = "Ver cierre";
   else nextButton.textContent = "Continuar";
 
 }
@@ -521,9 +523,6 @@ function goNext() {
     return;
   }
 
-  if (draft.currentScreen === 8) {
-    draft.completedAt = new Date().toISOString();
-  }
   goTo(draft.currentScreen + 1, "forward");
 }
 
@@ -629,6 +628,11 @@ document.addEventListener("click", (event) => {
     render();
   }
   if (action === "review") openReview();
+  if (action === "finish") {
+    if (!draft.completedAt) draft.completedAt = new Date().toISOString();
+    render();
+    showToast("Recorrido terminado.");
+  }
   if (action === "reset") openResetConfirmation();
   if (action === "close-modal") closeModal();
   if (action === "confirm-reset") {
