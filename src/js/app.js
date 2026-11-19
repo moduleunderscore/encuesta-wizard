@@ -186,12 +186,14 @@ function screenTwo() {
       <p class="identity-capture__label" id="identity-capture-label">Para ubicar tu experiencia</p>
       <div class="field-grid">
         <label class="field-label">
-          <span>Tu nombre <em>Opcional</em></span>
-          <input data-bind="identity.name" type="text" value="${escapeHtml(draft.identity.name)}" autocomplete="name" />
+          <span>Tu nombre <em>Obligatorio</em></span>
+          <input data-bind="identity.name" type="text" value="${escapeHtml(draft.identity.name)}" autocomplete="name" required aria-required="true" aria-invalid="${Boolean(errors.identityName)}" />
+          ${errors.identityName ? `<small class="inline-error" role="alert">${escapeHtml(errors.identityName)}</small>` : ""}
         </label>
         <label class="field-label">
-          <span>Empresa <em>Opcional</em></span>
-          <input data-bind="identity.company" type="text" value="${escapeHtml(draft.identity.company)}" autocomplete="organization" />
+          <span>Empresa <em>Obligatorio</em></span>
+          <input data-bind="identity.company" type="text" value="${escapeHtml(draft.identity.company)}" autocomplete="organization" required aria-required="true" aria-invalid="${Boolean(errors.identityCompany)}" />
+          ${errors.identityCompany ? `<small class="inline-error" role="alert">${escapeHtml(errors.identityCompany)}</small>` : ""}
         </label>
       </div>
     </div>

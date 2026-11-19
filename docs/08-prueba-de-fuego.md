@@ -20,7 +20,7 @@
 | Escritorio | Escena panorámica legible | Pass | 1280×720; overflow X 0 | Codex |
 | Una escena por viewport | Las 10 pantallas caben sin scroll | Pass | 1280×720; `stageScroll === stageClient` en 01–10 | Codex |
 | Referidos densos | Cinco espacios caben sin apilar fichas; tres son obligatorios | Pass | Navegación por pestañas; una ficha activa y cinco accesos visibles | Codex |
-| Identidad al inicio | Nombre y empresa opcionales aparecen en 03 y no se repiten en 09 | Pass | DOM y recorrido visual en 319×667 y 1280×720 | Codex |
+| Identidad al inicio | Nombre y empresa obligatorios aparecen en 03, bloquean el avance si faltan y no se repiten en 09 | Pass | Validación de modelo, semántica `required` y recorrido visual en móvil/escritorio | Codex |
 | Última toma compacta | Comentario y seguimiento visibles juntos sin scroll | Pass | Pantalla 09 completa en 319×667 y 1280×720 | Codex |
 | Consola | Sin errores o warnings | Pass | Logs de navegador vacíos | Codex |
 | Thumbnail social | Portada y copy legibles al compartir | Pass | JPEG 1200×630 + Open Graph/Twitter con URL absoluta | Codex |
@@ -52,6 +52,7 @@
 | 2026-11-18 | 1.0-demo | Node + Python | Identidad en 03, copy de 02 y finalización en 10 | Pass | 11/11 modelo; 17/17 estáticas | Codex |
 | 2026-11-18 | 1.0-demo | Navegador local | Recorrido actualizado 02–10 | Pass | 319×667 y 1280×720; 03/09 sin scroll; cierre confirmado; consola limpia | Codex |
 | 2026-11-18 | 1.0-demo | Navegador local | Separación global de palabras en titulares | Pass | 1280×720 y 390×844; ancho de pantalla 390/390; consola limpia | Codex |
+| 2026-11-18 | 1.0-demo | Navegador local | Nombre y empresa obligatorios en 03 | Pass | Bloqueo sin datos, dos errores accesibles, avance al completar ambos y 390×844 sin scroll; consola limpia | Codex |
 
 ## Criterio de salida
 

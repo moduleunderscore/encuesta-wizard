@@ -67,8 +67,13 @@ test("well-formed referrals are complete independently of group consent", () => 
 
 test("required question validation is screen-specific", () => {
   const draft = createDraft();
-  assert.ok(validateScreen(2, draft).satisfaction);
+  const identityErrors = validateScreen(2, draft);
+  assert.ok(identityErrors.satisfaction);
+  assert.equal(identityErrors.identityName, "Escribe tu nombre.");
+  assert.equal(identityErrors.identityCompany, "Escribe el nombre de tu empresa.");
   draft.satisfaction = 4;
+  draft.identity.name = "Ana";
+  draft.identity.company = "Empresa Demo";
   assert.deepEqual(validateScreen(2, draft), {});
 
   assert.ok(validateScreen(3, draft).technology);

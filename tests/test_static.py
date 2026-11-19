@@ -106,6 +106,9 @@ class StaticSiteTests(unittest.TestCase):
         ]
         self.assertIn('data-bind="identity.name"', slide_three)
         self.assertIn('data-bind="identity.company"', slide_three)
+        self.assertEqual(slide_three.count('aria-required="true"'), 2)
+        self.assertEqual(slide_three.count("<em>Obligatorio</em>"), 2)
+        self.assertNotIn("<em>Opcional</em>", slide_three)
         self.assertNotIn('data-bind="identity.name"', slide_nine)
         self.assertNotIn('data-bind="identity.company"', slide_nine)
 

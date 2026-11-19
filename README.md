@@ -49,7 +49,7 @@ python3 -m unittest discover -s tests -p 'test_*.py'
 El objeto conservado en `sessionStorage` incluye:
 
 - `draftId`, `schemaVersion`, `startedAt`, `completedAt`, `mode` y `demo`.
-- `identity` con nombre y empresa opcionales.
+- `identity` con nombre y empresa obligatorios.
 - `satisfaction`, `technology`, `aiImpact`, `priorities` y `recommendation`.
 - `referralMode`, `referrals`, `referralsConsent` y `selfIntroMessage`.
 - `finalComment` y `followUpRequested`.
