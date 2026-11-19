@@ -16,7 +16,7 @@
 ## Decisiones y control
 
 - Fuente de verdad: borrador normalizado en `sessionStorage`.
-- Reglas críticas: nombre y empresa obligatorios en 03; calificaciones obligatorias; máximo dos prioridades; “no lo tengo claro” excluyente; tres contactos completos obligatorios, dos espacios opcionales adicionales y una sola autorización general para compartir el conjunto.
+- Reglas críticas: nombre y empresa obligatorios en 02 antes de iniciar las preguntas; calificaciones obligatorias; máximo dos prioridades; “no lo tengo claro” excluyente; tres contactos completos obligatorios, dos espacios opcionales adicionales y una sola autorización general para compartir el conjunto.
 - Decisiones asistidas por IA: ninguna.
 - Handoff humano: solicitud de conversación registrada como preferencia local; operación pendiente.
 - Estado persistente: aislado por pestaña y versión de esquema.

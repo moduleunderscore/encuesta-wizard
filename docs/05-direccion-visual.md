@@ -15,6 +15,7 @@
 3. **Propuesta horizontal:** ritmo de una idea por pantalla y controles persistentes. Se descartan nombre, contenido y firma visual de Hangar.
 4. **Escenas adjuntas:** material textil marfil, ojos negros, gesto confiado y espacio negativo a la izquierda.
 5. **Outro de la propuesta Digital Stories:** video a sangre, titular central sólido/delineado y firma Wizard. Se adapta como cierre de la encuesta con acciones de revisión propias.
+6. **Biblioteca Wizard, referencias editoriales:** Ashley aporta ritmo de agencia y jerarquía tipográfica; Davies aporta composición editorial con espacio negativo; Wave aporta relación entre escena a sangre, navegación superior y showcase. Se toman únicamente esos principios de arquitectura; sus licencias no están verificadas y no se copia código ni activos.
 
 No se copia código ni activos de terceros. Se reimplementan principios dentro de la estructura propia del proyecto.
 
@@ -33,8 +34,10 @@ No se copia código ni activos de terceros. Se reimplementan principios dentro d
 - Tipografía: Barlow para lectura, Inter Tight para titulares/escala e IBM Plex Mono para controles y metadatos. Los titulares combinan relleno blanco, relleno verde y contorno blanco/verde como sistema editorial: el sólido fija la idea y el outline aporta ritmo sin competir con la pregunta.
 - Paleta: `#050706`, blanco frío, gris de estudio y `#39FF14`.
 - Composición: escena completa de fondo, degradado izquierdo, copy a 60% en escritorio; personaje arriba y contenido sobre degradado en móvil.
-- Contrato de encuadre: cada escena completa cabe en un viewport de 1280×720 sin scroll; en 390×844 se conserva el mismo comportamiento y en teléfonos menores queda scroll como respaldo de accesibilidad.
+- Contrato de encuadre: cada escena completa cabe sin scroll en 1280×720, 390×844 y 319×667; en tamaños menores permanece el scroll como respaldo de accesibilidad.
 - Densidad de formularios: los referidos se editan uno a la vez mediante pestañas y la última toma usa una retícula de dos columnas en escritorio para mantener el ritmo de una idea por pantalla.
+- Captura de identidad: “Para ubicar tu experiencia”, nombre y empresa viven en 02 como un bloque compacto de dos columnas. La bienvenida conserva la promesa de Wizard arriba y cierra la preparación antes de comenzar la primera valoración en 03.
+- Alineación: títulos, textos, preguntas y campos se alinean al mismo eje izquierdo; solo el cierre 10 permanece centrado como firma. El contenido se centra verticalmente dentro del área útil cuando la densidad lo permite y conserva márgenes superiores e inferiores equivalentes.
 - Materialidad: robot textil contra estudio gris; paneles negros semitransparentes con bordes finos.
 - Aplicación de marca en la colección: todos los robots llevan la versión oscura de la insignia Wizard, pequeña y bordada (aprox. 9–14% del ancho visible del torso), siempre en el lado anatómico izquierdo del pecho —a la derecha para quien mira— y justo debajo de la clavícula. El hilo azul marino en relieve sigue el volumen, la luz y la trama de la tela, con margen respecto a la costura del hombro. En escenas de dos personajes, ambos quedan uniformados con la misma regla. En el titular de 02, `WIZARD` permanece como texto tipográfico para evitar duplicar el imagotipo.
 - Acento de marca en 02: la palabra tipográfica `WIZARD` conserva el contorno blanco y activa diez destellos blancos/verdes de escala y rotación breve. El campo se mantiene contenido alrededor de la palabra, no altera la lectura ni añade dependencias; en movimiento reducido se oculta por completo.
@@ -102,4 +105,5 @@ El momento distintivo es la transformación coordinada entre escena, titular ver
 - Fecha: 2026-11-18.
 - Cambio solicitado e incorporado: adoptar como principal la arquitectura visual de `wizard-no-que-no-se-podia` conservando la estructura funcional propia.
 - Ajuste de densidad: las diez escenas, incluido el estado de error de referidos y el outro, fueron compactadas y verificadas sin scroll en 1280×720; la ruta completa también cabe en 390×844.
+- Revisión de composición: la identidad se movió a 02 y los diez encuadres se reequilibraron sobre un eje izquierdo común. La retícula compacta de 319×667 conserva dos columnas en preguntas densas y cinco accesos de contacto en una sola fila.
 - Vista social: metadatos Open Graph y Twitter apuntan a `social-preview-v1.jpg`; el nombre versionado permite renovar la caché de los mensajeros.

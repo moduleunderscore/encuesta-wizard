@@ -165,23 +165,8 @@ function screenZero() {
     </div>`;
 }
 
-function screenOne() {
+function identityCaptureMarkup() {
   return `
-    <div class="statement-lines" aria-label="Con Wizard, lo que imaginas se puede construir">
-      <p>Lo que tu negocio necesita.</p>
-      <p>Lo que tus clientes esperan.</p>
-      <p>Y todo lo que todavía imaginas.</p>
-    </div>
-    <p class="support-copy">Con Wizard, esas ideas se convierten en soluciones que sí se pueden construir.</p>`;
-}
-
-function screenTwo() {
-  return `
-    <fieldset class="question-block">
-      <legend>Del 1 al 5, ¿qué tanto te gustó implementar nuevas tecnologías en tu empresa?</legend>
-      ${scaleMarkup("satisfaction", draft.satisfaction, "Nada", "Muchísimo")}
-      ${errorText("satisfaction")}
-    </fieldset>
     <div class="identity-capture" aria-labelledby="identity-capture-label">
       <p class="identity-capture__label" id="identity-capture-label">Para ubicar tu experiencia</p>
       <div class="field-grid">
@@ -196,7 +181,27 @@ function screenTwo() {
           ${errors.identityCompany ? `<small class="inline-error" role="alert">${escapeHtml(errors.identityCompany)}</small>` : ""}
         </label>
       </div>
+    </div>`;
+}
+
+function screenOne() {
+  return `
+    <div class="statement-lines" aria-label="Con Wizard, lo que imaginas se puede construir">
+      <p>Lo que tu negocio necesita.</p>
+      <p>Lo que tus clientes esperan.</p>
+      <p>Y todo lo que todavía imaginas.</p>
     </div>
+    <p class="support-copy">Con Wizard, esas ideas se convierten en soluciones que sí se pueden construir.</p>
+    ${identityCaptureMarkup()}`;
+}
+
+function screenTwo() {
+  return `
+    <fieldset class="question-block">
+      <legend>Del 1 al 5, ¿qué tanto te gustó implementar nuevas tecnologías en tu empresa?</legend>
+      ${scaleMarkup("satisfaction", draft.satisfaction, "Nada", "Muchísimo")}
+      ${errorText("satisfaction")}
+    </fieldset>
     ${
       draft.satisfaction !== null && draft.satisfaction <= 3
         ? '<div class="listening-note">Gracias por decirlo como es. Al final queremos entender qué podemos mejorar.</div>'
@@ -413,7 +418,7 @@ function screenMarkup(index) {
   const screen = SCREENS[index];
   const body = bodyRenderers[index]();
   const isNewScreen = index !== lastScreen;
-  const variantClass = index === 7 ? " screen--referrals" : index === 8 ? " screen--comment" : "";
+  const variantClass = index === 1 ? " screen--intro" : index === 7 ? " screen--referrals" : index === 8 ? " screen--comment" : "";
   return `
     <section class="screen${index >= 2 ? " screen--question" : ""}${variantClass}${isNewScreen ? ` screen--enter-${transitionDirection}` : ""}" aria-labelledby="screen-heading">
       <div class="screen__copy">

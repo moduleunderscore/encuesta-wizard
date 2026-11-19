@@ -96,19 +96,25 @@ class StaticSiteTests(unittest.TestCase):
             "Diez escenas. Preguntas directas. Sin respuestas para quedar bien.", app
         )
 
-    def test_identity_capture_lives_on_slide_three_only(self):
+    def test_identity_capture_lives_on_slide_two_only(self):
         app = (SRC / "js" / "app.js").read_text(encoding="utf-8")
+        slide_two = app[
+            app.index("function identityCaptureMarkup()") : app.index("function screenTwo()")
+        ]
         slide_three = app[
             app.index("function screenTwo()") : app.index("function screenThree()")
         ]
         slide_nine = app[
             app.index("function screenEight()") : app.index("function closingScreen()")
         ]
-        self.assertIn('data-bind="identity.name"', slide_three)
-        self.assertIn('data-bind="identity.company"', slide_three)
-        self.assertEqual(slide_three.count('aria-required="true"'), 2)
-        self.assertEqual(slide_three.count("<em>Obligatorio</em>"), 2)
-        self.assertNotIn("<em>Opcional</em>", slide_three)
+        self.assertIn('${identityCaptureMarkup()}', slide_two)
+        self.assertIn('data-bind="identity.name"', slide_two)
+        self.assertIn('data-bind="identity.company"', slide_two)
+        self.assertEqual(slide_two.count('aria-required="true"'), 2)
+        self.assertEqual(slide_two.count("<em>Obligatorio</em>"), 2)
+        self.assertNotIn("<em>Opcional</em>", slide_two)
+        self.assertNotIn('data-bind="identity.name"', slide_three)
+        self.assertNotIn('data-bind="identity.company"', slide_three)
         self.assertNotIn('data-bind="identity.name"', slide_nine)
         self.assertNotIn('data-bind="identity.company"', slide_nine)
 

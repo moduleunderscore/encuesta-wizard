@@ -168,16 +168,16 @@ export function isReferralComplete(referral) {
 
 export function validateScreen(screenIndex, draft) {
   const errors = {};
-  if (screenIndex === 2) {
-    if (draft.satisfaction === null) {
-      errors.satisfaction = "Elige una calificación para continuar.";
-    }
+  if (screenIndex === 1) {
     if (!draft.identity.name.trim()) {
       errors.identityName = "Escribe tu nombre.";
     }
     if (!draft.identity.company.trim()) {
       errors.identityCompany = "Escribe el nombre de tu empresa.";
     }
+  }
+  if (screenIndex === 2 && draft.satisfaction === null) {
+    errors.satisfaction = "Elige una calificación para continuar.";
   }
   if (
     screenIndex === 3 &&

@@ -27,7 +27,7 @@
 
 ## Alcance
 
-- Dentro: diez pantallas, copy, diseño, escenas, navegación, validación, accesibilidad base, nombre y empresa obligatorios, borrador local, tres referidos obligatorios con espacio para cinco y preparación del esquema.
+- Dentro: diez pantallas, copy, diseño, escenas, navegación, validación, accesibilidad base, nombre y empresa obligatorios en la bienvenida 02, borrador local, tres referidos obligatorios con espacio para cinco y preparación del esquema.
 - Fuera: recepción remota, Excel/OneDrive, n8n, correos enviados, WhatsApp enviado, analítica, CRM y agente de IA.
 - Entregables: sitio estático funcional, recursos optimizados, código modular, README, esquema y documentación de etapa 2.
 - Dependencias: navegador moderno con JavaScript y `sessionStorage`; imágenes y logo proporcionados por el usuario.
