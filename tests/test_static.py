@@ -85,7 +85,7 @@ class StaticSiteTests(unittest.TestCase):
         app = (SRC / "js" / "app.js").read_text(encoding="utf-8")
         self.assertIn("Lo que tu negocio necesita.", app)
         self.assertIn("Lo que tus clientes esperan.", app)
-        self.assertIn("Y todo lo que todavía imaginas.", app)
+        self.assertIn("Y todo lo que aún no te imaginas", app)
         self.assertNotIn("Lo que ya funciona.", app)
         self.assertIn(
             "Con Wizard, esas ideas se convierten en soluciones que sí se pueden construir.",

@@ -191,7 +191,7 @@ function screenOne() {
     <div class="statement-lines" aria-label="Con Wizard, lo que imaginas se puede construir">
       <p>Lo que tu negocio necesita.</p>
       <p>Lo que tus clientes esperan.</p>
-      <p>Y todo lo que todavía imaginas.</p>
+      <p>Y todo lo que aún no te imaginas</p>
     </div>
     <p class="support-copy">Con Wizard, esas ideas se convierten en soluciones que sí se pueden construir.</p>
     ${identityCaptureMarkup()}`;
