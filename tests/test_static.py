@@ -45,6 +45,8 @@ class StaticSiteTests(unittest.TestCase):
         self.assertIn("title-outline-white", app)
         self.assertIn("title-outline-green", app)
         self.assertIn("-webkit-text-stroke", styles)
+        self.assertIn("letter-spacing: -0.025em;", styles)
+        self.assertIn("word-spacing: 0.06em;", styles)
         self.assertIn('aria-label="${escapeHtml(screen.title)}"', app)
 
     def test_slide_two_wizard_word_has_accessible_sparkles(self):

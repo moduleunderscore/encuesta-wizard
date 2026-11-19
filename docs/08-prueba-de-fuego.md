@@ -30,6 +30,7 @@
 | Consentimiento general de referidos | Una sola confirmación autoriza el conjunto de contactos antes de continuar | Pass | Control único, validación de pantalla, filtro del payload y migración conservadora de borradores | Codex |
 | Marca en escenas 01–09 | Todos los robots llevan la insignia Wizard oscura, pequeña y bordada en el lado anatómico izquierdo del pecho; ambos personajes en escenas grupales | Pass | Inspección visual de posición, escala, trama, volumen, conteo y contraste en desktop/móvil | Codex |
 | Sistema de titulares | Juegos de sólido/outline en blanco y verde conservan jerarquía, contraste y nombre accesible | Pass | Inspección en 01–09 a 1280×720 y 390×844; fallback sólido sin `text-stroke` | Codex |
+| Espaciado de titulares | Las palabras respiran sin perder el bloque editorial ni provocar desbordamiento | Pass | Tracking `-0.025em`, word spacing `0.06em`; slide 02 verificado en 1280×720 y 390×844 | Codex |
 | Destellos de marca en 02 | Solo `WIZARD` activa estrellas blancas/verdes sin alterar lectura, layout ni accesibilidad | Pass | SVG inline + CSS; `aria-label` intacto; oculto con movimiento reducido | Codex |
 | Header limpio | Logo Wizard más visible y sin leyendas de staging en la interfaz | Pass | Prueba estática + inspección desktop/móvil | Codex |
 | Finalización explícita | El cierre muestra `<3` y un botón “Terminar” que registra la finalización local una sola vez | Pass | Botón cambia a “Recorrido terminado”, queda deshabilitado y muestra confirmación accesible | Codex |
@@ -50,6 +51,7 @@
 | 2026-11-18 | 1.0-demo | Navegador local | Header más visible y superficie sin leyendas de staging | Pass | 1280×720, 390×844 y 319×671; overflow X 0; consola limpia | Codex |
 | 2026-11-18 | 1.0-demo | Node + Python | Identidad en 03, copy de 02 y finalización en 10 | Pass | 11/11 modelo; 17/17 estáticas | Codex |
 | 2026-11-18 | 1.0-demo | Navegador local | Recorrido actualizado 02–10 | Pass | 319×667 y 1280×720; 03/09 sin scroll; cierre confirmado; consola limpia | Codex |
+| 2026-11-18 | 1.0-demo | Navegador local | Separación global de palabras en titulares | Pass | 1280×720 y 390×844; ancho de pantalla 390/390; consola limpia | Codex |
 
 ## Criterio de salida
 
