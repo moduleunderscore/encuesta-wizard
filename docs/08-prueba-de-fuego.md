@@ -58,6 +58,7 @@
 | 2026-11-19 | 1.3-live | n8n test webhook | Escritura de respuesta y tres contactos | Pass | HTTP 200; `storedContacts=3` | Codex |
 | 2026-11-19 | 1.3-live | n8n producción + OneDrive | CORS, recibo y persistencia real | Pass | HTTP 200; `qa_prod_ref_1..3` en filas consecutivas | Codex |
 | 2026-11-19 | 1.3-live | Python + Node | Copy del slide 02 y regresión | Pass | Nuevo texto verificado; 17/17 estáticas y 13/13 de modelo | Codex |
+| 2026-11-19 | 1.3-live | Navegador local + Python + Node | Opción de seguimiento debajo del comentario en 09 | Pass | Orden visual verificado sin scroll en 319 px; 18/18 estáticas y 13/13 de modelo | Codex |
 
 ## Criterio de salida
 

@@ -118,6 +118,25 @@ class StaticSiteTests(unittest.TestCase):
         self.assertNotIn('data-bind="identity.name"', slide_nine)
         self.assertNotIn('data-bind="identity.company"', slide_nine)
 
+    def test_slide_nine_followup_stacks_below_comment(self):
+        app = (SRC / "js" / "app.js").read_text(encoding="utf-8")
+        css = (SRC / "styles.css").read_text(encoding="utf-8")
+        slide_nine = app[
+            app.index("function screenEight()") : app.index("function closingScreen()")
+        ]
+        self.assertLess(
+            slide_nine.index('id="final-comment"'),
+            slide_nine.index('data-bind="followUpRequested"'),
+        )
+        self.assertIn(
+            ".final-feedback {\n    grid-template-columns: minmax(0, 1fr);",
+            css,
+        )
+        self.assertNotIn(
+            "grid-template-columns: minmax(0, 1.15fr) minmax(15rem, 0.85fr);",
+            css,
+        )
+
     def test_closing_has_explicit_finish_action_and_heart_copy(self):
         app = (SRC / "js" / "app.js").read_text(encoding="utf-8")
         self.assertIn("Gracias por compartir tu experiencia &lt;3.", app)

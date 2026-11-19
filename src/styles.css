@@ -1718,8 +1718,8 @@ textarea[aria-invalid="true"] {
   }
 
   .final-feedback {
-    grid-template-columns: minmax(0, 1.15fr) minmax(15rem, 0.85fr);
-    gap: 1rem;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0.55rem;
     align-items: start;
   }
 
