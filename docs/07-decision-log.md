@@ -32,3 +32,13 @@
 - Razón: coincide mejor con la referencia preferida y utiliza plenamente el espacio negativo de las imágenes.
 - Tradeoff: exige ajustes de encuadre y scroll específicos por móvil.
 - Revisión: después de feedback visual del usuario.
+
+## DEC-004 — Persistencia remota en dos tablas
+
+- Fecha: 2026-11-19.
+- Estado: aceptada e implementada.
+- Contexto: una respuesta principal contiene entre tres y cinco contactos y ambos grupos necesitan operación distinta.
+- Decisión: usar un webhook n8n que valida el esquema, escribe una fila en `Respuestas`, escribe de tres a cinco filas en `Contactos` y solo entonces confirma al sitio.
+- Razón: mantiene el libro simple, rastreable por `submission_id` y compatible con seguimiento humano.
+- Tradeoff: una falla después de la primera escritura puede dejar una operación parcial; la deduplicación remota es una mejora pendiente.
+- Revisión: al definir retención, responsable operativo y automatización del seguimiento.

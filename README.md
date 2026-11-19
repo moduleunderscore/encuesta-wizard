@@ -1,6 +1,6 @@
-# Encuesta Wizard — etapa 1
+# Encuesta Wizard — versión conectada
 
-Experiencia frontend de diez pantallas para conocer la satisfacción de clientes de Wizard, sus prioridades y, de forma opcional y consentida, posibles referidos.
+Experiencia frontend de diez pantallas para conocer la satisfacción de clientes de Wizard, sus prioridades y entre tres y cinco recomendaciones consentidas.
 
 ## Qué incluye
 
@@ -10,6 +10,9 @@ Experiencia frontend de diez pantallas para conocer la satisfacción de clientes
 - Ruta prioritaria de mejora cuando satisfacción o recomendación es 3 o menor.
 - Entre tres y cinco referidos, con canal adaptable y una confirmación general explícita.
 - Borrador en `sessionStorage`, aislado a la pestaña actual.
+- Envío real a un webhook de n8n con validación antes de escribir.
+- Persistencia en dos tablas de Excel en OneDrive: respuestas y contactos.
+- Confirmación de recepción, reintento visible y bloqueo después de un envío exitoso.
 - Resumen editable, reinicio confirmado y contraportada Wizard.
 - Movimiento reducido, navegación con teclado y estados de foco visibles.
 
@@ -40,7 +43,7 @@ python3 -m unittest discover -s tests -p 'test_*.py'
 - `src/js/content.js`: copy, opciones y escenas.
 - `src/js/model.js`: esquema del borrador, reglas y validación.
 - `src/js/app.js`: render, navegación e interacciones.
-- `src/js/integration.js`: frontera preparada para la futura recepción de datos.
+- `src/js/integration.js`: payload, timeout y envío al webhook de producción.
 - `src/assets/`: imágenes web optimizadas y logo oficial.
 - `docs/`: brief, decisiones, arquitectura y evidencia de QA.
 
@@ -48,7 +51,7 @@ python3 -m unittest discover -s tests -p 'test_*.py'
 
 El objeto conservado en `sessionStorage` incluye:
 
-- `draftId`, `schemaVersion`, `startedAt`, `completedAt`, `mode` y `demo`.
+- `draftId`, `schemaVersion`, `startedAt`, `completedAt`, `submittedAt`, `mode` y `demo`.
 - `identity` con nombre y empresa obligatorios.
 - `satisfaction`, `technology`, `aiImpact`, `priorities` y `recommendation`.
 - `referralMode`, `referrals`, `referralsConsent` y `selfIntroMessage`.
@@ -56,8 +59,8 @@ El objeto conservado en `sessionStorage` incluye:
 
 Las calificaciones no contestadas son `null`. `prepareSubmissionPayload()` solo incluye fichas completas cuando existe autorización general.
 
-## Alcance y pendiente
+## Integración
 
-Esta versión es explícitamente demo. No hace solicitudes de red y no confirma recepción de datos.
+El botón final envía el borrador autorizado a n8n. El workflow valida identidad, escalas, prioridades, consentimiento y entre tres y cinco contactos completos. Solo después de guardar la respuesta y los contactos en Excel devuelve `{ ok: true }`.
 
-La etapa 2 deberá conectar un endpoint nuevo de n8n con Excel en OneDrive, credenciales dedicadas, validación de esquema, idempotencia, manejo de errores y confirmación de guardado real. Los enlaces y credenciales de esa etapa no están en el código público.
+Las credenciales de Microsoft viven únicamente en n8n. El frontend público contiene la URL del webhook, pero no secretos ni enlaces privados del libro. El `submissionId` se conserva en los reintentos del navegador; la deduplicación remota en Excel sigue siendo una mejora operativa pendiente.

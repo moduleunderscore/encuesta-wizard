@@ -1,9 +1,10 @@
 import { DEFAULT_INTRO_MESSAGE } from "./content.js";
 
 export const STORAGE_KEY = "wizard-survey-demo-v1";
-export const SCHEMA_VERSION = "1.2.0";
+export const SCHEMA_VERSION = "1.3.0";
 const LEGACY_TEN_POINT_SCHEMA_VERSION = "1.0.0";
-const SUPPORTED_SCHEMA_VERSIONS = ["1.0.0", "1.1.0", SCHEMA_VERSION];
+const SUPPORTED_SCHEMA_VERSIONS = ["1.0.0", "1.1.0", "1.2.0", SCHEMA_VERSION];
+const CONSENT_SCHEMA_VERSIONS = ["1.2.0", SCHEMA_VERSION];
 export const REQUIRED_REFERRAL_COUNT = 3;
 export const REFERRAL_SLOT_COUNT = 5;
 
@@ -38,10 +39,14 @@ export function createDraft(now = new Date()) {
   return {
     draftId: createId(),
     schemaVersion: SCHEMA_VERSION,
-    mode: "demo",
-    demo: true,
+    mode: "live",
+    demo: false,
     startedAt: now.toISOString(),
     completedAt: null,
+    submittedAt: null,
+    submissionStatus: "draft",
+    receiptId: null,
+    lastSubmissionError: null,
     currentScreen: 0,
     maxVisitedScreen: 0,
     identity: { name: "", company: "" },
@@ -93,7 +98,9 @@ export function normalizeDraft(value) {
     referralMode: "contact",
     referrals: createReferralSlots(value.referrals),
     referralsConsent:
-      value.schemaVersion === SCHEMA_VERSION ? Boolean(value.referralsConsent) : false,
+      CONSENT_SCHEMA_VERSIONS.includes(value.schemaVersion)
+        ? Boolean(value.referralsConsent)
+        : false,
     currentScreen: Number.isInteger(value.currentScreen)
       ? Math.min(9, Math.max(0, value.currentScreen))
       : 0,

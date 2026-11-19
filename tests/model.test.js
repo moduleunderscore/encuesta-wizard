@@ -2,6 +2,7 @@ import test from "node:test";
 import assert from "node:assert/strict";
 
 import { prepareSubmissionPayload } from "../src/js/integration.js";
+import { submitSurvey } from "../src/js/integration.js";
 import {
   createDraft,
   createReferral,
@@ -13,10 +14,10 @@ import {
   validateScreen,
 } from "../src/js/model.js";
 
-test("a new demo draft uses null for unanswered ratings", () => {
+test("a new live draft uses null for unanswered ratings", () => {
   const draft = createDraft(new Date("2026-11-18T12:00:00.000Z"));
-  assert.equal(draft.demo, true);
-  assert.equal(draft.mode, "demo");
+  assert.equal(draft.demo, false);
+  assert.equal(draft.mode, "live");
   assert.equal(draft.satisfaction, null);
   assert.equal(draft.technology.rating, null);
   assert.equal(draft.recommendation, null);
@@ -133,6 +134,39 @@ test("future payload includes complete referrals only after group consent", () =
   const payload = prepareSubmissionPayload(draft);
   assert.equal(payload.referrals.length, 2);
   assert.equal(payload.referrals[0].name, "Ana");
+  assert.equal(payload.submissionId, draft.draftId);
+});
+
+test("remote submission posts JSON as a simple CORS request and returns the receipt", async () => {
+  const draft = createDraft();
+  draft.identity = { name: "Cliente Prueba", company: "Empresa Prueba" };
+  const calls = [];
+  const receipt = await submitSurvey(draft, {
+    endpoint: "https://example.test/webhook",
+    fetchImpl: async (url, options) => {
+      calls.push({ url, options });
+      return {
+        ok: true,
+        text: async () => JSON.stringify({ ok: true, submissionId: draft.draftId, storedAt: "2026-11-19T12:00:00.000Z" }),
+      };
+    },
+  });
+  assert.equal(calls[0].url, "https://example.test/webhook");
+  assert.equal(calls[0].options.headers["Content-Type"], "text/plain;charset=UTF-8");
+  assert.equal(JSON.parse(calls[0].options.body).identity.name, "Cliente Prueba");
+  assert.equal(receipt.ok, true);
+});
+
+test("remote submission rejects a false success response", async () => {
+  await assert.rejects(
+    submitSurvey(createDraft(), {
+      fetchImpl: async () => ({
+        ok: true,
+        text: async () => JSON.stringify({ ok: false, message: "No guardado" }),
+      }),
+    }),
+    /No guardado/,
+  );
 });
 
 test("normalization restores nested defaults and clamps the screen", () => {
@@ -156,7 +190,7 @@ test("legacy drafts require fresh group consent and drop per-contact consent", (
     referrals: [{ ...createReferral(), name: "Ana", consent: true }],
   };
   const restored = normalizeDraft(legacy);
-  assert.equal(restored.schemaVersion, "1.2.0");
+  assert.equal(restored.schemaVersion, "1.3.0");
   assert.equal(restored.referralsConsent, false);
   assert.equal("consent" in restored.referrals[0], false);
 });
@@ -170,7 +204,7 @@ test("normalization migrates legacy ten-point ratings to five points", () => {
     recommendation: 6,
   };
   const restored = normalizeDraft(legacy);
-  assert.equal(restored.schemaVersion, "1.2.0");
+  assert.equal(restored.schemaVersion, "1.3.0");
   assert.equal(restored.satisfaction, 4);
   assert.equal(restored.technology.rating, 4);
   assert.equal(restored.recommendation, 3);

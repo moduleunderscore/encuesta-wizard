@@ -123,7 +123,8 @@ class StaticSiteTests(unittest.TestCase):
         self.assertIn("Gracias por compartir tu experiencia &lt;3.", app)
         self.assertIn('data-action="finish"', app)
         self.assertIn('nextButton.textContent = "Ver cierre"', app)
-        self.assertIn('showToast("Recorrido terminado.")', app)
+        self.assertIn('showToast("Encuesta enviada y guardada.")', app)
+        self.assertIn('"Enviar encuesta"', app)
 
     def test_header_logo_is_prominent_on_desktop_and_mobile(self):
         styles = (SRC / "styles.css").read_text(encoding="utf-8")
@@ -192,14 +193,17 @@ class StaticSiteTests(unittest.TestCase):
 
         self.assertNotIn("preview-info", interface)
 
-    def test_stage_two_services_are_not_exposed_in_public_source(self):
+    def test_stage_two_keeps_the_workbook_private_and_uses_the_public_webhook(self):
         public_text = "\n".join(
             path.read_text(encoding="utf-8", errors="ignore")
             for path in SRC.rglob("*")
             if path.suffix in {".html", ".css", ".js"}
         )
         self.assertNotIn("1drv.ms", public_text)
-        self.assertNotIn("intelligencewizard.app.n8n.cloud", public_text)
+        self.assertIn(
+            "https://intelligencewizard.app.n8n.cloud/webhook/wizard-encuesta-clientes-v1",
+            public_text,
+        )
 
 
 if __name__ == "__main__":

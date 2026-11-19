@@ -5,7 +5,7 @@
 - Cliente o unidad: Wizard.
 - Industria y contexto: agencia mexicana de inteligencia artificial aplicada y automatización de negocios.
 - Nombre del proyecto: Encuesta Wizard.
-- Tipo: producto frontend / experiencia de satisfacción, etapa 1.
+- Tipo: producto web / experiencia de satisfacción conectada.
 - Responsable Wizard: [PENDIENTE].
 - Responsable del cliente: no aplica; es un proyecto interno de Wizard.
 
@@ -13,8 +13,8 @@
 
 - Cambio de negocio u operación: instalar una experiencia breve y memorable para escuchar a clientes, detectar prioridades futuras y capturar entre tres y cinco recomendaciones consentidas.
 - Métrica principal: [OBJETIVO] tasa de recorrido completado cuando exista captura real.
-- Línea base y fuente: [PENDIENTE]; esta etapa no recibe datos.
-- Meta y fecha: [OBJETIVO] duración cercana a tres minutos; meta de conversión pendiente para etapa 2.
+- Línea base y fuente: [PENDIENTE]; el libro de OneDrive queda listo para iniciar medición.
+- Meta y fecha: [OBJETIVO] duración cercana a tres minutos; meta de conversión pendiente de operación real.
 - Qué demostraría que esto funcionó: recorrido completo sin fricción en escritorio y móvil, respuestas honestas, comentarios accionables y al menos tres referidos autorizados.
 
 ## Usuario y situación real
@@ -27,23 +27,23 @@
 
 ## Alcance
 
-- Dentro: diez pantallas, copy, diseño, escenas, navegación, validación, accesibilidad base, nombre y empresa obligatorios en la bienvenida 02, borrador local, tres referidos obligatorios con espacio para cinco y preparación del esquema.
-- Fuera: recepción remota, Excel/OneDrive, n8n, correos enviados, WhatsApp enviado, analítica, CRM y agente de IA.
-- Entregables: sitio estático funcional, recursos optimizados, código modular, README, esquema y documentación de etapa 2.
+- Dentro: diez pantallas, copy, diseño, escenas, navegación, validación, accesibilidad base, nombre y empresa obligatorios en 02, borrador local, tres referidos obligatorios con espacio para cinco, webhook n8n y persistencia en Excel.
+- Fuera: correos enviados, WhatsApp enviado, analítica, CRM y prospección automática de los contactos.
+- Entregables: sitio estático funcional, recursos optimizados, código modular, workflow n8n, libro de Excel y documentación operativa.
 - Dependencias: navegador moderno con JavaScript y `sessionStorage`; imágenes y logo proporcionados por el usuario.
-- Restricciones: modo demo explícito; ningún dato debe salir del navegador; no exponer enlaces privados de etapa 2.
+- Restricciones: no exponer credenciales ni el enlace privado del libro; solo enviar contactos tras consentimiento explícito.
 
 ## Sistemas y propiedad
 
-- Sistemas existentes: referencias públicas de marca y presentación; futuro libro de Excel y futura instancia n8n, fuera del alcance actual.
-- Fuente de verdad: `sessionStorage` de la pestaña durante etapa 1.
-- Datos disponibles y calidad: respuestas capturadas por controles validados; no existe dataset histórico en esta fase.
+- Sistemas existentes: sitio público, instancia n8n de Wizard y libro de Excel en OneDrive.
+- Fuente de verdad: `sessionStorage` mientras se responde; tablas `Respuestas` y `Contactos` después de la confirmación remota.
+- Datos disponibles y calidad: respuestas capturadas por controles validados; el libro contiene registros sintéticos de QA claramente rotulados.
 - Cuentas, código e infraestructura que controlará el cliente: repositorio local y proyecto privado de Sites asociado.
 - Terceros y límites de licencia: hosting Sites y navegador; los activos adjuntos se usan como recursos proporcionados por Wizard.
 
 ## Preguntas abiertas
 
-1. [PENDIENTE] Responsable operativo y propietario del workflow de etapa 2.
+1. [PENDIENTE] Responsable operativo y propietario del workflow en producción.
 2. [PENDIENTE] Política de privacidad, retención y base legal para comentarios y referidos.
 3. [PENDIENTE] Dominio, audiencia y criterios de éxito de producción.
 
@@ -51,4 +51,4 @@
 
 - Fecha de implementación inicial: 2026-11-18.
 - Aprobado por: [PENDIENTE] revisión del usuario.
-- Versión: 1.0-demo.
+- Versión: 1.3-live.

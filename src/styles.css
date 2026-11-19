@@ -1285,6 +1285,19 @@ textarea[aria-invalid="true"] {
   margin-top: 1.6rem;
 }
 
+.submission-status {
+  max-width: 43rem;
+  margin: 0.85rem auto 0;
+  color: rgba(255, 255, 255, 0.72);
+  font-size: clamp(0.78rem, 1.1vw, 0.94rem);
+  line-height: 1.45;
+  text-align: center;
+}
+
+.submission-status--error {
+  color: #ffb7ae;
+}
+
 .toast {
   position: fixed;
   z-index: 200;

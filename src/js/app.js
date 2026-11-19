@@ -17,6 +17,7 @@ import {
   togglePriority,
   validateScreen,
 } from "./model.js";
+import { submitSurvey } from "./integration.js";
 
 let draft = loadDraft();
 let errors = {};
@@ -24,6 +25,7 @@ let lastScreen = draft.currentScreen;
 let transitionDirection = "forward";
 let toastTimer = null;
 let activeReferralIndex = 0;
+let isSubmitting = false;
 
 const stage = document.querySelector("#stage");
 const nav = document.querySelector("#app-nav");
@@ -379,6 +381,15 @@ function screenEight() {
 }
 
 function closingScreen() {
+  const isSubmitted = draft.submissionStatus === "submitted";
+  const hasError = draft.submissionStatus === "error";
+  const submitLabel = isSubmitted
+    ? "Encuesta enviada"
+    : isSubmitting
+      ? "Enviando…"
+      : hasError
+        ? "Reintentar envío"
+        : "Enviar encuesta";
   return `
     <section class="closing-screen" aria-labelledby="screen-heading">
       <video class="closing-video" muted loop playsinline preload="auto" aria-hidden="true">
@@ -392,8 +403,11 @@ function closingScreen() {
         </h1>
         <img class="closing-logo" src="./assets/logo-wizard.png" alt="Wizard, Agencia IA Aplicada" />
         <p class="closing-copy"><strong>Recorrido completado.</strong> Gracias por compartir tu experiencia &lt;3.</p>
+        <p class="submission-status${hasError ? " submission-status--error" : ""}" role="status">
+          ${isSubmitted ? "Tus respuestas quedaron guardadas. Gracias por hablar sin filtro." : hasError ? escapeHtml(draft.lastSubmissionError || "El envío no se completó.") : "Al enviar, guardaremos tus respuestas y los contactos que autorizaste compartir."}
+        </p>
         <div class="closing-actions">
-          <button class="button button--primary" type="button" data-action="finish" ${draft.completedAt ? "disabled" : ""}>${draft.completedAt ? "Recorrido terminado" : "Terminar"}</button>
+          <button class="button button--primary" type="button" data-action="finish" ${isSubmitting || isSubmitted ? "disabled" : ""}>${submitLabel}</button>
           <button class="button button--primary" type="button" data-action="review">Revisar mis respuestas</button>
           <button class="button button--ghost" type="button" data-action="reset">Borrar y empezar de nuevo</button>
         </div>
@@ -594,6 +608,34 @@ function closeModal() {
   modalLayer.innerHTML = "";
 }
 
+async function finishSurvey() {
+  if (isSubmitting || draft.submissionStatus === "submitted") return;
+
+  isSubmitting = true;
+  draft.completedAt ||= new Date().toISOString();
+  draft.submissionStatus = "submitting";
+  draft.lastSubmissionError = null;
+  render();
+
+  try {
+    const receipt = await submitSurvey(draft);
+    draft.submissionStatus = "submitted";
+    draft.submittedAt = receipt.storedAt || new Date().toISOString();
+    draft.receiptId = receipt.submissionId || draft.draftId;
+    draft.lastSubmissionError = null;
+    showToast("Encuesta enviada y guardada.");
+  } catch (error) {
+    draft.submissionStatus = "error";
+    draft.lastSubmissionError =
+      error?.message || "No pudimos guardar tus respuestas. Intenta de nuevo.";
+    showToast("El envío no se completó.");
+  } finally {
+    isSubmitting = false;
+    saveDraft(draft);
+    render();
+  }
+}
+
 document.addEventListener("click", (event) => {
   const button = event.target.closest("[data-action]");
   if (!button) return;
@@ -635,11 +677,7 @@ document.addEventListener("click", (event) => {
     render();
   }
   if (action === "review") openReview();
-  if (action === "finish") {
-    if (!draft.completedAt) draft.completedAt = new Date().toISOString();
-    render();
-    showToast("Recorrido terminado.");
-  }
+  if (action === "finish") void finishSurvey();
   if (action === "reset") openResetConfirmation();
   if (action === "close-modal") closeModal();
   if (action === "confirm-reset") {

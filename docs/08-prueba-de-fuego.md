@@ -6,7 +6,7 @@
 |---|---|---|---|---|
 | Flujo ideal | Completa 10 pantallas | Pass | Recorrido navegador 1280×720 | Codex |
 | Datos obligatorios vacíos | Bloquea y muestra error | Pass | Pantalla 03 permaneció en 03 con 1 error | Codex |
-| Sin referidos | Permite finalizar | Pass | Ficha vacía avanzó a 09 | Codex |
+| Sin referidos | Bloquea el avance | Pass | El modelo exige tres fichas completas y consentimiento | Codex |
 | Referido parcial | Bloquea y señala pendientes | Pass | 2 errores; permaneció en 08 | Codex |
 | Mínimo de referidos | Impide avanzar con menos de tres contactos completos y autorizados | Pass | Prueba Node del modelo + recorrido de pantalla 08 | Codex |
 | Consentimiento | Desmarcado por defecto | Pass | `checked=null` en navegador | Codex |
@@ -15,7 +15,7 @@
 | Calificación baja | Prioriza mejora | Pass | Satisfacción 4 / recomendación 5 mostró mensaje adaptado | Codex |
 | Recarga | Restaura pantalla y respuestas | Pass | Comentario, nombre y seguimiento persistieron | Codex |
 | Copiar mensaje | Copia sin enviar | Pass | Toast confirmado | Codex |
-| Cierre | Agradece sin afirmar recepción | Pass | Contraportada verificada | Codex |
+| Cierre | Confirma solo después de recepción remota | Pass | Respuesta `{ ok: true }` después de escribir Excel | Codex |
 | Móvil | Sin overflow y navegación fija | Pass | 319×671 y 390×844; overflow X 0; botones 51 px | Codex |
 | Escritorio | Escena panorámica legible | Pass | 1280×720; overflow X 0 | Codex |
 | Una escena por viewport | Las 10 pantallas caben sin scroll | Pass | 1280×720; `stageScroll === stageClient` en 01–10 | Codex |
@@ -33,9 +33,9 @@
 | Espaciado de titulares | Las palabras respiran sin perder el bloque editorial ni provocar desbordamiento | Pass | Tracking `-0.025em`, word spacing `0.06em`; slide 02 verificado en 1280×720 y 390×844 | Codex |
 | Destellos de marca en 02 | Solo `WIZARD` activa estrellas blancas/verdes sin alterar lectura, layout ni accesibilidad | Pass | SVG inline + CSS; `aria-label` intacto; oculto con movimiento reducido | Codex |
 | Header limpio | Logo Wizard más visible y sin leyendas de staging en la interfaz | Pass | Prueba estática + inspección desktop/móvil | Codex |
-| Finalización explícita | El cierre muestra `<3` y un botón “Terminar” que registra la finalización local una sola vez | Pass | Botón cambia a “Recorrido terminado”, queda deshabilitado y muestra confirmación accesible | Codex |
+| Finalización explícita | El cierre muestra `<3` y un botón “Enviar encuesta” con estado de envío, error y recibo | Pass | Tras el recibo cambia a “Encuesta enviada” y queda deshabilitado | Codex |
 | Movimiento reducido | Contenido visible y animación mínima | Pass por inspección | Media query global y fallback estático | Codex |
-| Integración remota | No existe en demo | Pass | Código público sin OneDrive/n8n; `submitSurvey` falla explícito | Codex |
+| Integración remota | Guarda una respuesta y entre tres y cinco contactos antes de confirmar | Pass | Webhook de prueba y producción 200; filas verificadas en ambas hojas | Codex |
 
 ## Registro de ejecución
 
@@ -54,10 +54,13 @@
 | 2026-11-18 | 1.0-demo | Navegador local | Separación global de palabras en titulares | Pass | 1280×720 y 390×844; ancho de pantalla 390/390; consola limpia | Codex |
 | 2026-11-18 | 1.0-demo | Navegador local | Nombre y empresa obligatorios en 02 | Pass | Bloqueo sin datos, dos errores accesibles, avance al completar ambos y 390×844 sin scroll; consola limpia | Codex |
 | 2026-11-18 | 1.0-demo | Navegador local | Identidad en 02 y composición completa 01–10 | Pass | 1280×720, 390×844 y 319×667 sin scroll ni overflow; títulos y cuerpos a la izquierda, cierre centrado; consola limpia | Codex |
+| 2026-11-19 | 1.3-live | Python 3 | Suite estática y build | Pass | 17/17; `dist/` generado | Codex |
+| 2026-11-19 | 1.3-live | n8n test webhook | Escritura de respuesta y tres contactos | Pass | HTTP 200; `storedContacts=3` | Codex |
+| 2026-11-19 | 1.3-live | n8n producción + OneDrive | CORS, recibo y persistencia real | Pass | HTTP 200; `qa_prod_ref_1..3` en filas consecutivas | Codex |
 
 ## Criterio de salida
 
-- Casos críticos aprobados: sí, para demo frontend.
+- Casos críticos aprobados: sí, para frontend y persistencia remota.
 - Defectos aceptados: ninguno conocido que bloquee uso.
-- Riesgos pendientes: privacidad, recepción, operación e idempotencia de etapa 2.
-- Versión liberada: 1.0-demo, pendiente de aprobación visual del usuario.
+- Riesgos pendientes: política de privacidad y retención, responsable operativo, deduplicación remota y medición.
+- Versión liberada: 1.3-live.
