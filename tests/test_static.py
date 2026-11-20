@@ -59,6 +59,21 @@ class StaticSiteTests(unittest.TestCase):
         self.assertIn("prefers-reduced-motion: reduce", styles)
         self.assertIn(".title-sparkle {\n    display: none;", styles)
 
+    def test_slide_two_uses_the_canonical_wizard_green(self):
+        app = (SRC / "js" / "app.js").read_text(encoding="utf-8")
+        styles = (SRC / "styles.css").read_text(encoding="utf-8")
+        slide_two_styles = styles[
+            styles.index(".statement-lines {") : styles.index(".support-copy {")
+        ]
+        sparkles = app[
+            app.index("function wizardSparklesMarkup()") : app.index("function formatTitle")
+        ]
+        self.assertIn("--green: #39ff14;", styles)
+        self.assertIn("color: var(--green);", slide_two_styles)
+        self.assertNotIn("--green-soft", styles)
+        self.assertIn('"var(--green)"', sparkles)
+        self.assertNotIn("#b9ff59", sparkles)
+
     def test_cover_uses_the_correct_accent_in_podia(self):
         app = (SRC / "js" / "app.js").read_text(encoding="utf-8")
         content = (SRC / "js" / "content.js").read_text(encoding="utf-8")

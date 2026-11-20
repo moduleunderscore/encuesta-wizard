@@ -32,6 +32,7 @@
 | Sistema de titulares | Juegos de sólido/outline en blanco y verde conservan jerarquía, contraste y nombre accesible | Pass | Inspección en 01–09 a 1280×720 y 390×844; fallback sólido sin `text-stroke` | Codex |
 | Espaciado de titulares | Las palabras respiran sin perder el bloque editorial ni provocar desbordamiento | Pass | Tracking `-0.025em`, word spacing `0.06em`; slide 02 verificado en 1280×720 y 390×844 | Codex |
 | Destellos de marca en 02 | Solo `WIZARD` activa estrellas blancas/verdes sin alterar lectura, layout ni accesibilidad | Pass | SVG inline + CSS; `aria-label` intacto; oculto con movimiento reducido | Codex |
+| Verde de marca en 02 | Título, destellos, copy, navegación y estados interactivos usan únicamente el verde Wizard `#39FF14` | Pass | Valores computados `rgb(57, 255, 20)`; cero elementos con el verde anterior `#B9FF59`; 1280×720 sin scroll ni overflow | Codex |
 | Header limpio | Logo Wizard más visible y sin leyendas de staging en la interfaz | Pass | Prueba estática + inspección desktop/móvil | Codex |
 | Finalización explícita | El cierre muestra `<3` y un botón “Enviar encuesta” con estado de envío, error y recibo | Pass | Tras el recibo cambia a “Encuesta enviada” y queda deshabilitado | Codex |
 | Movimiento reducido | Contenido visible y animación mínima | Pass por inspección | Media query global y fallback estático | Codex |
@@ -59,6 +60,7 @@
 | 2026-11-19 | 1.3-live | n8n producción + OneDrive | CORS, recibo y persistencia real | Pass | HTTP 200; `qa_prod_ref_1..3` en filas consecutivas | Codex |
 | 2026-11-19 | 1.3-live | Python + Node | Copy del slide 02 y regresión | Pass | Nuevo texto verificado; 17/17 estáticas y 13/13 de modelo | Codex |
 | 2026-11-19 | 1.3-live | Navegador local + Python + Node | Opción de seguimiento debajo del comentario en 09 | Pass | Orden visual verificado sin scroll en 319 px; 18/18 estáticas y 13/13 de modelo | Codex |
+| 2026-11-19 | 1.3-live | Navegador local + Python + Node | Paleta verde del slide 02 | Pass | `#39FF14` en título, copy, destellos y CTA; 0 acentos `#B9FF59`; 19/19 estáticas y 13/13 de modelo | Codex |
 
 ## Criterio de salida
 
