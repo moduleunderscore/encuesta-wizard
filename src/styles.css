@@ -1564,7 +1564,7 @@ textarea[aria-invalid="true"] {
   }
 
   .screen--intro .identity-capture {
-    margin-top: 0.6rem;
+    margin-top: 1rem;
     padding-top: 0.55rem;
   }
 
@@ -1915,7 +1915,7 @@ textarea[aria-invalid="true"] {
   }
 
   .screen--intro .identity-capture {
-    margin-top: 0.55rem;
+    margin-top: 0.85rem;
     padding-top: 0.5rem;
   }
 

@@ -113,6 +113,7 @@ class StaticSiteTests(unittest.TestCase):
 
     def test_identity_capture_lives_on_slide_two_only(self):
         app = (SRC / "js" / "app.js").read_text(encoding="utf-8")
+        styles = (SRC / "styles.css").read_text(encoding="utf-8")
         slide_two = app[
             app.index("function identityCaptureMarkup()") : app.index("function screenTwo()")
         ]
@@ -132,6 +133,8 @@ class StaticSiteTests(unittest.TestCase):
         self.assertNotIn('data-bind="identity.company"', slide_three)
         self.assertNotIn('data-bind="identity.name"', slide_nine)
         self.assertNotIn('data-bind="identity.company"', slide_nine)
+        self.assertIn("margin-top: 1rem;\n    padding-top: 0.55rem;", styles)
+        self.assertIn("margin-top: 0.85rem;\n    padding-top: 0.5rem;", styles)
 
     def test_slide_nine_followup_stacks_below_comment(self):
         app = (SRC / "js" / "app.js").read_text(encoding="utf-8")

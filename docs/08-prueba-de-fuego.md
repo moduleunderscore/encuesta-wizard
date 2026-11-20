@@ -21,6 +21,7 @@
 | Una escena por viewport | Las 10 pantallas caben sin scroll | Pass | 1280×720; `stageScroll === stageClient` en 01–10 | Codex |
 | Referidos densos | Cinco espacios caben sin apilar fichas; tres son obligatorios | Pass | Navegación por pestañas; una ficha activa y cinco accesos visibles | Codex |
 | Identidad al inicio | Nombre y empresa obligatorios aparecen en 02, bloquean el avance si faltan y no se repiten en 03 ni 09 | Pass | Validación de modelo, semántica `required` y recorrido visual en móvil/escritorio | Codex |
+| Separación de identidad en 02 | El bloque de nombre y empresa respira respecto al texto introductorio sin perder alineación ni provocar scroll | Pass | Margen superior ampliado a `1rem` en escritorio y `0.85rem` en móvil; 390×844 con 14 px de separación, overflow X 0 y alto de escena 704/704 | Codex |
 | Última toma compacta | Comentario y seguimiento visibles juntos sin scroll | Pass | Pantalla 09 completa en 319×667 y 1280×720 | Codex |
 | Consola | Sin errores o warnings | Pass | Logs de navegador vacíos | Codex |
 | Thumbnail social | Portada y copy legibles al compartir | Pass | JPEG 1200×630 + Open Graph/Twitter con URL absoluta | Codex |
@@ -61,6 +62,7 @@
 | 2026-11-19 | 1.3-live | Python + Node | Copy del slide 02 y regresión | Pass | Nuevo texto verificado; 17/17 estáticas y 13/13 de modelo | Codex |
 | 2026-11-19 | 1.3-live | Navegador local + Python + Node | Opción de seguimiento debajo del comentario en 09 | Pass | Orden visual verificado sin scroll en 319 px; 18/18 estáticas y 13/13 de modelo | Codex |
 | 2026-11-19 | 1.3-live | Navegador local + Python + Node | Paleta verde del slide 02 | Pass | `#39FF14` en título, copy, destellos y CTA; 0 acentos `#B9FF59`; 19/19 estáticas y 13/13 de modelo | Codex |
+| 2026-11-19 | 1.3-live | Navegador local + Python + Node | Separación vertical del bloque de identidad en 02 | Pass | Escritorio y 390×844 sin scroll ni overflow; 19/19 estáticas y 13/13 de modelo | Codex |
 
 ## Criterio de salida
 
